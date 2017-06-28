@@ -14,7 +14,7 @@ SVG / Grafiken
 * Coins
 * Buttons
 * Tisch
-* Spieler
+* Avatar
 
 BaseX
 

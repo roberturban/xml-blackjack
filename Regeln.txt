@@ -1,0 +1,12 @@
+-	Max. 5 Spieler
+-	sechs Paketen französischer Spielkarten zu 52 Blatt, also 312 Karten gespielt
+-	Black-Jack-Karte hat Bridge-Format und trägt extra große Indexzeichen (large index) mit den englischen Bezeichnungen K, Q und J für die Bilder
+
+-	Asse zählen nach Belieben ein oder elf Punkte. (Der Wert des Asses wird erst dann festgelegt, wenn der Spieler keine weitere Karte mehr kauft – dann zählt der Croupier das Ass so, wie es für den Spieler am günstigsten ist.)
+-	Zweier bis Zehner zählen entsprechend ihren Augen.
+-	Bildkarten (Buben, Damen, Könige) zählen zehn Punkte.
+
+-	Falls ein Spieler über 21 kommt, ist der Spieler sofort raus und der Dealer zieht keine Karte mehr
+-	Black Jack zahlt 3:2, bei Gewinn 1:1, bei Gleichstand bekommt man seinen Einsatz zurück
+-	Falls erste Karte des Dealers, Ass oder Bild, darf man eine Versicherung abschließen
+-	Insurance: folgt noch
