@@ -1,0 +1,34 @@
+Entscheidung: nur zwei Attribute statt drei zu verwalten, Beim Zusammenzählen muss aufgrund von Ass sowieso geprüft und übersetzt werden
+Color (suits, hearts, piks, …)
+Value (2-10, K,J,Q, 1 oder 11)
+
+Diskussion wegen Table und Game => Ist das Selbe
+
+Minimum Bet and Maximum Limit if Game is created
+
+Spiel läuft sequentiell ab, deswegen brauchen wir nur einen aktiven Spieler, also der, der gerade mit dem Dealer in Interaktion ist (Player: aktiv in der Klasse Game)
+
+Frage? Spielt der Dealer noch weiter, wenn alle Spieler über 21 sind?
+-	Falls ein Spieler über 21 kommt, ist der Spieler sofort raus und der Dealer zieht keine Karte mehr
+-	Letzter Spieler und alle über 21, muss der Dealer keine mehr ziehen
+
+Safety des Spielverlaufs, nur ein Spieler aktiv in Klasse Game.
+
+Sobald der Kartenstapel unter x oder 33% des Stapels ist, wird neu gemischt.
+
+Turn ist bei Dealer, weil nur die zweite Dealer Karte geturned wird.
+
+Game und Player haben eine Idee, Card ist eindeutig über Attribute und es gibt nur ein Casino.
+
+ShuffleCards nach 1/3 oder max Rounds.
+
+Double verdoppelt den Bet sofort.
+
+Insurance Attribute ist notwendig,
+
+Verlierer wird sofort der Gewinn entzogen >> kein extra Boolean.
+Am Ende des Spiels überprüfen wir ob Bet größer 0 ist >> ist Gewinner >> kein extre boolean.
+
+Unbegrenzte Anzahl an Spielen.
+
+Startguthaben ist bei allen gleich.
