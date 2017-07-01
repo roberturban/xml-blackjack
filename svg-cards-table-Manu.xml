@@ -2,8 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" >
-    <desc></desc>
-    <g alignment-baseline="baseline"></g>
+    <g alignment-baseline="baseline" /g>
     
     <defs>
         <g id="generic-blackjack-table">
@@ -22,30 +21,6 @@
         <g id="generic-card-border">
             <rect height="350" width="250" x="45" y="10" rx="30" ry="30"
                 style="fill:white;stroke:black;stroke-width:5;opacity:1.0" />
-        </g>
-    </defs>
-    
-    <defs>
-        <g id="generic-red-card-number">
-            <!-- top left number -->
-            <text id="red-card-number" x="57" y="50" font-size="35"
-                fill="red">no.
-            </text>
-            <!-- bottom right number -->
-            <use xlink:href="#red-card-number" x="200" y="290"
-                transform="rotate(180, 268, 330)" />
-        </g>
-    </defs>
-    
-    <defs>
-        <g id="generic-black-card-number">
-            <!-- top left number -->
-            <text id="black-card-number" x="57" y="50" font-size="35"
-                fill="black">no.
-            </text>
-            <!-- bottom right number -->
-            <use xlink:href="#black-card-number" x="200" y="290"
-                transform="rotate(180, 268, 330)" />
         </g>
     </defs>
     
@@ -429,8 +404,5 @@
     <use xlink:href="#generic-card-border" transform="scale(.25)" />
     <use xlink:href="#red-2" transform="scale(.25)" />
     <use xlink:href="#diamonds" transform="scale(.25)" />
-    
-    
-    
     
 </svg>
