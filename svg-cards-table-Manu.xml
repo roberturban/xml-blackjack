@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" >
+    <desc></desc>
+    <g alignment-baseline="baseline"></g>
+    
+    <defs>
+        <g id="generic-blackjack-table">
+            <!-- blackjack-table -->
+            <image x="200" y="-200" width="1000" height="1000"
+                xlink:href="https://www.rightcasino.com/media/need-to-know/games/blackjack/blackjack_table.png" />
+            
+            <!-- blackjack-logo -->
+            <image
+                xlink:href="https://blackjackiminternet.biz/images/blackjack-im-internet2.jpg"
+                x="120" y="50" height="100" width="1175" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="generic-card-border">
+            <rect height="350" width="250" x="45" y="10" rx="30" ry="30"
+                style="fill:white;stroke:black;stroke-width:5;opacity:1.0" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="generic-red-card-number">
+            <!-- top left number -->
+            <text id="red-card-number" x="57" y="50" font-size="35"
+                fill="red">no.
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="generic-black-card-number">
+            <!-- top left number -->
+            <text id="black-card-number" x="57" y="50" font-size="35"
+                fill="black">no.
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <!-- all black numbers -->
+    <defs>
+        <g id="black-2">
+            <!-- top left number -->
+            <text id="black-card-number-2" x="57" y="50" font-size="35"
+                fill="black">2
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-2" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="black-3">
+            <!-- top left number -->
+            <text id="black-card-number-3" x="57" y="50" font-size="35"
+                fill="black">3
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-3" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="black-4">
+            <!-- top left number -->
+            <text id="black-card-number-4" x="57" y="50" font-size="35"
+                fill="black">4
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-4" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="black-5">
+            <!-- top left number -->
+            <text id="black-card-number-5" x="57" y="50" font-size="35"
+                fill="black">5
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-5" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="black-6">
+            <!-- top left number -->
+            <text id="black-card-number-6" x="57" y="50" font-size="35"
+                fill="black">6
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-6" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="black-7">
+            <!-- top left number -->
+            <text id="black-card-number-7" x="57" y="50" font-size="35"
+                fill="black">7
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-7" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="black-8">
+            <!-- top left number -->
+            <text id="black-card-number-8" x="57" y="50" font-size="35"
+                fill="black">8
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-8" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="black-9">
+            <!-- top left number -->
+            <text id="black-card-number-9" x="57" y="50" font-size="35"
+                fill="black">9
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-9" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="black-10">
+            <!-- top left number -->
+            <text id="black-card-number-10" x="57" y="50" font-size="35"
+                fill="black">10
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-10" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="black-B">
+            <!-- top left number -->
+            <text id="black-card-number-B" x="57" y="50" font-size="35"
+                fill="black">B
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-B" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="black-Q">
+            <!-- top left number -->
+            <text id="black-card-number-Q" x="57" y="50" font-size="35"
+                fill="black">Q
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-Q" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="black-K">
+            <!-- top left number -->
+            <text id="black-card-number-K" x="57" y="50" font-size="35"
+                fill="black">K
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-K" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="black-A">
+            <!-- top left number -->
+            <text id="black-card-number-A" x="57" y="50" font-size="35"
+                fill="black">A
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#black-card-number-A" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    
+    <!-- all red numbers -->
+    <defs>
+        <g id="red-2">
+            <!-- top left number -->
+            <text id="red-card-number-2" x="57" y="50" font-size="35"
+                fill="red">2
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-2" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="red-3">
+            <!-- top left number -->
+            <text id="red-card-number-3" x="57" y="50" font-size="35"
+                fill="red">3
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-3" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="red-4">
+            <!-- top left number -->
+            <text id="red-card-number-4" x="57" y="50" font-size="35"
+                fill="red">4
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-4" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="red-5">
+            <!-- top left number -->
+            <text id="red-card-number-5" x="57" y="50" font-size="35"
+                fill="red">5
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-5" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="red-6">
+            <!-- top left number -->
+            <text id="red-card-number-6" x="57" y="50" font-size="35"
+                fill="red">6
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-6" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="red-7">
+            <!-- top left number -->
+            <text id="red-card-number-7" x="57" y="50" font-size="35"
+                fill="red">7
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-7" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="red-8">
+            <!-- top left number -->
+            <text id="red-card-number-8" x="57" y="50" font-size="35"
+                fill="red">8
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-8" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="red-9">
+            <!-- top left number -->
+            <text id="red-card-number-9" x="57" y="50" font-size="35"
+                fill="red">9
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-9" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="red-10">
+            <!-- top left number -->
+            <text id="red-card-number-10" x="57" y="50" font-size="35"
+                fill="red">10
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-10" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="red-B">
+            <!-- top left number -->
+            <text id="red-card-number-B" x="57" y="50" font-size="35"
+                fill="red">B
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-B" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="red-Q">
+            <!-- top left number -->
+            <text id="red-card-number-Q" x="57" y="50" font-size="35"
+                fill="red">Q
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-Q" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="red-K">
+            <!-- top left number -->
+            <text id="red-card-number-K" x="57" y="50" font-size="35"
+                fill="red">K
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-K" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="red-A">
+            <!-- top left number -->
+            <text id="red-card-number-A" x="57" y="50" font-size="35"
+                fill="red">A
+            </text>
+            <!-- bottom right number -->
+            <use xlink:href="#red-card-number-A" x="200" y="290"
+                transform="rotate(180, 268, 330)" />
+        </g>
+    </defs>
+    
+    
+    <!-- all 4 card types -->
+    <defs>
+        <g id="hearts">
+            <!-- top middle heart -->
+            <polygon points="170,160 130,115 210,115" style="stroke:red;fill:red;stroke-width:1" />
+            <circle cx="150" cy="109" r="20" style="stroke:red;fill:red" />
+            <circle cx="190" cy="109" r="20" style="stroke:red;fill:red" />
+            
+            <!-- bottom middle heart -->
+            <polygon points="170,210 130,255 210,255" style="stroke:red;fill:red;stroke-width:1" />
+            <circle cx="150" cy="261" r="20" style="stroke:red;fill:red" />
+            <circle cx="190" cy="261" r="20" style="stroke:red;fill:red" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="diamonds">
+            <!-- top middle diamond -->
+            <polygon points="170,30 140,80 170,130 200,80" style="fill:red;stroke:red;stroke-width:1" />
+            
+            <!-- bottom middle diamond -->
+            <polygon points="170,230 140,280 170,330 200,280" style="fill:red;stroke:red;stroke-width:1" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="suits">
+            <!-- top middle suit -->
+            <image x="135" y="60" width="80" height="80"
+                xlink:href="http://www.bikerstammtisch.com/Poker/Kreuz1.png" />
+            
+            <!-- bottom middle suit -->
+            <image x="135" y="220" width="80" height="80"
+                xlink:href="http://www.bikerstammtisch.com/Poker/Kreuz1.png"
+                transform="rotate(180, 175, 265)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="peaks">
+            
+            <!-- top middle peak -->
+            <polygon points="170,80 130,125 210,125" style="stroke-width:1" />
+            <circle cx="150" cy="131" r="20" />
+            <circle cx="190" cy="131" r="20" />
+            <line x1="170" y1="120" x2="170" y2="175"
+                style="stroke:black;fill:black;stroke-width:10" />
+            
+            <!-- bottom middle peak -->
+            <polygon points="170,300 130,255 210,255" style="fill:black;stroke:black;stroke-width:1" />
+            <circle cx="150" cy="249" r="20" style="stroke:black;fill:black" />
+            <circle cx="190" cy="249" r="20" style="stroke:black;fill:black" />
+            <line x1="170" y1="205" x2="170" y2="260"
+                style="stroke:black;fill:black;stroke-width:10" />
+        </g>
+    </defs>
+    
+    <!-- generate generic layout -->
+    <use xlink:href="#generic-blackjack-table" />
+    
+    <!-- example card -->
+    <use xlink:href="#generic-card-border" transform="scale(.25)" />
+    <use xlink:href="#red-2" transform="scale(.25)" />
+    <use xlink:href="#diamonds" transform="scale(.25)" />
+    
+    
+    
+    
+</svg>
