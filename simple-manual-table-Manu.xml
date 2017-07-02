@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 36 24">
+
+    <g alignment-baseline="baseline" />
+    
+    <clipPath id="bot">
+        <path d="M 0 4 h 36 v 10 h -36 z" />
+    </clipPath>
+    
+    <circle cx="17" cy="-2" r="16" fill="rgb(0,100,0)" clip-path="url(#bot)" />
+    
+
+    <image id="BJ-logo"
+        xlink:href="https://blackjackiminternet.biz/images/blackjack-im-internet2.jpg"
+        x="25" y="8" height="4" width="18" transform="scale(0.5)">
+    </image>
+
+    
+    <defs>
+        <g id="spot-ring">
+            <circle r="1.3" stroke="black" stroke-width="0.12" fill="rgb(0,100,0)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="spot-cards">
+            <rect width="1" height="1.6" stroke="black" stroke-width="0.12" fill="rgb(0,100,0)" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="insurance-box">
+            <rect width="17" height="3" fill="rgb(20,100,20)" stroke="black" stroke-width="0.12" />
+        </g>
+    </defs>
+    
+    <defs>
+        <g id="insurance-bet-box">
+            <circle r="0.5" fill="white" stroke="black" stroke-width="0.12"></circle>
+        </g>
+    </defs>
+
+    <defs>
+        <g id="insurance-field">
+            <use xlink:href="#insurance-box" x="3" y="-2" />
+            <text id="insurance-label" x="8.5" y="-0.5" font-size="1"
+                fill="red">INSURANCE
+            </text>
+            <use xlink:href="#insurance-bet-box" x="3.8" y="-1.2" />
+            <use xlink:href="#insurance-bet-box" x="6.8" y="0.4" />
+            <use xlink:href="#insurance-bet-box" x="11.5" y="0.4" />
+            <use xlink:href="#insurance-bet-box" x="16.2" y="0.4" />
+            <use xlink:href="#insurance-bet-box" x="19.2" y="-1.2" />
+        </g>
+    </defs>
+    
+    <use xlink:href="#insurance-field" x="5.5" y="8" />
+
+    <use xlink:href="#spot-ring" x="7" y="7" />
+    <use xlink:href="#spot-cards" x="6.3" y="7" transform="rotate(50,6.3,7)" />
+    
+    <use xlink:href="#spot-ring" x="11" y="10.5" />
+    <use xlink:href="#spot-cards" x="10.4" y="10.5" transform="rotate(30,10.4,10.5)" />
+    
+    <use xlink:href="#spot-ring" x="17" y="12" />
+    <use xlink:href="#spot-cards" x="16.5" y="12.2" />
+    
+    <use xlink:href="#spot-ring" x="23" y="10.5" />
+    <use xlink:href="#spot-cards" x="22.1" y="12.5" transform="rotate(-30,19.6,10.5)" />
+    
+    <use xlink:href="#spot-ring" x="27" y="7" />
+    <use xlink:href="#spot-cards" x="25.4" y="10.1" transform="rotate(-50,23.7,7)"/>
+    
+</svg>
