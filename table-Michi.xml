@@ -32,10 +32,55 @@
     <defs>
         <path id="insurance_text_path" d="M350,108 a90,90 0 0,0 500,0"/>
     </defs>
-    <use xlink:href="#insurance_text_path" fill="none" stroke="white" stroke-width="5"/>
     <text font-family="Verdana" font-size="42.5" fill="red" text-anchor="middle" >
         <textPath xlink:href="#insurance_text_path" startOffset="50%" >
             Insurance
         </textPath>
     </text>
+    
+    <defs>
+        <rect id="button" width="200" height="50"></rect>
+    </defs>
+    <style type="">
+        .active_button{
+            fill: grey;
+            stroke: black;
+        }
+        
+        .active_button:hover{ 
+            opacity: 0.9;
+        }
+        
+        .disactive_button{
+        fill: darkgrey;
+        stroke: grey;
+        }
+    </style>
+    
+    <g class="disactive_button">
+        <use xlink:href="#button" x="275" y="750"></use>
+        <text x="375" y="780" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Insurance</text>
+    </g>
+    
+    <g class="active_button">
+        <use xlink:href="#button" x="500" y="750"></use>
+        <text x="600" y="780" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">hit</text>
+    </g>
+    
+    <g class="disactive_button">
+        <use xlink:href="#button" x="725" y="750"></use>
+        <text x="825" y="780" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">stand</text>
+    </g>
+    
+    <defs>
+        <g id="avatar">
+            <ellipse cx="25" cy="30" rx="25" ry="30" fill="none" stroke="black" stroke-width="6"></ellipse>
+            <path d="M-30,120 c0,-75 110,-75 110,0" fill="none" stroke="black" stroke-width="6"/>
+        </g>
+    </defs>
+    <use xlink:href="#avatar" x="575" y="625"></use>
+    <use xlink:href="#avatar" x="500" y="320" transform="rotate(30 0 0)"></use>
+    <use xlink:href="#avatar" x="330" y="50" transform="rotate(60 0 0)"></use>
+    <use xlink:href="#avatar" x="470" y="920" transform="rotate(-30 0 0)"></use>
+    <use xlink:href="#avatar" x="220" y="1100" transform="rotate(-60 0 0)"></use>
 </svg>
