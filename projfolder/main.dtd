@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT casino (game*)>
+
+<!ELEMENT game (card*,dealer,player+)>
+<!ATTLIST game
+id ID #REQUIRED
+maxBet CDATA #REQUIRED
+minBet CDATA #REQUIRED
+activePlayer CDATA #REQUIRED>
+
+<!ELEMENT player (card*)>
+<!ATTLIST player
+id ID #REQUIRED
+bet CDATA #REQUIRED
+balance CDATA #REQUIRED
+name CDATA #REQUIRED
+insurance CDATA #REQUIRED>
+
+<!ELEMENT dealer (card*)>
+
+<!ELEMENT card (#PCDATA)>
+<!ATTLIST card
+hidden CDATA #REQUIRED
+color CDATA #REQUIRED
+value CDATA #REQUIRED>
