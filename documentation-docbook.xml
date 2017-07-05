@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+                      "http://docbook.org/xml/4.5/docbookx.dtd">
+<book>
+    <bookinfo>
+        <title>XML Praktikum SS17 - Blackjack Projekt</title>
+    </bookinfo>
+    
+    <article>
+        <title>Einleitung</title>
+        <section>
+            <title></title>
+            <variablelist>
+                <varlistentry>
+                    <term></term>
+                    <listitem>
+                        <para></para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </section>
+    </article>
+    
+    <article>
+        <title>Blackjack Regeln</title>
+        <variablelist>
+            <varlistentry>
+                <term>Anzahl Spieler</term>
+                <listitem>
+                    <para>Max. 5 Spieler</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Kartendeck</term>
+                <listitem>
+                    <para>Sechs Paketen französischer Spielkarten zu 52 Blatt, also 312 Karten
+                        gespielt</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </article>
+    
+</book>
