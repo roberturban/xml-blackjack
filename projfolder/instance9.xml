@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE casino SYSTEM "main.dtd">
+<casino>
+    <game id="ID000" maxBet="1200" minBet="5" activePlayer="dealer">
+        <!-- INSERT DECK HERE -->
+        <dealer>
+            <card hidden="false" color="diamond" value="6"/>
+            <card hidden="false" color="hearts" value="b"/>
+            <card hidden="false" color="hearts" value="4"/>
+            
+        </dealer>
+        <player id="id_player_000" bet="10" balance="150" name="manuel" insurance="false">
+            <card hidden="false" color="clubs" value="11">
+            </card>
+            <card hidden="false" color="spade" value="3">
+            </card>
+            <card hidden="false" color="diamond" value="5">
+            </card>
+        </player>
+        <player id="id_player_001" bet="0" balance="150" name="michi" insurance="false">
+        </player>
+        <player id="id_player_002" bet="20" balance="150" name="robert" insurance="false">
+            <card hidden="false" color="hearts" value="q">
+            </card>
+            <card hidden="false" color="clubs" value="11">
+            </card>
+        </player>
+        <player id="id_player_003" bet="15" balance="150" name="anne" insurance="false">
+            <card hidden="false" color="hearts" value="k">
+            </card>
+            <card hidden="false" color="spades" value="k">
+            </card>
+        </player>
+        <player id="id_player_004" bet="10" balance="150" name="lenny" insurance="false">
+            <card hidden="false" color="spades" value="11">
+            </card>
+            <card hidden="false" color="hearts" value="9">
+            </card>
+        </player>
+    </game>
+</casino>
+
+<!-- dealer zieht eine dritte Karte -->

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE casino SYSTEM "main.dtd">
+<casino>
+    <game id="ID000" maxBet="1200" minBet="5" activePlayer="id_player000">  
+        <!-- INSERT DECK HERE -->
+
+        <dealer/>
+        
+        <player id="id_player_000" bet="0" balance="150" name="manuel" insurance="false">
+        </player>
+        <player id="id_player_001" bet="0" balance="150" name="michi" insurance="false">
+        </player>
+        <player id="id_player_002" bet="0" balance="150" name="robert" insurance="false">
+        </player>
+        <player id="id_player_003" bet="0" balance="150" name="anne" insurance="false">
+        </player>
+        <player id="id_player_004" bet="0" balance="150" name="lenny" insurance="false">
+        </player>
+    </game>
+</casino>
+
+<!-- Geld setzen vor dem Karten ausgeben -->
