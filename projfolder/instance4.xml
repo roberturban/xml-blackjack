@@ -4,13 +4,13 @@
     <game id="ID000" maxBet="1200" minBet="5" activePlayer="id_player_000">
         <!-- INSERT DECK HERE -->
         <dealer>
-            <card hidden="false" color="diamond" value="11">
+            <card hidden="false" color="diamond" value="a">
             </card>
             <card hidden="true" color="hearts" value="b">
             </card>
         </dealer>
         <player id="id_player_000" bet="10" balance="150" name="manuel" insurance="true">
-            <card hidden="false" color="clubs" value="11">
+            <card hidden="false" color="clubs" value="a">
             </card>
             <card hidden="false" color="spade" value="3">
             </card>
@@ -24,7 +24,7 @@
         <player id="id_player_002" bet="20" balance="150" name="robert" insurance="false">
             <card hidden="false" color="hearts" value="q">
             </card>
-            <card hidden="false" color="clubs" value="11">
+            <card hidden="false" color="clubs" value="a">
             </card>
         </player>
         <player id="id_player_003" bet="15" balance="150" name="anne" insurance="false">
