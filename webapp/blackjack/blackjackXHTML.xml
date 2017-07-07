@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xf="http://www.w3.org/2002/xforms" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <head>
+        <title>Black Jack</title>
+    </head>
+    <body>
+        <svg xmlns="http://www.w3.org/2000/svg" width="1250" height="800">
+            <clipPath id="rec">
+                <rect x="100" y="10" width="1000" height="140"/>
+            </clipPath>
+            <rect x="102" y="10" width="996" height="200" fill="black" stroke="black" rx="50" clip-path="url(#rec)" />
+            <clipPath id="bot">
+                <path d="M 0 150 h 1100 v 600 h -700 z"/>
+            </clipPath>
+            <circle cx="600" cy="108" r="500" fill="black" clip-path="url(#bot)" />    
+            <rect x="152" y="40" width="896" height="180" fill="darkgreen" stroke="white" stroke-width="5" rx="50" clip-path="url(#rec)" />
+            <circle cx="600" cy="108" r="450" fill="darkgreen" stroke="white" stroke-width="5" clip-path="url(#bot)" />
+            <image id="BJ-logo"
+                xlink:href="https://blackjackiminternet.biz/images/blackjack-im-internet2.jpg"
+                x="450" y="50" height="100" width="300">
+            </image>
+            
+            <defs>
+                <rect id="kartenplatz" height="70" width="50" rx="6"/>
+            </defs>
+            
+            <use x="575" y="460" xlink:href="#kartenplatz" stroke="white" fill="none" />
+            <use x="475" y="750" transform="rotate(-30 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
+            <use x="220" y="925" transform="rotate(-60 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
+            <use x="510" y="150" transform="rotate(30 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
+            <use x="325" y="-115" transform="rotate(60 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
+            <defs>
+                <path id="insurance_text_path" d="M353,148 a90,90 0 0,0 494,0"/>
+            </defs>
+            <path d="M340,148 a90,90 0 0,0 520,0" fill="none" stroke="white" stroke-width="4"/>
+            <path d="M390,148 a90,90 0 0,0 420,0" fill="none" stroke="white" stroke-width="4"/>
+            <path d="M340,148 a10,10 0 0,1 50,0" fill="none" stroke="white" stroke-width="4"/>
+            <path d="M810,148 a10,10 0 0,1 50,0" fill="none" stroke="white" stroke-width="4"/>
+            <text font-family="Verdana" font-size="36" fill="white" text-anchor="middle" >
+                <textPath xlink:href="#insurance_text_path" startOffset="50%" >
+                    PAYS 2 TO 1 | INSURANCE | PAYS 2 TO 1
+                </textPath>
+            </text>
+            
+            <text x="600" y="200" font-family="Verdana" font-size="50" fill="white" text-anchor="middle" font-weight="bold">
+                BLACK JACK
+            </text>
+            
+            <use x="80" y="-280" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
+            <use x="83" y="-283" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
+            <use x="86" y="-286" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
+            <use x="89" y="-289" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
+            <defs>
+                <rect id="button" width="200" height="50"></rect>
+            </defs>
+            <style type="">
+               .active_button{
+                   fill: grey;
+                   stroke: black;
+               }
+               
+               .active_button:hover{ 
+                   opacity: 0.9;
+               }
+               
+               .disactive_button{
+               fill: darkgrey;
+               stroke: grey;
+               }
+           </style>
+            
+            <g class="disactive_button" style="display: none;">
+                <use xlink:href="#button" x="275" y="750"></use>
+                <text x="375" y="780" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Insurance</text>
+            </g>
+            
+            <g class="active_button" style="display: none;">
+                <use xlink:href="#button" x="500" y="750"></use>
+                <text x="600" y="780" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">hit</text>
+            </g>
+            
+            <g class="disactive_button" style="display: none;">
+                <use xlink:href="#button" x="725" y="750"></use>
+                <text x="825" y="780" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">stand</text>
+            </g>
+            
+            <a xlink:href="/blackjack/newGame" xlink:title="start new game">
+                <g class="active_button">
+                    <use xlink:href="#button" x="500" y="250"></use>
+                    <text x="600" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">start new Game</text>
+                </g>
+            </a>
+            
+            <defs>
+                <g id="avatar">
+                    <ellipse cx="25" cy="30" rx="25" ry="30" fill="none" stroke="black" stroke-width="6"></ellipse>
+                    <path d="M-30,120 c0,-75 110,-75 110,0" fill="none" stroke="black" stroke-width="6"/>
+                </g>
+            </defs>
+            <use xlink:href="#avatar" x="575" y="625"></use>
+            <use xlink:href="#avatar" x="500" y="320" transform="rotate(30 0 0)"></use>
+            <use xlink:href="#avatar" x="330" y="50" transform="rotate(60 0 0)"></use>
+            <use xlink:href="#avatar" x="470" y="920" transform="rotate(-30 0 0)"></use>
+            <use xlink:href="#avatar" x="220" y="1100" transform="rotate(-60 0 0)"></use>
+        </svg>
+    </body>
+</html>

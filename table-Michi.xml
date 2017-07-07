@@ -21,23 +21,35 @@
     </image>
     
     <defs>
-        <rect id="kartenplatz" height="70" width="50" rx="6" stroke="white" fill="none" />
+        <rect id="kartenplatz" height="70" width="50" rx="6"/>
     </defs>
         
-    <use x="575" y="460" xlink:href="#kartenplatz" />
-    <use x="475" y="750" transform="rotate(-30 0 0)" xlink:href="#kartenplatz" />
-    <use x="220" y="925" transform="rotate(-60 0 0)" xlink:href="#kartenplatz" />
-    <use x="510" y="150" transform="rotate(30 0 0)" xlink:href="#kartenplatz" />
-    <use x="325" y="-115" transform="rotate(60 0 0)" xlink:href="#kartenplatz" />
+    <use x="575" y="460" xlink:href="#kartenplatz" stroke="white" fill="none" />
+    <use x="475" y="750" transform="rotate(-30 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
+    <use x="220" y="925" transform="rotate(-60 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
+    <use x="510" y="150" transform="rotate(30 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
+    <use x="325" y="-115" transform="rotate(60 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
     <defs>
-        <path id="insurance_text_path" d="M350,108 a90,90 0 0,0 500,0"/>
+        <path id="insurance_text_path" d="M353,148 a90,90 0 0,0 494,0"/>
     </defs>
-    <text font-family="Verdana" font-size="42.5" fill="red" text-anchor="middle" >
+    <path d="M340,148 a90,90 0 0,0 520,0" fill="none" stroke="white" stroke-width="4"/>
+    <path d="M390,148 a90,90 0 0,0 420,0" fill="none" stroke="white" stroke-width="4"/>
+    <path d="M340,148 a10,10 0 0,1 50,0" fill="none" stroke="white" stroke-width="4"/>
+    <path d="M810,148 a10,10 0 0,1 50,0" fill="none" stroke="white" stroke-width="4"/>
+    <text font-family="Verdana" font-size="36" fill="white" text-anchor="middle" >
         <textPath xlink:href="#insurance_text_path" startOffset="50%" >
-            Insurance
+            PAYS 2 TO 1 | INSURANCE | PAYS 2 TO 1
         </textPath>
     </text>
     
+    <text x="600" y="200" font-family="Verdana" font-size="50" fill="white" text-anchor="middle" font-weight="bold">
+        BLACK JACK
+    </text>
+    
+    <use x="80" y="-280" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
+    <use x="83" y="-283" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
+    <use x="86" y="-286" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
+    <use x="89" y="-289" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
     <defs>
         <rect id="button" width="200" height="50"></rect>
     </defs>
