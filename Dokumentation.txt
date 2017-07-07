@@ -1,6 +1,6 @@
 ﻿Entscheidung: nur zwei Attribute statt drei zu verwalten, Beim Zusammenzählen muss aufgrund von Ass sowieso geprüft und übersetzt werden
 Color (suits, hearts, piks, …)
-Value (2-10, K,J,Q,A (weil 1 oder 11))
+Value (2-10, J,Q,K,A (weil 1 oder 11))
 
 Diskussion wegen Table und Game => Ist das Selbe
 
