@@ -1,2 +1,4 @@
 out/
 .DS_store
+vorjahr_app/
+*.db
