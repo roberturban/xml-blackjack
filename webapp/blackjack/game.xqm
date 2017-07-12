@@ -40,7 +40,11 @@ declare %updating function g:insertGame($game as element(game)) {
   insert node $game as first into $g:casino
 };
 
-
+(:due to efficiency, iterate only over matching games, which usually should be a single game :)
+declare %updating function g:deleteGame($id as xs:integer) {
+  for $game in $g:casino[matches(@id,$id)]
+    return delete node $game
+};
 
 declare function g:shuffleCards() as element(cards) {
 let $deck := 
