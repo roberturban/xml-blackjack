@@ -14,25 +14,27 @@ declare %private function g:newID() as xs:string {
 
 declare function g:newGame($maxBet as xs:integer, $minBet as xs:integer) as element(game) {
   let $id := g:newID()
+  let $players := <players>
+        {g:newPlayer()}
+        {g:newPlayer()}
+        {g:newPlayer()}
+        {g:newPlayer()}
+        {g:newPlayer()}
+        </players>
   return
     <game>
       <id>{$id}</id>
       <maxBet>{$maxBet}</maxBet>
       <minBet>{$minBet}</minBet>
-      <activePlayer></activePlayer>
-       {g:shuffleCards()}
-      <players>
-        {g:newPlayer()}
-        {g:newPlayer()}
-        {g:newPlayer()}
-        {g:newPlayer()}
-        {g:newPlayer()}
-      </players>
+      <activePlayer>{$players/player[1]/id}</activePlayer>
+      {$players}
       <dealer>
+        <id>dealer</id>
         <hand>
           (: drawCard :)
         </hand>
       </dealer>
+      {g:shuffleCards()}
     </game>
 };
 
@@ -40,7 +42,18 @@ declare %updating function g:insertGame($game as element(game)) {
   insert node $game as first into $g:casino
 };
 
+(:due to efficiency, iterate only over matching games, which usually should be a single game :)
+declare %updating function g:deleteGame($id as xs:integer) {
+  for $game in $g:casino/game[id=$id]
+    return delete node $game
+};
 
+declare %updating function g:setActivePlayer($id as xs:integer) {
+  let $game := $g:casino/game[id=$id]
+  let $players := $game/players/*
+  let $player_id := $game/activePlayer/id
+  return replace node $game/activePlayer/id with $players[id=$player_id/text()]/following::id[1]
+};
 
 declare function g:shuffleCards() as element(cards) {
 let $deck := 
