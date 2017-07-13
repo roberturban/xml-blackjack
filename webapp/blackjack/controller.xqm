@@ -29,3 +29,14 @@ function c:newGame() {
   let $game := g:newGame($maxBet, $minBet,$playerNames)
   return (db:output($c:blackjackXHTML), g:insertGame($game))
 };
+
+declare
+%updating
+%rest:path("/blackjack/bet")   (: Platzhalter zum testen bis Button implementiert :)
+%rest:GET
+function c:bet() {  
+  let $bet := 20 (: todo: dynamic :)
+  let $gameId := 123
+  
+  return (g:bet($gameId,$bet))
+};
