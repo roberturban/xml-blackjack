@@ -12,16 +12,12 @@ declare %private function g:newID() as xs:string {
   t:timestamp()
 };
 
-declare function g:newGame($maxBet as xs:integer, $minBet as xs:integer) as element(game) {
+declare function g:newGame($maxBet as xs:integer, $minBet as xs:integer, $playerNames as xs:string+) as element(game) {
   let $id := g:newID()
-  let $players := 
-    <players>
-        {g:newPlayer()}
-        {g:newPlayer()}
-        {g:newPlayer()}
-        {g:newPlayer()}
-        {g:newPlayer()}
-    </players>
+  let $players := <players>
+        {for $p in $playerNames
+        return g:newPlayer($p)}
+        </players>
   return
     <game>
       <id>{$id}</id>
@@ -49,14 +45,26 @@ declare %updating function g:deleteGame($id as xs:integer) {
     return delete node $game
 };
 
-declare %updating function g:setActivePlayer($id as xs:integer) {
-  let $game := $g:casino/game[id=$id]
+declare %updating function g:setActivePlayer($gameId as xs:integer) {
+  let $game := $g:casino/game[id=$gameId]
   let $players := $game/players/*
   let $player_id := $game/activePlayer/id
-  return replace node $game/activePlayer/id with $players[id=$player_id/text()]/following::id[1]
+  return replace node $game/activePlayer/id with $players[id=$player_id/text()]/following::id[1] (: todo: if Abfrage ob letzter Spieler :)
 };
 
-declare function g:shuffleCards() as element(cards) {
+declare %updating function g:bet($gameId as xs:integer, $betValue as xs:integer) {
+  let $game := $g:casino/game[id=$gameId]
+  let $playerId := $game/activePlayer/id
+  let $newBalance := $game/players/player[id=$playerId]/balance - $betValue
+  
+  (:if ($betValue > $game/maxBet) or ($betValue < $game/minBet) then (
+      (: ERROR :) )
+  else ():)
+      return  (replace value of node $game/players/player[id=$playerId]/balance with $newBalance,
+              replace value of node $game/players/player[id=$playerId]/bet with $betValue)
+};
+
+declare function g:shuffleCards() as element(cards) {   (: todo: bisher nur ein Deck :)
 let $deck := 
     <cards>
         <card>
@@ -333,7 +341,7 @@ return
 </cards>
 };
 
-declare function g:newPlayer() as element(player) {
+declare function g:newPlayer($name as xs:string) as element(player) {
   let $id := g:newID()
   return
     <player>
@@ -344,6 +352,6 @@ declare function g:newPlayer() as element(player) {
       <hand>
         (: drawCard x2 :)
       </hand>
-      <name>Spieler xyz</name>
+      <name>{$name}</name>
     </player>
 };
