@@ -49,7 +49,7 @@ declare %updating function g:setActivePlayer($gameId as xs:integer) {
   let $game := $g:casino/game[id=$gameId]
   let $players := $game/players/*
   let $player_id := $game/activePlayer/id
-  return replace node $game/activePlayer/id with $players[id=$player_id/text()]/following::id[1]
+  return replace node $game/activePlayer/id with $players[id=$player_id/text()]/following::id[1] (: todo: if Abfrage ob letzter Spieler :)
 };
 
 declare %updating function g:bet($gameId as xs:integer, $betValue as xs:integer) {

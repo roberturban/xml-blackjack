@@ -40,3 +40,25 @@ function c:bet() {
   
   return (g:bet($gameId,$bet))
 };
+
+declare
+%updating
+%rest:path("/blackjack/hit")   (: Platzhalter zum testen bis Button implementiert :)
+%rest:GET
+function c:hit() {  
+  let $gameId := 123
+  
+  (: drawCard und prüfen ob über 21 :)
+  
+  return ()
+};
+
+declare
+%updating
+%rest:path("/blackjack/stand")   (: Platzhalter zum testen bis Button implementiert :)
+%rest:GET
+function c:stand() {  
+  let $gameId := 123
+  
+  return (g:setActivePlayer($gameId))
+};
