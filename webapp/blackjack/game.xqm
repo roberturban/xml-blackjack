@@ -55,7 +55,7 @@ declare %updating function g:setActivePlayer($id as xs:integer) {
   return replace node $game/activePlayer/id with $players[id=$player_id/text()]/following::id[1]
 };
 
-declare function g:shuffleCards() as element(cards) {
+declare function g:shuffleCards() as element(cards) {   (: todo: bisher nur ein Deck :)
 let $deck := 
     <cards>
         <card>
