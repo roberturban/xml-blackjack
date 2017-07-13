@@ -57,11 +57,28 @@ declare %updating function g:bet($gameId as xs:integer, $betValue as xs:integer)
   let $playerId := $game/activePlayer/id
   let $newBalance := $game/players/player[id=$playerId]/balance - $betValue
   
-  (:if ($betValue > $game/maxBet) or ($betValue < $game/minBet) then (
+  
+  return 
+  if (($betValue > $game/maxBet) or ($betValue < $game/minBet)) then (
       (: ERROR :) )
-  else ():)
-      return  (replace value of node $game/players/player[id=$playerId]/balance with $newBalance,
-              replace value of node $game/players/player[id=$playerId]/bet with $betValue)
+  else 
+      (replace value of node $game/players/player[id=$playerId]/balance with $newBalance,
+      replace value of node $game/players/player[id=$playerId]/bet with $betValue)
+};
+
+declare %updating function g:drawCard($gameId as xs:integer,$hidden as xs:integer) { (: 0 für aufgedeckt, 1 für versteckt :)
+  let $game := $g:casino/game[id=$gameId]
+  let $playerId := $game/activePlayer/id
+  let $newCard :=
+    if ($hidden=0) then 
+        copy $c := $game/cards/card[position()=1]
+        modify replace value of node $c/hidden with 'false'
+        return $c
+    else
+        $game/cards/card[position()=1]
+  
+  return (insert node $newCard into $game/players/player[id=$playerId]/hand,
+          delete node $game/cards/card[position()=1])
 };
 
 declare function g:shuffleCards() as element(cards) {   (: todo: bisher nur ein Deck :)
