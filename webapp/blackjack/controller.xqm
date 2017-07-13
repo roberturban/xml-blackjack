@@ -19,11 +19,13 @@ declare
 function c:newGame() {
   let $maxBet := 100
   let $minBet := 10
+  let $playerNames := ("Hans","Franz","Peter","Hugo","Krause")
+  
   (:
    : Breach of separation of concerns between controller and model. The controller
    : should not have access to the full info about the game. We can heal this by
    : computing the secret number within the method g:insertGame.
    :)
-  let $game := g:newGame($maxBet, $minBet)
+  let $game := g:newGame($maxBet, $minBet,$playerNames)
   return (db:output($c:blackjackXHTML), g:insertGame($game))
 };

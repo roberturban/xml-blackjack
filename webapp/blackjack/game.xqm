@@ -12,14 +12,12 @@ declare %private function g:newID() as xs:string {
   t:timestamp()
 };
 
-declare function g:newGame($maxBet as xs:integer, $minBet as xs:integer) as element(game) {
+declare function g:newGame($maxBet as xs:integer, $minBet as xs:integer, $playerNames as xs:string+) as element(game) {
   let $id := g:newID()
   let $players := <players>
-        {g:newPlayer()}
-        {g:newPlayer()}
-        {g:newPlayer()}
-        {g:newPlayer()}
-        {g:newPlayer()}
+        {for $p in $playerNames
+        return g:newPlayer($p)
+        }
         </players>
   return
     <game>
@@ -332,7 +330,7 @@ return
 </cards>
 };
 
-declare function g:newPlayer() as element(player) {
+declare function g:newPlayer($name as xs:string) as element(player) {
   let $id := g:newID()
   return
     <player>
@@ -343,6 +341,6 @@ declare function g:newPlayer() as element(player) {
       <hand>
         (: drawCard x2 :)
       </hand>
-      <name>Spieler xyz</name>
+      <name>{$name}</name>
     </player>
 };
