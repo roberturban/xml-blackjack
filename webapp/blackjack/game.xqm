@@ -6,14 +6,9 @@ import module namespace t = "blackjack/tools" at "tools.xqm";
 (: open database blackjack, locate ressource within database and navigate to its top element :)
 declare variable $g:casino := db:open("blackjack")/casino;
 
-(: The two functions g:newGame and g:insertGame together represent the Game constructor. :)
-(: newID is a helper class method :)
-declare %private function g:newID() as xs:string {
-  t:timestamp()
-};
 
 declare function g:newGame($maxBet as xs:integer, $minBet as xs:integer, $playerNames as xs:string+) as element(game) {
-  let $id := g:newID()
+  let $id := t:generateID()
   let $players := <players>
         {for $p in $playerNames
         return g:newPlayer($p)}
@@ -342,7 +337,7 @@ return
 };
 
 declare function g:newPlayer($name as xs:string) as element(player) {
-  let $id := g:newID()
+  let $id := t:generateID()
   return
     <player>
       <id>{$id}</id>
