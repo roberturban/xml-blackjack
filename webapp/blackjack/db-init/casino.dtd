@@ -8,4 +8,19 @@
 <!ELEMENT id (#PCDATA)>
 <!ELEMENT maxBet (#PCDATA)>
 <!ELEMENT minBet (#PCDATA)>
-<!ELEMENT activePlayer ()
+<!ELEMENT activePlayer (id+)>
+<!ELEMENT players (player+)>
+
+<!ELEMENT player (id, bet, balance, insurance*, hand, name)>
+<!ELEMENT bet (#PCDATA)>
+<!ELEMENT balance (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!-- Define insurance -->
+<!ELEMENT hand (cards)>
+
+<!ELEMENT cards (card*)>
+<!ELEMENT card (hidden, color, value)>
+<!ELEMENT hidden (#PCDATA)>
+<!ELEMENT color (#PCDATA)>
+<!ELEMENT value (#PCDATA)>
+
