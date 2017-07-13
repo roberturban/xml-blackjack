@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!ELEMENT casino (game*) >
+
+<!-- Structure of one blackjack game instance -->
+<!ELEMENT game (id, maxBet, minBet, activePlayer*, players+, dealer) >
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT maxBet (#PCDATA)>
+<!ELEMENT minBet (#PCDATA)>
+<!ELEMENT activePlayer ()

@@ -1,4 +1,4 @@
-﻿Entscheidung: nur zwei Attribute statt drei zu verwalten, Beim Zusammenzählen muss aufgrund von Ass sowieso geprüft und übersetzt werden
+Entscheidung: nur zwei Attribute statt drei zu verwalten, Beim Zusammenzählen muss aufgrund von Ass sowieso geprüft und übersetzt werden
 Color (suits, hearts, piks, …)
 Value (2-10, J,Q,K,A (weil 1 oder 11))
 
@@ -32,3 +32,11 @@ Am Ende des Spiels überprüfen wir ob Bet größer 0 ist >> ist Gewinner >> kei
 Unbegrenzte Anzahl an Spielen.
 
 Startguthaben ist bei allen gleich.
+
+
+
+XSLT vs. XForms?
+Diskussion wie man die GUI updated > aufsetzen eines XSLT Files, das auf die Rückgabe von der XML aus der Datenbank ausgeführt wird und eine SVG zurücksendet
+
+Aufteilung der nächsten Schritte:
+Robert erstellt erste XSLT File, damit Funktionen auch auf GUI aufgerufen werden können.

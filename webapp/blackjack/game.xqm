@@ -14,13 +14,14 @@ declare %private function g:newID() as xs:string {
 
 declare function g:newGame($maxBet as xs:integer, $minBet as xs:integer) as element(game) {
   let $id := g:newID()
-  let $players := <players>
+  let $players := 
+    <players>
         {g:newPlayer()}
         {g:newPlayer()}
         {g:newPlayer()}
         {g:newPlayer()}
         {g:newPlayer()}
-        </players>
+    </players>
   return
     <game>
       <id>{$id}</id>
