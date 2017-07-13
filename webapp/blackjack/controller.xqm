@@ -86,7 +86,7 @@ declare
 %rest:path("/blackjack/bet")   (: Platzhalter zum testen bis Button implementiert :)
 %rest:GET
 function c:bet() {  
-  let $bet := 20 (: todo: dynamic :)
+  let $bet := 20
   let $gameId := 123
   
   return (g:bet($gameId,$bet))
@@ -101,9 +101,9 @@ declare
 function c:hit() {  
   let $gameId := 123
   
-  (: drawCard und prüfen ob über 21 :)
+  (: prüfen ob über 21 :)
   
-  return ()
+  return (g:drawCard($gameId,0))
 };
 
 
@@ -114,6 +114,7 @@ declare
 %rest:GET
 function c:stand() {  
   let $gameId := 123
+  let $endOfGame := 0
   
-  return (g:setActivePlayer($gameId))
+  return (g:checkPlayer($gameId,$endOfGame))
 };
