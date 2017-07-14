@@ -5,6 +5,9 @@
         <title>Black Jack</title>
     </head>
     <body>
+        
+        ToDo: declare variables --> eliminate magic constants
+        
         <svg xmlns="http://www.w3.org/2000/svg" width="1250" height="800">
             <clipPath id="rec">
                 <rect x="100" y="10" width="1000" height="140"/>
