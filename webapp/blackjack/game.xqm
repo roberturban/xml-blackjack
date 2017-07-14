@@ -111,6 +111,8 @@ declare %updating function g:checkPlayer($gameId as xs:integer,$endOfGame as xs:
     )            
 };
 
+(: sum up all the values of the dealer's cards :)
+(: in case of an A, decide whether value is 11 or 1 :)
 declare function g:checkValueDealer($gameId as xs:integer) {
   let $game := $g:casino/game[id=$gameId]
   let $valueOfCardsTemp :=  
@@ -119,7 +121,7 @@ declare function g:checkValueDealer($gameId as xs:integer) {
             return
                 if (($i/value = "J") or ($i/value = "Q") or ($i/value = "K")) then
                     10
-                else if ($i/value = "A") then (: todo: oder 1 :)
+                else if ($i/value = "A") then
                     11
                 else
                     ($i/value)
@@ -131,7 +133,7 @@ declare function g:checkValueDealer($gameId as xs:integer) {
               return
                   if (($i/value = "J") or ($i/value = "Q") or ($i/value = "K")) then
                       10
-                  else if ($i/value = "A") then (: todo: oder 1 :)
+                  else if ($i/value = "A") then
                       1
                   else
                       ($i/value)
