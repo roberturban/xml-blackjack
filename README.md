@@ -1,4 +1,25 @@
-ToDos
+ToDos (throughout the project):
+
+* Review code basis so far in comment boxes
+* Annotate ToDos and Notes in code (!)
+* Keep updating doc-book
+* Write down your questions of the last week and commit them (including answers) after next meeting/call
+* Please document your code (!) (in-code docu)
+
+ALL DOCUMENTATION IS TO DO IN ENGLISH (except doc-book)
+
+------------------------------------------------------------------------------------------------------------------------
+
+ToDos 07/14/2017
+
+* Take on open ToDos and Notes
+* Keep class diagram updated
+* Implement missing functions (hit, stand, insurance, ...)
+* Get protoype for GUI working (1st step is without responses, 2nd is with responses)
+
+------------------------------------------------------------------------------------------------------------------------
+
+ToDos 06/28/2017
 
 XML Zustandsbeschreibung
 * Initial Zustand: leerer Tisch, Spiel muss noch gestartet werden, Dealer sitzt immer da
