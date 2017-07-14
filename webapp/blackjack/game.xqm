@@ -70,7 +70,7 @@ declare %updating function g:checkPlayer($gameId as xs:integer,$endOfGame as xs:
   let $valueOfCards := g:checkValue($gameId)
   let $valueOfCardsDealer := g:checkValueDealer($gameId)
   
-  return ( (: todo: bei 21 3:2 auszahlen :) 
+  return ( 
         if ($endOfGame = 1) then (
             if($valueOfCards > 21) then (
                     replace value of node $game/players/player[id=$playerId]/bet with 0,
@@ -83,6 +83,11 @@ declare %updating function g:checkPlayer($gameId as xs:integer,$endOfGame as xs:
                 )
                 else if ($valueOfCardsDealer = $valueOfCards) then (
                     replace value of node $game/players/player[id=$playerId]/bet with ($balanceValue+$betValue),
+                    replace value of node $game/players/player[id=$playerId]/bet with 0,
+                    delete node $game/players/player[id=$playerId]/hand/*
+                )
+                else if ($valueOfCards = 21) (
+                    replace value of node $game/players/player[id=$playerId]/bet with ($balanceValue+$betValue*2.5),
                     replace value of node $game/players/player[id=$playerId]/bet with 0,
                     delete node $game/players/player[id=$playerId]/hand/*
                 )
