@@ -11,6 +11,13 @@
 
 (SONDERFALL:
 Ein Spieler setzt $20 und bekommt eine Blackjack-Hand ausgeteilt – die Auszahlung beträgt dann $50. Bekommt ein Spieler eine gewinnende Blackjack-Hand, wird er sofort ausbezahlt und ist aus dem Spiel. Die einzige AUSNAHME ist, wenn die erste offene Karte des Dealers ein Ass oder eine Karte mit dem Wert 10 ist. Hat der Dealer nämlich ebenfalls einen Blackjack, gilt die Runde als Unentschieden oder “Push”. In diesem Fall erhält der Spieler seinen Einsatz zurück.)
+(Quelle: http://de.blackjack.org/blackjack-regeln/, vom 15.07.17)
 
 -	Falls erste Karte des Dealers, Ass oder Bild, darf man eine Versicherung abschließen
--	Insurance: folgt noch
+-	Insurance: wie folgt
+
+(Zu Beginn teilt der Dealer dem Spieler zu seiner linken eine Karte aus dem Kartenschuh aus und fährt dann reihum fort, bis alle Spieler eine Karte haben. Die Karten werden den Spielern offen ausgeteilt, die erste Karte des Dealers jedoch bleibt verdeckt und nur die zweite Karte des Dealers wird offen ausgeteilt. Wenn die offene Karte des Dealers ein Ass zeigt, haben die Spieler die Möglichkeit, eine Versicherung für 50% des Einsatzes abzuschließen. Beispiel: Wenn ein Spieler einen Einsatz von $100 gemacht hat, kann er seine Hand gegen einen möglichen Blackjack des Dealers mit einer Versicherung für $50 absichern. Hat der Dealer tatsächlich einen Blackjack, so verliert der Spieler zwar seinen usrpünglichen Einsatz von $100, erhält aber eine 1:1 Auszahlung auf die Versicherung. Alle anderen Hände (sofern sie keinen Blackjack bilden), die keine Versicherung haben, verlieren ebenfalls und ihre Einsätze werden vom Dealer eingesammelt. Damit ist die Runde dann beendet. Sollte ein Spieler ebenfalls einen Blackjack haben, nennt man dies “Push”, der Spieler erhält seinen Einsatz zurück und die Runde ist beendet.)
+(Quelle: http://de.blackjack.org/blackjack-regeln/, vom 15.07.17)
+
+
+- Sollte der Dealer sich überkaufen, gewinnen alle Spieler am Tisch und werden 1:1 ausbezahlt. Jeder Spieler mit einem Blackjack, ist bereits 3:2 während der Runde ausbezahlt worden.
