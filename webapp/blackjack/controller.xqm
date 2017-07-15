@@ -4,6 +4,7 @@ module namespace c = "blackjack/controller";
 
 declare namespace xslt = "http://basex.org/modules/xslt";
 import module namespace g = "blackjack/game" at "game.xqm";
+(: ToDo: request namespace cannot be resolved :)
 import module namespace request = "http://exquery.org/ns/request";
 
 declare variable $c:index := doc("index.html");
