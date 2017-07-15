@@ -4,7 +4,6 @@ module namespace c = "blackjack/controller";
 
 declare namespace xslt = "http://basex.org/modules/xslt";
 import module namespace g = "blackjack/game" at "game.xqm";
-(: ToDo: request namespace cannot be resolved :)
 import module namespace request = "http://exquery.org/ns/request";
 
 declare variable $c:index := doc("index.html");
@@ -15,7 +14,7 @@ declare variable $c:xsltTransformator := doc("xsltTransformator.xsl");
 
 
 
-(: Display the start screen to the player. :)
+(: this function displays the start screen to the player :)
 declare
 %rest:path("/blackjack")
 %rest:GET
@@ -25,7 +24,7 @@ function c:start() {
 
 
 
-(: Create input start form for player names, maxBet and minBet :)
+(: this function creates the input start form for player names, maxBet and minBet :)
 declare
 %rest:path("/blackjack/initGame")
 %rest:GET
@@ -35,7 +34,7 @@ function c:initGame() {
 
 
 
-(: Create new game instance from input form and call write into database  > then redirect to transformator:)
+(: this function creates a new game instance from input form and call write into database  -> then redirect to transformator :)
 declare
 %updating
 %rest:path("/blackjack/form")
@@ -50,7 +49,7 @@ function c:handleInit() {
       request:parameter("playername4", ""),
       request:parameter("playername5", ""))
   let $game := g:newGame($maxBet, $minBet,$playerNames)
-  (: Replace with redirect to transformator :)
+  (: ToDo (???): Replace with redirect to transformator :)
   return (db:output($c:blackjackXHTML), g:insertGame($game))
 };
 
@@ -71,7 +70,7 @@ function c:newGame() {
 :)
 
 
-(: Transform the game session from the database to HTML using XSLT. :)
+(: this function transforms the game session from the database to HTML using XSLT :)
 declare 
 %rest:path('/blackjack/transform/{$gameId}')
 %rest:GET %output:media-type("text/html") 
@@ -81,7 +80,8 @@ function c:transformToHtml($gameId as xs:string) {
 };
 
 
-
+(: this funtion implements the bet action of the activePlayer :)
+(: ToDo: has to be implemented :)
 declare
 %updating
 %rest:path("/blackjack/bet")   (: Platzhalter zum testen bis Button implementiert :)
@@ -94,7 +94,8 @@ function c:bet() {
 };
 
 
-
+(: this funtion implements the hit action of the activePlayer :)
+(: ToDo: has to be implemented :)
 declare
 %updating
 %rest:path("/blackjack/hit")   (: Platzhalter zum testen bis Button implementiert :)
@@ -102,13 +103,14 @@ declare
 function c:hit() {  
   let $gameId := 123
   
-  (: prüfen ob über 21 :)
+  (: ToDo: Check for >21 :)
   
   return (g:drawCard($gameId,0))
 };
 
 
-
+(: this funtion implements the stand action of the activePlayer :)
+(: ToDo: has to be implemented :)
 declare
 %updating
 %rest:path("/blackjack/stand")   (: Platzhalter zum testen bis Button implementiert :)

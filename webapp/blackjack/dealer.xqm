@@ -13,4 +13,4 @@ declare %updating function g:turnHiddenCard($card as element(card)) {
   replace value of node $card//@hidden with 'false'
 };
 
-(: constructors for dealer still to do :)
+(: constructors for dealer still ToDo :)
