@@ -8,5 +8,9 @@
 
 -	Falls ein Spieler über 21 kommt, ist der Spieler sofort raus und der Dealer zieht keine Karte mehr
 -	Black Jack zahlt 3:2, bei Gewinn 1:1, bei Gleichstand bekommt man seinen Einsatz zurück
+
+(SONDERFALL:
+Ein Spieler setzt $20 und bekommt eine Blackjack-Hand ausgeteilt – die Auszahlung beträgt dann $50. Bekommt ein Spieler eine gewinnende Blackjack-Hand, wird er sofort ausbezahlt und ist aus dem Spiel. Die einzige AUSNAHME ist, wenn die erste offene Karte des Dealers ein Ass oder eine Karte mit dem Wert 10 ist. Hat der Dealer nämlich ebenfalls einen Blackjack, gilt die Runde als Unentschieden oder “Push”. In diesem Fall erhält der Spieler seinen Einsatz zurück.)
+
 -	Falls erste Karte des Dealers, Ass oder Bild, darf man eine Versicherung abschließen
 -	Insurance: folgt noch
