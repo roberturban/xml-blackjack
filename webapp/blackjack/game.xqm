@@ -86,7 +86,7 @@ declare %updating function g:checkPlayer($gameId as xs:integer,$endOfGame as xs:
                     replace value of node $game/players/player[id=$playerId]/bet with 0,
                     delete node $game/players/player[id=$playerId]/hand/*
                 )
-                else if ($valueOfCards = 21) (
+                else if ($valueOfCards = 21) then (
                     replace value of node $game/players/player[id=$playerId]/bet with ($balanceValue+$betValue*2.5),
                     replace value of node $game/players/player[id=$playerId]/bet with 0,
                     delete node $game/players/player[id=$playerId]/hand/*
