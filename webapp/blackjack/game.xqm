@@ -48,15 +48,15 @@ declare %updating function g:deleteGame($gameId as xs:integer) {
 declare %updating function g:setActivePlayer($gameId as xs:integer) {
   let $game := $g:casino/game[id=$gameId]
   let $players := $game/players/*
-  let $playerId := $game/activePlayer/[id]
-  return replace node $game/activePlayer/[id] with $players[id=$playerId/text()]/following::id[1] (: ToDo: check, if it was the last player :)
+  let $playerId := $game/activePlayer/@id
+  return replace node $game/activePlayer/@id with $players[id=$playerId/text()]/following::id[1] (: ToDo: check, if it was the last player :)
   (: Note: why ...following::id[1] ? :)
 };
 
 (: this function handles the betting action of the activePlayer, as long as the bet was in the allowed range :)
 declare %updating function g:bet($gameId as xs:integer, $betValue as xs:integer) {
   let $game := $g:casino/game[id=$gameId]
-  let $playerId := $game/activePlayer/[id]
+  let $playerId := $game/activePlayer/@id
   let $newBalance := $game/players/player[id=$playerId]/balance - $betValue
   
   return 
@@ -71,7 +71,7 @@ declare %updating function g:bet($gameId as xs:integer, $betValue as xs:integer)
 (: ToDo: before calling this function, it has to be ensure that the dealer is >= 17 :)
 declare %updating function g:checkWinningStatus($gameId as xs:integer,$endOfGame as xs:boolean) {
   let $game := $g:casino/game[id=$gameId]
-  let $playerId := $game/activePlayer/[id]    
+  let $playerId := $game/activePlayer/@id    
   
   let $betValue := $game/players/player[id=$playerId]/bet
   let $balanceValue := $game/players/player[id=$playerId]/balance
@@ -165,7 +165,7 @@ declare function g:calculateCardsValueDealer($gameId as xs:integer) {
 (: in case of an A, decide whether value is 11 or 1 :)
 declare function g:calculateCardsValuePlayer($gameId as xs:integer) {
   let $game := $g:casino/game[id=$gameId]
-  let $playerId := $game/activePlayer/id
+  let $playerId := $game/activePlayer/@id
   let $valueOfCardsTemp :=  
         fn:sum(
             for $i in $game/players/player[id=$playerId]/hand/card
@@ -199,7 +199,7 @@ declare function g:calculateCardsValuePlayer($gameId as xs:integer) {
 (: ToDo: a function, which gives a card to the dealer has to be implemented as well :)
 declare %updating function g:drawCardPlayer($gameId as xs:integer,$hidden as xs:boolean) {
   let $game := $g:casino/game[id=$gameId]
-  let $playerId := $game/activePlayer/[id]
+  let $playerId := $game/activePlayer/@id
   let $newCard :=
     if ($hidden=true) then 
         copy $c := $game/cards/card[position()=1]
