@@ -4,6 +4,7 @@ module namespace c = "blackjack/controller";
 
 declare namespace xslt = "http://basex.org/modules/xslt";
 import module namespace g = "blackjack/game" at "game.xqm";
+import module namespace d = "blackjack/dealer" at "dealer.xqm";
 import module namespace request = "http://exquery.org/ns/request";
 
 declare variable $c:index := doc("index.html");
@@ -105,7 +106,7 @@ function c:hit() {
   
   (: ToDo: Check for >21 :)
   
-  return (g:drawCard($gameId,0))
+  return (g:drawCardPlayer($gameId,fn:false()))
 };
 
 
@@ -117,7 +118,6 @@ declare
 %rest:GET
 function c:stand() {  
   let $gameId := 123
-  let $endOfGame := 0
   
-  return (g:checkPlayer($gameId,$endOfGame))
+  return (g:checkWinningStatus($gameId,fn:false()))
 };
