@@ -26,7 +26,7 @@ declare %updating function d:dealerAI($gameId as xs:string){
 (: ToDo: testing and finishing :)
 declare %updating function d:checkWinningStatusAll($gameId as xs:string){
     let $game := $g:casino/game[@id=$gameId]
-    for $i in $game/players/player
+    for $i in $game/players/player[bet != 0]
     return (g:checkWinningStatus($gameId,fn:true()),
             g:setActivePlayer($gameId))
 };
