@@ -20,4 +20,4 @@ Ein Spieler setzt $20 und bekommt eine Blackjack-Hand ausgeteilt – die Auszahl
 (Quelle: http://de.blackjack.org/blackjack-regeln/, vom 15.07.17)
 
 
-- Sollte der Dealer sich überkaufen, gewinnen alle Spieler am Tisch und werden 1:1 ausbezahlt. Jeder Spieler mit einem Blackjack, ist bereits 3:2 während der Runde ausbezahlt worden.
+- Sollte der Dealer sich überkaufen, gewinnen alle Spieler am Tisch, die sich selbst noch nicht überkauft haben, und werden 1:1 ausbezahlt. Jeder Spieler mit einem Blackjack, ist bereits 3:2 während der Runde ausbezahlt worden.
