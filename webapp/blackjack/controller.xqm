@@ -49,7 +49,13 @@ function c:handleInit() {
       request:parameter("playername3", ""),
       request:parameter("playername4", ""),
       request:parameter("playername5", ""))
-  let $game := g:newGame($maxBet, $minBet,$playerNames)
+  let $balances := 
+      (request:parameter("balance1", ""),
+      request:parameter("balance2", ""),
+      request:parameter("balance3", ""),
+      request:parameter("balance4", ""),
+      request:parameter("balance5", ""))
+  let $game := g:newGame($maxBet, $minBet,$playerNames, $balances)
   (: ToDo (???): Replace with redirect to transformator :)
   return (db:output($c:blackjackXHTML), g:insertGame($game))
 };
