@@ -61,22 +61,6 @@ function c:handleInit() {
 };
 
 
-
-(:
-declare
-%updating
-%rest:path("/blackjack/newGame")
-%rest:GET
-function c:newGame() {
-  let $maxBet := 100
-  let $minBet := 10
-  let $playerNames := ("Franz","Peter","Hugo","Krause")
-  let $game := g:newGame($maxBet, $minBet,$playerNames)
-  return (db:output($c:blackjackXHTML), g:insertGame($game))
-};
-:)
-
-
 (: this function transforms the game session from the database to HTML using XSLT :)
 declare 
 %rest:path('/blackjack/transform/{$gameId}')
