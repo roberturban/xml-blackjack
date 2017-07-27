@@ -5,22 +5,64 @@
     <bookinfo>
         <title>XML Praktikum SS17 - Blackjack Projekt</title>
     </bookinfo>
-    
     <article>
         <title>Einleitung</title>
-        <section>
-            <title></title>
-            <variablelist>
-                <varlistentry>
-                    <term></term>
-                    <listitem>
-                        <para></para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </section>
     </article>
-    
+    <article>
+        <para>Das vorliegende Blackjack Spiel wurde im Sommer 2017 im Rahmen des Bachelor Praktikums
+            "XML Technologies" bei Prof. Brüggemann-Klein entwickelt und ist ausschließlich in XML
+            und dessen unterstützenden Technologien programmiert.</para>
+        <para>Hierbei wurde Scalable vector graphics (SVG) zur visuellen Repräsentation verwendet.
+            Die Transformationssprachen von XML, namens XSLT und XQuery, bilden die Verbindung von
+            den einfachen XML Files in der integrierten Datenbank zu der Grafik. Das Verwenden von
+            XHtml mit XForms ermöglicht dem User die seinen eigenen Namen und das gewünschte
+            Guthaben einzutragen. </para>
+    </article>
+    <article>
+        <title>Verwendete Technologien</title>
+        <variablelist>
+            <varlistentry>
+                <term>Docbook</term>
+                <listitem>
+                    <para>Das Projekt wurde mithilfe von Docbook dokumentiert und beschreibt die
+                        Entwicklung und die Funktionen von dem entwickelten Spiel "Blackjack".
+                        DocBook eignet sich bestens für die Dokumentation im technischen Umfeld und
+                        ermöglicht eine PDF Transformation.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>HTML</term>
+                <listitem>
+                    <para/>
+                </listitem>
+                <term>XQuery</term>
+                <listitem>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SVG</term>
+                <listitem>
+                    <para>SVG steht für Scalable Vector Graphics und ermöglicht vektorbasierte
+                        Grafiken in XML. SVG ist eine W3C Empfehlung und wurde deswegen für die
+                        visuelle Repräsentation von Blackjack verwendet.</para>
+                    <para>Mithilfe von SVG wurde sowohl jede einzelne Spielkarte entwickelt, als
+                        auch </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>XSLT</term>
+                <listitem>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <listitem>
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </article>   
     <article>
         <title>Blackjack Regeln</title>
         <variablelist>
@@ -34,10 +76,78 @@
                 <term>Kartendeck</term>
                 <listitem>
                     <para>Sechs Paketen französischer Spielkarten zu 52 Blatt, also 312 Karten
-                        gespielt</para>
+                        gespielt </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Der BlackJack Tisch</term>
+                <listitem>
+                    <para>Black Jack wird an einem halbkreisförmigen Tisch gespielt. An der geraden
+                        Seite spielt der Dealer. An der runden Seite befinden sich bis zu 7 Spieler.
+                        Bei unserer Variante können maximal 5 Spieler teilnehmen, da wir darin eine
+                        bessere graphische Übersichtlichkeit identifizieren. Auf dem Tisch befinden
+                        sich Linien, welche die Positionen der Karten der Spieler einschränken und
+                        das Fach für das Zieh- und Ablagedeck andeuten. </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Der Dealer </term>
+                <listitem>
+                    <para>Jeder Spieler spielt einzeln gegen den Dealer. Der Dealer fungiert im
+                        übertragenem Sinne als Bank. </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ziel des Spiels </term>
+                <listitem>
+                    <para> Ziel des Spiels ist es mit zwei oder mehereren Karten näher an Kartenwert
+                        21 heranzukommen als der Dealer. Sobald man die 21 überschritten hat, hat
+                        man verloren. </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"Blackjack" </term>
+                <listitem>
+                    <para>Ein Spieler oder der Dealer erzielt einen sogenannten "Blackjack", wenn er
+                        mit seinen Karten genau den Kartenwert 21 erreichen.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term> Ablauf des Spiels </term>
+                <listitem>
+                    <para>Vor Beginn eines Spiels müssen die Spieler sich einen Namen aussuchen und
+                        ihr Guthaben hochladen. Ausgehend von diesem Guthaben, können die Spieler
+                        anschließend einen gewünschten Einsatz setzen, der niedriger als ihr
+                        Guthaben ist. Sobald alle Spieler ihre Einsätze gemacht haben, beginnt das
+                        Blackjack-Spiel mit dem Austeilen der Karten. Dabei bekommen die Spieler
+                        zwei Karten ausgeteilt, die leicht versetzt übereinander gelegt werden,
+                        damit man den Wert jeder Karte noch gut erkennen kann. Dem Dealer werden
+                        ebenfalls zwei Karten ausgeteilt, jedoch liegt eine Karte offen, die Andere
+                        verdeckt vor ihm. </para>
+                    <para>Nun wird jeder Spieler der Reihe nach gefragt, wie er vorgehen will.
+                        Abhängig von den Karten, die er bereits gezogen hat, muss sich der Spieler
+                        entscheiden, ob er eine weitere Karte ziehen soll (hit) oder bei dem
+                        aktuellen Kartenwert bleiben will (stand). Die Spieler können so oft Karten
+                        fordern, wie sie wollen, sobald sie jedoch den Wert 21 überschreiten, haben
+                        sie die Runde verloren und ihr Einsatz wird von dem Dealer eingesammelt.
+                        Sobald sich der Spieler für "stand" entscheidet, ist der nächste Spieler an
+                        der Reihe.</para>
+                    <para>Nachdem alle Spieler ihre Aktionen ausgeführt haben, deckt der Dealer
+                        seine verdeckte Karte auf. </para>
+                    <para>Hat der Dealer einen Wert unter 17, ist er gezwungen noch eine Karte zu
+                        ziehen, bis er die 17 oder einen Wert darüber erreicht und keine weitere
+                        Karte mehr ziehen darf. </para>
+                    <para><emphasis>Versicherung: </emphasis>Ist die offene Karte des Dealers ein
+                        Ass, haben die Mitspieler die Möglichkeit geboten, eine Versicherung für 50%
+                        ihres Einsatzes abzuschließen. Somit sichern sie sich gegen den Fall ab,
+                        dass der Dealer einen Blackjack erhält. Hat der Dealer nämlich tatsächlich
+                        einen Blackjack, so erhalten die Spieler zumindest 50% ihres Einsatzes
+                        zurück. Die Spieler, die keine Versicherung abgeschlossen haben, verlieren
+                        ihren gesamten Einsatz, insofern sie nicht auch einen Blackjack erreicht
+                        haben. Sollte ein Spieler ebenfalls einen Blackjack haben, so nennt man dies
+                        "Push" und der Spieler erhält seinen Einsatz zurück.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </article>
-    
 </book>
