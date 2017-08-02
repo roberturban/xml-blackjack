@@ -10,7 +10,27 @@
     <!-- XSLT transformator Output -->
     <xsl:output method="html" encoding="UTF-8"/>
     
-    <!-- TODO: XSLT Variables position -->
+    <!-- Variables for the table -->
+    <xsl:variable name="xTable" select="number(100)"/>
+    <xsl:variable name="yTable" select="number(10)"/>
+    <xsl:variable name="widthTable" select="number(1000)"/>
+    <xsl:variable name="heightTable" select="number(200)"/>
+    <xsl:variable name="heightRectTable" select="number(140)"/>
+    <xsl:variable name="borderradiusTable" select="number(50)"/>
+    <xsl:variable name="xRoundTable" select="number(600)"/>
+    <xsl:variable name="yRoundTable" select="number(108)"/>
+    <xsl:variable name="radiusOuterTable" select="number(500)"/>
+    <xsl:variable name="radiusInnerTable" select="number(450)"/>
+    <xsl:variable name="widthInnerTable" select="number(896)"/>
+    <xsl:variable name="heightInnerRectTable" select="number(180)"/>
+    <xsl:variable name="xInnerRectTable" select="number(152)"/>
+    <xsl:variable name="yInnerRectTable" select="number(40)"/>
+    
+    <!-- Variables for logo -->
+    <xsl:variable name="xLogo" select="number(450)"/>
+    <xsl:variable name="yLogo" select="number(50)"/>
+    
+    <!-- TODO: Kartenplatz, Avatar, Textzug Variablen -->
     
     <!-- XSL Basic Template Start Point -->
     <xsl:template match="/">
@@ -37,19 +57,19 @@
         <!-- Game board -->
         <svg xmlns="http://www.w3.org/2000/svg" width="1250" height="800">
             <clipPath id="rec">
-                <rect x="100" y="10" width="1000" height="140"/>
+                <rect x="{$xTable}%" y="{$yTable}%" width="{$widthTable}%" height="{$heightRectTable}%"/>
             </clipPath>
-            <rect x="102" y="10" width="996" height="200" fill="black" stroke="black" rx="50" clip-path="url(#rec)" />
+            <rect x="{$xTable + 2}%" y="{$yTable}%" width="{$widthTable - 4}%" height="{$heightTable}%" fill="black" stroke="black" rx="{$borderradiusTable}%" clip-path="url(#rec)" />
             <clipPath id="bot">
                 <path d="M 0 150 h 1100 v 600 h -700 z"/>
             </clipPath>
-            <circle cx="600" cy="108" r="500" fill="black" clip-path="url(#bot)" />    
-            <rect x="152" y="40" width="896" height="180" fill="darkgreen" stroke="white" stroke-width="5" rx="50" clip-path="url(#rec)" />
-            <circle cx="600" cy="108" r="450" fill="darkgreen" stroke="white" stroke-width="5" clip-path="url(#bot)" />
+            <circle cx="{$xRoundTable}%" cy="{$yRoundTable}%" r="{$radiusOuterTable}%" fill="black" clip-path="url(#bot)" />    
+            <rect x="{$xInnerRectTable}%" y="{$yInnerRectTable}%" width="{$widthInnerTable}%" height="{$heightInnerRectTable}%" fill="darkgreen" stroke="white" stroke-width="5" rx="{$borderradiusTable}%" clip-path="url(#rec)" />
+            <circle cx="{$xRoundTable}%" cy="{$yRoundTable}%" r="{$radiusInnerTable}%" fill="darkgreen" stroke="white" stroke-width="5" clip-path="url(#bot)" />
             <!-- ToDo: this image has to be referenced from our own server -->
             <image id="BJ-logo"
                 xlink:href="http://www.dafont.com/forum/attach/orig/1/2/127066.png"
-                x="450" y="50" height="100" width="300">
+                x="{$xLogo}%" y="{$yLogo}%" height="100" width="300">
             </image>
             
             <defs>
