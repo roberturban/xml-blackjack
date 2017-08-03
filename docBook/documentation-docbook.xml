@@ -15,7 +15,7 @@
         <para>Hierbei wurde Scalable vector graphics (SVG) zur visuellen Repräsentation verwendet.
             Die Transformationssprachen von XML, namens XSLT und XQuery, bilden die Verbindung von
             den einfachen XML Files in der integrierten Datenbank zu der Grafik. Das Verwenden von
-            XHtml mit XForms ermöglicht dem User die seinen eigenen Namen und das gewünschte
+            XHtml mit XForms ermöglicht dem User seinen eigenen Namen und das gewünschte
             Guthaben einzutragen. </para>
     </article>
     <article>
@@ -37,6 +37,9 @@
                 </listitem>
                 <term>XQuery</term>
                 <listitem>
+                    <para>XQuery bezeichnet eine vom W3C spezifizierte Abfragesprache für XML
+                        Datenbanken. Sie dient dazu aus großen XML-Datensätzen einzelne spezifische
+                        Informationen  herauszufiltern.</para>
                     <para/>
                 </listitem>
             </varlistentry>
@@ -46,8 +49,27 @@
                     <para>SVG steht für Scalable Vector Graphics und ermöglicht vektorbasierte
                         Grafiken in XML. SVG ist eine W3C Empfehlung und wurde deswegen für die
                         visuelle Repräsentation von Blackjack verwendet.</para>
-                    <para>Mithilfe von SVG wurde sowohl jede einzelne Spielkarte entwickelt, als
-                        auch </para>
+                    <para>Allgemein wurde darauf geachtet, möglichst viele SVG Patterns zu
+                        bestimmen, die innerhalb eines &lt;defs> Element definiert und durch eine ID
+                        referenziert werden können. Die Svg Patterns definieren dabei eine Figur
+                        oder Form, die wiederum aus verschiedenen SVG Objekten oder Bildern bestehen
+                        und sogar in anderen Objekten wiederverwendet werden können. Mit &lt;use>
+                        und dem Referenzlink kann man die Patterns einfach anwenden.  Somit wurden
+                        beispielsweise die Spielfiguren, bestehend aus einem Kreis und einem Pfad,
+                        oder die Kartenplätze, bestehend aus einem abgerundetem Rechteck, 5 Mal
+                        rotierend in die Graphik projeziert.</para>
+                    <para>Die Form des Blackjack Tischs wurde durch ein abgerundetes Rechteck und
+                        einen abgeschnittenen Kreis konstruiert. Dabei wurde die größere Ausführung
+                        in schwarz und die kleinere Ausführung in dunkelgrün mit weißem Rand
+                        gestaltet. Das Logo von dem Blackjack Tisch ist ein Bild aus dem Internet.
+                        Die geschwungene Form des Insurance Textes und dessen Umrandung wurde anhand
+                        eines selbst definierten Pfades konstruiert.</para>
+                    <para>Die Buttons können verschiedene Modi einnehmen. Mit Hilfe von &lt;style>
+                        werden die verschiedenen graphischen Ausführungen eines Objektes realisiert.
+                        Wenn der Button aktiv ist und jeder Zeit auf ihn gedrückt werden kann, so
+                        ist er grau. Fährt man die Maus über einen aktiven Button, so verringert
+                        sich die Opazität. Ein inaktiver Button, also ein Button den man aufgrund
+                        des Spielverlaufs momentan nicht anklicken kann, ist dunkelgrau.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
