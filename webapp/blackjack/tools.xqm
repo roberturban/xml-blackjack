@@ -4,8 +4,6 @@ module namespace t = "blackjack/tools";
 declare namespace uuid = "java:java.util.UUID";
 declare namespace math = "java:java.lang.Math";
 
-
-
 (: this function returns a timestamp in the form hhmmssmmmxxxx (hours, minutes, seconds, milliseconds, random number) :)
 (: it removes ":" and "." separators and time zone info from current-time(), then appends a random number :)
 declare function t:timestamp() as xs:string {
@@ -14,15 +12,11 @@ declare function t:timestamp() as xs:string {
   return concat($time,$random)
 };
 
-
-
 (: this function returns a random number in [1,$range] :)
 (: it uses a Java function until generate-random-number is generally available :)
 declare function t:random($range as xs:integer) as xs:integer {
   xs:integer(ceiling(math:random() * $range))
 };
-
-
 
 (: this function returns a unique ID using java UUID generator :)
 declare function t:generateID() as xs:string {
