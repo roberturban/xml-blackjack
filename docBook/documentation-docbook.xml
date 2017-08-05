@@ -7,15 +7,13 @@
     </bookinfo>
     <article>
         <title>Einleitung</title>
-    </article>
-    <article>
-        <para>Das vorliegende Blackjack Spiel wurde im Sommer 2017 im Rahmen des Bachelor Praktikums
-            "XML Technologies" bei Prof. Brüggemann-Klein entwickelt und ist ausschließlich in XML
+        <para>Das hier implementierte Blackjack Spiel wurde im SS 2017 im Rahmen des Praktikums
+            "XML Technologies" bei Frau Prof. Brüggemann-Klein entwickelt und ist ausschließlich in XML
             und dessen unterstützenden Technologien programmiert.</para>
-        <para>Hierbei wurde Scalable vector graphics (SVG) zur visuellen Repräsentation verwendet.
-            Die Transformationssprachen von XML, namens XSLT und XQuery, bilden die Verbindung von
-            den einfachen XML Files in der integrierten Datenbank zu der Grafik. Das Verwenden von
-            XHtml mit XForms ermöglicht dem User seinen eigenen Namen und das gewünschte
+        <para>Hierbei wurden Scalable Vector Graphics (SVG) zur visuellen Repräsentation verwendet.
+            Die Transformationssprachen von XML - XSLT und XQuery - bilden die Verbindung von
+            den einfachen XML Files in der integrierten Datenbank zur Grafik. Die Verwendung von
+            XHtml mit XForms ermöglicht dem User u.a. seinen Namen und das gewünschte
             Guthaben einzutragen. </para>
     </article>
     <article>
@@ -24,10 +22,11 @@
             <varlistentry>
                 <term>Docbook</term>
                 <listitem>
-                    <para>Das Projekt wurde mithilfe von Docbook dokumentiert und beschreibt die
-                        Entwicklung und die Funktionen von dem entwickelten Spiel "Blackjack".
+                    <para>Das Projekt wurde mithilfe von DocBook dokumentiert. Beschrieben werden die verschiedenen
+                        Entwicklungsphasen und Funktionen der hier vorgestellten Spielfassung von "Blackjack".
                         DocBook eignet sich bestens für die Dokumentation im technischen Umfeld und
-                        ermöglicht eine PDF Transformation.</para>
+                        ermöglicht u.a. eine Transformation ins PDF Format.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -35,12 +34,14 @@
                 <listitem>
                     <para/>
                 </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>XQuery</term>
                 <listitem>
                     <para>XQuery bezeichnet eine vom W3C spezifizierte Abfragesprache für XML
                         Datenbanken. Sie dient dazu aus großen XML-Datensätzen einzelne spezifische
-                        Informationen  herauszufiltern.</para>
-                    <para/>
+                        Informationen herauszufiltern.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -74,11 +75,6 @@
             </varlistentry>
             <varlistentry>
                 <term>XSLT</term>
-                <listitem>
-                    <para/>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <listitem>
                     <para/>
                 </listitem>
