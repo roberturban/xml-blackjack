@@ -22,11 +22,11 @@
             <varlistentry>
                 <term>Docbook</term>
                 <listitem>
-                    <para>Das Projekt wurde mithilfe von DocBook dokumentiert. Beschrieben werden die verschiedenen
-                        Entwicklungsphasen und Funktionen der hier vorgestellten Spielfassung von "Blackjack".
-                        DocBook eignet sich bestens für die Dokumentation im technischen Umfeld und
-                        ermöglicht u.a. eine Transformation ins PDF Format.
-                    </para>
+                    <para>Das Projekt wurde mithilfe von DocBook dokumentiert. Beschrieben werden
+                        die verschiedenen Entwicklungsphasen und Funktionen der hier vorgestellten
+                        Spielfassung von "Blackjack". DocBook eignet sich bestens für die
+                        Dokumentation im technischen Umfeld und ermöglicht u.a. eine Transformation
+                        ins PDF Format. </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -40,10 +40,125 @@
                 <listitem>
                     <para>XQuery bezeichnet eine vom W3C spezifizierte Abfragesprache für XML
                         Datenbanken. Sie dient dazu aus großen XML-Datensätzen einzelne spezifische
-                        Informationen herauszufiltern.
+                        Informationen herauszufiltern. </para>
+                    <para>Die XQuery Funktionen wurden entsprechend des entworfenem
+                        Klassendiagrammes und ihrer Sinnhaftigkeit auf die Dateien controller.xqm,
+                        card.xqm, game.xqm, dealer.xqm, tools.xqm und player.xqm aufgeschlüsselt. Im
+                        Folgenden soll auf die einzelnen Funktionen eingegangen werden:</para>
+                    <para>
+                        <variablelist>
+                            <varlistentry>
+                                <term>tools.xqm</term>
+                                <listitem>
+                                    <para>In dieser Datei sind die Funktionen zur Generierung eines
+                                        Zeitstempels und einer ID implementiert.</para>
+                                    <para>
+                                        <itemizedlist>
+                                            <listitem>
+                                                <para>generateId() gibt mit Hilfe von Java UUID
+                                                  Generator eine einzigartige ID zurück. Die
+                                                  Funktion wird für die spätere Generierung der game
+                                                  und player ID benötigt.</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>random() gibt eine Zufallszahl im Bereich[1,
+                                                  $range] wieder. Sie benutzt eine Java Funktion,
+                                                  bis generate-random-number allgemein verfügbar
+                                                  ist.</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>timestamp() gibt einen Zeitstempel im Format
+                                                  hhmmssmmmxxxx (Stunden, Minuten, Sekunden,
+                                                  Millisekunden, Zufallszahl) zurück. Hierbei werden
+                                                  durch replace sowohl die Separatoren "." und ":",
+                                                  als auch die Zeitzoneninfo von current-time(),
+                                                  entfernt. Anschließend wird eine Zufallszahl, die
+                                                  mit Hilfe von random() erstellt wurde,
+                                                  konkateniert.</para>
+                                            </listitem>
+                                        </itemizedlist>
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                        <variablelist>
+                            <varlistentry>
+                                <term>game.xqm</term>
+                                <listitem>
+                                    <para>In dieser Datei ist der Spielablauf implementiert. </para>
+                                    <para>Zuerst wurde der Namespace g definiert, der auf die Datei
+                                        "blackjack/game" zugreift. Außerdem werden tools (t), player
+                                        (p), dealer (d) und card (c)importiert. Die Varibale
+                                        $g:casino öffnet die Datenbank "blackjack", lokalisiert
+                                        "casino" in der Datenbank und navigiert zu dessen erstem
+                                        Element. </para>
+                                    <para>
+                                        <itemizedlist>
+                                            <listitem>
+                                                <para>shuffleCard</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>createNewGame() erstellt eine neue
+                                                  Spielinstanz mit den eingegebenen Spielernamen,
+                                                  Maximal- und Minimaleinsatz und der Balance. Es
+                                                  wird, durch die in tools definierte Funktion
+                                                  generateId(), eine neue Game Id kreiert. Mit der
+                                                  eingegebenen Balance und dem Spielernamen wird auf
+                                                  die in player definierte Funktion
+                                                  "createNewPlayer" aufgerufen, in der die Spieler
+                                                  kreiert werden. ActivePlayer ist der Player, der
+                                                  den Index[1] besitzt. Durch shuffleCards() werden
+                                                  die Karten gemischt und allesamt wird in game
+                                                  zurückgegeben.</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>insertGame() ist eine updating Funktion und
+                                                  fügt eine neue Game Instanz in den Casino Sever
+                                                  ein.</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>deleteGame() ist eine updating Funktion und
+                                                  löscht eine Game Instanz aus dem Casino Server.
+                                                  Die zu löschende Instanz wird durch die game Id
+                                                  referenziert.</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>setActivePlayer() ist eine updating Funktion
+                                                  und legt den Player fest, der an der Reihe ist zu
+                                                  agieren. Dabei wird der Knotenpunkt bzw die "Node"
+                                                  von a</para>
+                                            </listitem>
+                                        </itemizedlist>
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                        <variablelist>
+                            <varlistentry>
+                                <term>player.xqm</term>
+                                <listitem></listitem>
+                            </varlistentry>
+                        </variablelist>
+                        <variablelist>
+                            <varlistentry>
+                                <term>dealer.xqm</term>
+                                <listitem></listitem>
+                            </varlistentry>
+                        </variablelist>
+                        <variablelist>
+                            <varlistentry>
+                                <term>card.xqm </term>
+                                <listitem>
+                                    <para>Hier werden durch verschiedene Konstruktoren das Objekt
+                                        "Karte" erzeugt.</para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
                     </para>
                 </listitem>
             </varlistentry>
+        </variablelist>
+        <variablelist>
             <varlistentry>
                 <term>SVG</term>
                 <listitem>
@@ -55,7 +170,7 @@
                         referenziert werden können. Die Svg Patterns definieren dabei eine Figur
                         oder Form, die wiederum aus verschiedenen SVG Objekten oder Bildern bestehen
                         und sogar in anderen Objekten wiederverwendet werden können. Mit &lt;use>
-                        und dem Referenzlink kann man die Patterns einfach anwenden.  Somit wurden
+                        und dem Referenzlink kann man die Patterns einfach anwenden. Somit wurden
                         beispielsweise die Spielfiguren, bestehend aus einem Kreis und einem Pfad,
                         oder die Kartenplätze, bestehend aus einem abgerundetem Rechteck, 5 Mal
                         rotierend in die Graphik projeziert.</para>
