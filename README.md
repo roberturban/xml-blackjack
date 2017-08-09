@@ -17,6 +17,7 @@ ToDos 07/21/2017
 * Implement missing functions (insurance, ...) ---> in player.xqm
 * Get XSLT for GUI working (1st step is without responses, 2nd is with responses)
 * (eventually start testing)
+* casino.dtd has to be finished
 
 ------------------------------------------------------------------------------------------------------------------------
 
