@@ -4,16 +4,15 @@ module namespace c = "blackjack/controller";
 
 declare namespace xslt = "http://basex.org/modules/xslt";
 import module namespace g = "blackjack/game" at "game.xqm";
-import module namespace d = "blackjack/dealer" at "dealer.xqm";
+import module namespace p = "blackjack/player" at "player.xqm";
+import module namespace cas = "blackjack/casino" at "casino.xqm";
 import module namespace request = "http://exquery.org/ns/request";
 
 declare variable $c:index := doc("index.html");
-declare variable $c:init := doc("init.html");
+declare variable $c:initGame := doc("initGame.html");
 declare variable $c:casinoCollection := db:open("blackjack");
 declare variable $c:blackjackIMG := doc("img/blackjack.png");
 declare variable $c:xsltTransformator := doc("xsltTransformator.xsl");
-
-
 
 (: this function displays the start screen to the player :)
 declare
@@ -36,12 +35,11 @@ declare
 %rest:path("/blackjack/initGame")
 %rest:GET
 function c:initGame() {
-    $c:init
+    $c:initGame
 };
 
-
-
-(: this function creates a new game instance from input form and call write into database  -> then redirect to transformator :)
+(: this function creates a new game instance from input form and call write into database :)
+(: then redirect to transformator :)
 declare
 %updating
 %rest:path("/blackjack/form")
@@ -61,9 +59,9 @@ function c:handleInit() {
       request:parameter("balance3", ""),
       request:parameter("balance4", ""),
       request:parameter("balance5", ""))
-  let $game := g:newGame($maxBet, $minBet,$playerNames, $balances)
-  (: ToDo (???): Replace with redirect to transformator :)
-  return (db:output(c:redirectToTransformator($game/@id)), g:insertGame($game))
+  let $game := cas:createNewGame($maxBet, $minBet,$playerNames, $balances)
+  
+  return (db:output(c:redirectToTransformator($game/@id)), cas:insertGame($game))
 };
 
 (: Redirects to the Transformator-URL :)
@@ -83,43 +81,57 @@ function c:transformToHtml($gameId as xs:string) {
 };
 
 
-(: this funtion implements the bet action of the activePlayer :)
-(: ToDo: has to be implemented :)
+(: this funtion calls the bet action of the activePlayer :)
 declare
 %updating
-%rest:path("/blackjack/bet")   (: Platzhalter zum testen bis Button implementiert :)
+%rest:path("/blackjack/bet")
 %rest:GET
-function c:bet() {  
-  let $bet := 20
+function c:bet($gameId as xs:string, $betValue as xs:integer) {  
+  
+  (: ToDo: two placeholder values have to be eliminated after button implementation :) 
+  let $betValue := 20
   let $gameId := 123
   
-  return (g:bet($gameId,$bet))
+  return (p:bet($gameId,$betValue))
 };
 
 
-(: this funtion implements the hit action of the activePlayer :)
-(: ToDo: has to be implemented :)
+(: this funtion calls the hit action of the activePlayer :)
 declare
 %updating
-%rest:path("/blackjack/hit")   (: Platzhalter zum testen bis Button implementiert :)
+%rest:path("/blackjack/hit")
 %rest:GET
-function c:hit() {  
+function c:hit($gameId as xs:string) { 
+
+  (: ToDo: placeholder value has to be eliminated after button implementation :)
   let $gameId := 123
   
-  (: ToDo: Check for >21 :)
-  
-  return (g:drawCardPlayer($gameId,fn:false()))
+  return (p:hit($gameId,fn:false()))
 };
 
 
-(: this funtion implements the stand action of the activePlayer :)
-(: ToDo: has to be implemented :)
+(: this funtion calls the stand action of the activePlayer :)
 declare
 %updating
-%rest:path("/blackjack/stand")   (: Platzhalter zum testen bis Button implementiert :)
+%rest:path("/blackjack/stand")
 %rest:GET
-function c:stand() {  
+function c:stand($gameId as xs:string) {
+
+  (: ToDo: placeholder value has to be eliminated after button implementation :)
   let $gameId := 123
   
-  return (g:checkWinningStatus($gameId,fn:false()))
+  return (p:stand($gameId))
+};
+
+(: this funtion calls the insurance action of the activePlayer :)
+declare
+%updating
+%rest:path("/blackjack/insurance")
+%rest:GET
+function c:insurance($gameId as xs:string) {
+
+  (: ToDo: placeholder value has to be eliminated after button implementation :)
+  let $gameId := 123
+  
+  return (p:insurance($gameId))
 };

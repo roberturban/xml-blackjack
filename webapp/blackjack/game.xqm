@@ -2,18 +2,22 @@ xquery version "3.0"  encoding "UTF-8";
 
 module namespace g = "blackjack/game";
 import module namespace t = "blackjack/tools" at "tools.xqm";
+import module namespace p = "blackjack/player" at "player.xqm";
+import module namespace d = "blackjack/dealer" at "dealer.xqm";
 
-(: open database blackjack, locate ressource within database and navigate to its top element :)
+(: open database blackjack, locate resource within database and navigate to its top element :)
 declare variable $g:casino := db:open("blackjack")/casino;
 
-(: this function creates a new game instance, with players' names and boundaries of bets as parameters :)
-declare function g:newGame($maxBet as xs:integer, $minBet as xs:integer,
+(: constructors for game still ToDo :)
+
+(: this function creates a new game instance, with players' names and lower and upper bet limits as parameters :)
+declare function g:createNewGame($maxBet as xs:integer, $minBet as xs:integer,
                                 $playerNames as xs:string+, $balances as xs:integer+) as element(game) {
   let $id := t:generateID()
   let $players := <players>
         {for $p in $playerNames
             count $i
-            return g:newPlayer($p, $balances[$i])
+            return p:newPlayer($p, $balances[$i])
         }
         </players>
   return
@@ -32,14 +36,14 @@ declare function g:newGame($maxBet as xs:integer, $minBet as xs:integer,
 
 (: this function inserts a new game instance into the casino server :)
 declare %updating function g:insertGame($game as element(game)) {
-  insert node $game as first into $g:casino
+  insert node $game as first into $cas:casino
 };
 
 (: this function deletes a game instance from the casino server :)
 (: the game instance to be deleted is referenced by its gameId :)
 (:due to efficiency, iterate only over matching games, which usually should be a single game :)
 declare %updating function g:deleteGame($gameId as xs:string) {
-  for $game in $g:casino/game[@id=$gameId]
+  for $game in $cas:casino/game[@id=$gameId]
     return delete node $game
 };
 
@@ -49,35 +53,31 @@ declare %updating function g:setActivePlayer($gameId as xs:string) {
   let $game := $g:casino/game[@id=$gameId]
   let $players := $game/players/*
   let $playerId := $game/activePlayer/@id
-  return replace value of node $game/activePlayer/@id with $players[@id=$playerId]/following::*[1]/@id (: ToDo: check, if it was the last player :)
-  (: Note: why ...following::id[1] ? :)
+  return replace value of node $game/activePlayer/@id with $players[@id=$playerId]/following::*[1]/@id
+  (: ToDo: check, if it was the last player :)
+  (: ToDo: why ...following::id[1] ? :)
 };
 
-(: this function handles the betting action of the activePlayer, as long as the bet was in the allowed range :)
-declare %updating function g:bet($gameId as xs:string, $betValue as xs:integer) {
-  let $game := $g:casino/game[@id=$gameId]
-  let $playerId := $game/activePlayer/@id
-  let $newBalance := $game/players/player[@id=$playerId]/balance - $betValue
-  
-  return 
-    if (($betValue > $game/maxBet) or ($betValue < $game/minBet)) then (
-        (: ToDo: ERROR :) )
-    else 
-        (replace value of node $game/players/player[@id=$playerId]/balance with $newBalance,
-        replace value of node $game/players/player[@id=$playerId]/bet with $betValue)
+(: ToDo: testing and finishing :)
+(: ToDo: What does finishing mean? --> Please be clear :)
+declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
+    let $game := $g:casino/game[@id=$gameId]
+    for $i in $game/players/player[bet != 0]
+    return (g:checkWinningStatus($gameId,fn:true()),
+            g:setActivePlayer($gameId))
 };
 
-(: this function checks wether the activePlayer or the dealer wins this round :)
-(: ToDo: before calling this function with $endOfGame = true, it has to be ensure that the dealer is >= 17 :)
-declare %updating function g:checkWinningStatus($gameId as xs:string,$endOfGame as xs:boolean) {
+(: this function checks whether the activePlayer or the dealer wins this round :)
+(: ToDo: before calling this function with $endOfGame = true, it has to be ensured that the dealer is >= 17 :)
+declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame as xs:boolean) {
   let $game := $g:casino/game[@id=$gameId]
   let $playerId := $game/activePlayer/@id    
   
   let $betValue := $game/players/player[@id=$playerId]/bet
   let $balanceValue := $game/players/player[@id=$playerId]/balance
   
-  let $valueOfCardsPlayer := g:calculateCardsValuePlayer($gameId)
-  let $valueOfCardsDealer := g:calculateCardsValueDealer($gameId)
+  let $valueOfCardsPlayer := p:calculateCardsValuePlayer($gameId)
+  let $valueOfCardsDealer := d:calculateCardsValueDealer($gameId)
   
   return ( 
         if ($endOfGame = fn:true()) then (
@@ -126,126 +126,6 @@ declare %updating function g:checkWinningStatus($gameId as xs:string,$endOfGame 
             )
          )
     )            
-};
-
-(: sum up all the values of the dealer's cards :)
-(: in case of an A, decide whether value is 11 or 1 :)
-declare function g:calculateCardsValueDealer($gameId as xs:string) {
-  let $game := $g:casino/game[@id=$gameId]
-  let $valueOfCardsTemp :=  
-        fn:sum(
-            for $i in $game/dealer/hand/card
-            return
-                if (($i/value = "J") or ($i/value = "Q") or ($i/value = "K")) then
-                    10
-                else if ($i/value = "A") then
-                    11
-                else
-                    ($i/value)
-         )
-  let $valueOfCards :=
-    if ($valueOfCardsTemp > 21) then
-      fn:sum(
-              for $i in $game/dealer/hand/card
-              return
-                  if (($i/value = "J") or ($i/value = "Q") or ($i/value = "K")) then
-                      10
-                  else if ($i/value = "A") then
-                      1
-                  else
-                      ($i/value)
-           )
-     else
-        $valueOfCardsTemp
-           
-  return $valueOfCards
-};
-
-(: sum up all the values of a player's cards :)
-(: in case of an A, decide whether value is 11 or 1 :)
-declare function g:calculateCardsValuePlayer($gameId as xs:string) {
-  let $game := $g:casino/game[@id=$gameId]
-  let $playerId := $game/activePlayer/@id
-  let $valueOfCardsTemp :=  
-        fn:sum(
-            for $i in $game/players/player[@id=$playerId]/hand/card
-            return
-                if (($i/value = "J") or ($i/value = "Q") or ($i/value = "K")) then
-                    10
-                else if ($i/value = "A") then
-                    11
-                else
-                    ($i/value)
-         )
-  let $valueOfCards :=
-    if ($valueOfCardsTemp > 21) then
-      fn:sum(
-              for $i in $game/players/player[@id=$playerId]/hand/card
-              return
-                  if (($i/value = "J") or ($i/value = "Q") or ($i/value = "K")) then
-                      10
-                  else if ($i/value = "A") then
-                      1
-                  else
-                      ($i/value)
-           )
-     else
-        $valueOfCardsTemp
-           
-  return $valueOfCards
-};
-
-(: this function gives two cards to every player and turns them :)
-declare %updating function g:drawCardsInitial($gameId as xs:string) {
-    let $game := $g:casino/game[@id=$gameId]
-    for $i at $pos in $game/players/player
-        return (
-                insert node g:turnHiddenCard($game/cards/card[1+(($pos - 1)*2)]) into $game/players/player[@id=$i/@id]/hand,
-                delete node $game/cards/card[1+(($pos - 1)*2)],
-                insert node g:turnHiddenCard($game/cards/card[2+(($pos - 1)*2)]) into $game/players/player[@id=$i/@id]/hand,
-                delete node $game/cards/card[2+(($pos - 1)*2)],
-                if ($pos = count($game/players/player)) then (
-                    insert node g:turnHiddenCard($game/cards/card[1+($pos*2)]) into $game/dealer/hand,
-                    delete node $game/cards/card[1+($pos*2)],
-                    insert node $game/cards/card[2+($pos*2)] into $game/dealer/hand,
-                    delete node $game/cards/card[2+($pos*2)] )
-                else()
-                )                 
-};
-
-(: this function turns a card :)
-declare function g:turnHiddenCard($card as element(card)) as element(card) {
-  let $mod :=   copy $c := $card
-                modify replace value of node $c/hidden with 'false'
-                return $c
-  return $mod
-};
-
-(: this function takes a card from the stack and inserts it into the hand of the dealer :)
-declare %updating function g:drawCardDealer($gameId as xs:string,$hidden as xs:boolean){
-    let $game := $g:casino/game[@id=$gameId]
-    let $newCard :=
-        if ($hidden=fn:false()) then 
-            g:turnHiddenCard($game/cards/card[position()=1])
-        else
-            $game/cards/card[position()=1]
-  
-     return (insert node $newCard into $game/dealer/hand,
-             delete node $game/cards/card[position()=1])
-};
-
-(: this function takes a card from the stack and inserts it into the hand of the activeplayer :)
-declare %updating function g:drawCardPlayer($gameId as xs:string,$hidden as xs:boolean) {
-  let $game := $g:casino/game[@id=$gameId]
-  let $playerId := $game/activePlayer/@id
-  let $newCard :=
-    if ($hidden=fn:false()) then 
-        g:turnHiddenCard($game/cards/card[position()=1])
-    else
-        $game/cards/card[position()=1]
-  
-  return (insert node $newCard into $game/players/player[@id=$playerId]/hand,
-          delete node $game/cards/card[position()=1])
 };
 
 declare function g:getDeck() as element(cards) {
@@ -516,7 +396,6 @@ declare function g:getDeck() as element(cards) {
 };
 
 (: this function works on a single deck and shuffles it randomly :)
-(: ToDo: create 6 decks and not only 1 :)
 declare function g:shuffleCards() as element(cards) {
     let $deck := <cards>
                     {g:getDeck()/*}
@@ -533,21 +412,8 @@ declare function g:shuffleCards() as element(cards) {
         order by t:random(count($deck/card))
         return $i
     
-    return 
+    return
       <cards>
         {$shuffled-deck}
       </cards>
-};
-
-(: this function creates a new player with a name :)
-declare function g:newPlayer($name as xs:string, $balance as xs:integer) as element(player) {
-  let $id := t:generateID()
-  return
-    <player id = "{$id}">
-      <bet>0</bet>
-      <balance>{$balance}</balance>
-      <insurance></insurance>
-      <hand></hand>
-      <name>{$name}</name>
-    </player>
 };

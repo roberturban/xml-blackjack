@@ -74,7 +74,7 @@
     <xsl:template match="/">
         <html>
             <head>
-                <title>Blackjack Casino</title>
+                <title>Black Jack Casino</title>
                 <meta charset="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
             </head>
@@ -110,7 +110,7 @@
             </image>
             
             <defs>
-                <rect id="kartenplatz" height="70" width="50" rx="6"/>
+                <rect id="cardSpot" height="70" width="50" rx="6"/>
             </defs>
             
             <use x="{$xKartenplatz1}" y="{$yKartenplatz1}" xlink:href="#kartenplatz" stroke="white" fill="none" />
@@ -151,7 +151,7 @@
             <use xlink:href="#avatar" x="{$xAvatar3}" y="{$yAvatar3}" transform="rotate(60 0 0)"></use>
             <use xlink:href="#avatar" x="{$xAvatar4}" y="{$yAvatar4}" transform="rotate(-30 0 0)"></use>
             <use xlink:href="#avatar" x="{$xAvatar5}" y="{$yAvatar5}" transform="rotate(-60 0 0)"></use>
-            
+
             <defs>
                 <rect id="button" width="{$widthButton}" height="{$heightButton}"></rect>
             </defs>
