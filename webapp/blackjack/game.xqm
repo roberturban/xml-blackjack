@@ -128,42 +128,6 @@ declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame
     )            
 };
 
-(: hidden attribute is set to false :)
-declare %updating function g:turnHiddenCard($card as element(card)) {
-  replace value of node $card//@hidden with 'false'
-};
-
-(: this function turns a card :)
-(: ToDo: Why this function? Is already available! :)
-(:declare function g:turnHiddenCard($card as element(card)) as element(card) {
-  let $mod :=   copy $c := $card
-                modify replace value of node $c/hidden with 'false'
-                return $c
-  return $mod
-};
-:)
-
-(: this function deals out the initial cards to every player and the dealer :)
-declare %updating function g:dealOutInitialCards($gameId as xs:string) {
-    let $game := $g:casino/game[@id=$gameId]
-    for $i at $pos in $game/players/player
-        return (
-                insert node g:turnHiddenCard($game/cards/card[1+(($pos - 1)*2)]) into $game/players/player[@id=$i/@id]/hand,
-                delete node $game/cards/card[1+(($pos - 1)*2)],
-                insert node g:turnHiddenCard($game/cards/card[2+(($pos - 1)*2)]) into $game/players/player[@id=$i/@id]/hand,
-                delete node $game/cards/card[2+(($pos - 1)*2)],
-                if ($pos = count($game/players/player)) then (
-                    insert node g:turnHiddenCard($game/cards/card[1+($pos*2)]) into $game/dealer/hand,
-                    delete node $game/cards/card[1+($pos*2)],
-                    insert node $game/cards/card[2+($pos*2)] into $game/dealer/hand,
-                    delete node $game/cards/card[2+($pos*2)]
-                )
-                else (
-                (: ToDo: What happens here? :)
-                )
-        )                 
-};
-
 declare function g:getDeck() as element(cards) {
     let $deck := 
             <cards>

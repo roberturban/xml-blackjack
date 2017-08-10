@@ -4,18 +4,18 @@
 <!ELEMENT casino (game*) >
 
 <!-- Structure of one blackjack game instance -->
-<!ELEMENT game (id, maxBet, minBet, activePlayer*, players+, dealer) >
+<!ELEMENT game (id, maxBet, minBet, (activePlayer, players)+, dealer) >
 <!ELEMENT id (#PCDATA)>
 <!ELEMENT maxBet (#PCDATA)>
 <!ELEMENT minBet (#PCDATA)>
-<!ELEMENT activePlayer (id+)>
-<!ELEMENT players (player+)>
+<!ELEMENT activePlayer (id)>
+<!ELEMENT players (player*)>
 
-<!ELEMENT player (id, bet, balance, insurance*, hand, name)>
+<!ELEMENT player (id, bet, balance, insurance+, hand, name)>
 <!ELEMENT bet (#PCDATA)>
 <!ELEMENT balance (#PCDATA)>
 <!ELEMENT name (#PCDATA)>
-<!-- Define insurance -->
+<!-- ToDo: Define insurance -->
 <!ELEMENT hand (cards)>
 
 <!ELEMENT cards (card*)>
@@ -23,4 +23,3 @@
 <!ELEMENT hidden (#PCDATA)>
 <!ELEMENT color (#PCDATA)>
 <!ELEMENT value (#PCDATA)>
-

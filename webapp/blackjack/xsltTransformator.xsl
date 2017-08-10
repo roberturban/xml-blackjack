@@ -30,13 +30,17 @@
     <xsl:variable name="xLogo" select="number(450)"/>
     <xsl:variable name="yLogo" select="number(50)"/>
     
-    <!-- TODO: Kartenplatz, Avatar, Textzug Variablen -->
+    <!-- Variables for hidden cards in stack -->
+    <xsl:variable name="xHiddenStack" select="number(80)"/>
+    <xsl:variable name="yHiddenStack" select="number(-280)"/>
+    
+    <!-- TODO: cardSpot, Avatar, Textzug Variablen -->
     
     <!-- XSL Basic Template Start Point -->
     <xsl:template match="/">
         <html>
             <head>
-                <title>Blackjack Casino</title>
+                <title>Black Jack Casino</title>
                 <meta charset="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
             </head>
@@ -73,14 +77,14 @@
             </image>
             
             <defs>
-                <rect id="kartenplatz" height="70" width="50" rx="6"/>
+                <rect id="cardSpot" height="70" width="50" rx="6"/>
             </defs>
             
-            <use x="575" y="460" xlink:href="#kartenplatz" stroke="white" fill="none" />
-            <use x="475" y="750" transform="rotate(-30 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
-            <use x="220" y="925" transform="rotate(-60 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
-            <use x="510" y="150" transform="rotate(30 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
-            <use x="325" y="-115" transform="rotate(60 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
+            <use x="575" y="460" xlink:href="#cardSpot" stroke="white" fill="none" />
+            <use x="475" y="750" transform="rotate(-30 0 0)" xlink:href="#cardSpot" stroke="white" fill="none" />
+            <use x="220" y="925" transform="rotate(-60 0 0)" xlink:href="#cardSpot" stroke="white" fill="none" />
+            <use x="510" y="150" transform="rotate(30 0 0)" xlink:href="#cardSpot" stroke="white" fill="none" />
+            <use x="325" y="-115" transform="rotate(60 0 0)" xlink:href="#cardSpot" stroke="white" fill="none" />
             <defs>
                 <path id="insurance_text_path" d="M353,148 a90,90 0 0,0 494,0"/>
             </defs>
@@ -98,10 +102,10 @@
                 BLACK JACK
             </text>
             
-            <use x="80" y="-280" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
-            <use x="83" y="-283" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
-            <use x="86" y="-286" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
-            <use x="89" y="-289" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
+            <use x="{$xHiddenStack}%" y="{$yHiddenStack}%" transform="rotate(90 0 0)" xlink:href="#cardSpot" fill="white" stroke="grey" stroke-width="2"/>
+            <use x="{$xHiddenStack}% + 3" y="{$yHiddenStack}% - 3" transform="rotate(90 0 0)" xlink:href="#cardSpot" fill="white" stroke="grey" stroke-width="2"/>
+            <use x="{$xHiddenStack}% + 6" y="{$yHiddenStack}% - 6" transform="rotate(90 0 0)" xlink:href="#cardSpot" fill="white" stroke="grey" stroke-width="2"/>
+            <use x="{$xHiddenStack}% + 9" y="{$yHiddenStack}% - 9" transform="rotate(90 0 0)" xlink:href="#cardSpot" fill="white" stroke="grey" stroke-width="2"/>
             <defs>
                 <rect id="button" width="200" height="50"></rect>
             </defs>

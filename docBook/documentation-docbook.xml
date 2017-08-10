@@ -136,13 +136,17 @@
                         <variablelist>
                             <varlistentry>
                                 <term>player.xqm</term>
-                                <listitem></listitem>
+                                <listitem>
+                                    <para></para>
+                                </listitem>
                             </varlistentry>
                         </variablelist>
                         <variablelist>
                             <varlistentry>
                                 <term>dealer.xqm</term>
-                                <listitem></listitem>
+                                <listitem>
+                                    <para></para>
+                                </listitem>
                             </varlistentry>
                         </variablelist>
                         <variablelist>

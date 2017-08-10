@@ -9,7 +9,7 @@ import module namespace cas = "blackjack/casino" at "casino.xqm";
 import module namespace request = "http://exquery.org/ns/request";
 
 declare variable $c:index := doc("index.html");
-declare variable $c:init := doc("init.html");
+declare variable $c:initGame := doc("initGame.html");
 declare variable $c:casinoCollection := db:open("blackjack");
 declare variable $c:blackjackXHTML := doc("blackjackXHTML.xml");
 declare variable $c:xsltTransformator := doc("xsltTransformator.xsl");
@@ -27,7 +27,7 @@ declare
 %rest:path("/blackjack/initGame")
 %rest:GET
 function c:initGame() {
-    $c:init
+    $c:initGame
 };
 
 (: this function creates a new game instance from input form and call write into database :)
