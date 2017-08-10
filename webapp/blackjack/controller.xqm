@@ -10,7 +10,7 @@ import module namespace request = "http://exquery.org/ns/request";
 declare variable $c:index := doc("index.html");
 declare variable $c:init := doc("init.html");
 declare variable $c:casinoCollection := db:open("blackjack");
-declare variable $c:blackjackXHTML := doc("blackjackXHTML.xml");
+declare variable $c:blackjackIMG := doc("img/blackjack.png");
 declare variable $c:xsltTransformator := doc("xsltTransformator.xsl");
 
 
@@ -23,7 +23,13 @@ function c:start() {
   $c:index
 };
 
-
+(: this function displays the Blackjack-Picture :)
+declare
+%rest:path("/blackjack/picture")
+%rest:GET
+function c:picture() {
+  ddtek:serialize-to-url($c:blackjackIMG, "method=binary")
+};
 
 (: this function creates the input start form for player names, maxBet and minBet :)
 declare
@@ -57,14 +63,20 @@ function c:handleInit() {
       request:parameter("balance5", ""))
   let $game := g:newGame($maxBet, $minBet,$playerNames, $balances)
   (: ToDo (???): Replace with redirect to transformator :)
-  return (db:output($c:blackjackXHTML), g:insertGame($game))
+  return (db:output(c:redirectToTransformator($game/@id)), g:insertGame($game))
 };
 
+(: Redirects to the Transformator-URL :)
+declare function c:redirectToTransformator($gameId as xs:string) {
+  let $url := fn:concat("/blackjack/transform/", $gameId)
+  return web:redirect($url)
+};
 
 (: this function transforms the game session from the database to HTML using XSLT :)
 declare 
 %rest:path('/blackjack/transform/{$gameId}')
-%rest:GET %output:media-type("text/html") 
+%rest:GET
+%output:media-type("text/html") 
 function c:transformToHtml($gameId as xs:string) {
   let $game := $c:casinoCollection/casino/game[@id=$gameId]
   return xslt:transform-text($game, $c:xsltTransformator)
