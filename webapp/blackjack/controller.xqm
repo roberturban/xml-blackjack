@@ -5,7 +5,6 @@ module namespace c = "blackjack/controller";
 declare namespace xslt = "http://basex.org/modules/xslt";
 import module namespace g = "blackjack/game" at "game.xqm";
 import module namespace p = "blackjack/player" at "player.xqm";
-import module namespace cas = "blackjack/casino" at "casino.xqm";
 import module namespace request = "http://exquery.org/ns/request";
 
 declare variable $c:index := doc("index.html");
@@ -59,9 +58,9 @@ function c:handleInit() {
       request:parameter("balance3", ""),
       request:parameter("balance4", ""),
       request:parameter("balance5", ""))
-  let $game := cas:createNewGame($maxBet, $minBet,$playerNames, $balances)
+  let $game := g:createNewGame($maxBet, $minBet,$playerNames, $balances)
   
-  return (db:output(c:redirectToTransformator($game/@id)), cas:insertGame($game))
+  return (db:output(c:redirectToTransformator($game/@id)), g:insertGame($game))
 };
 
 (: Redirects to the Transformator-URL :)
@@ -86,11 +85,7 @@ declare
 %updating
 %rest:path("/blackjack/bet")
 %rest:GET
-function c:bet($gameId as xs:string, $betValue as xs:integer) {  
-  
-  (: ToDo: two placeholder values have to be eliminated after button implementation :) 
-  let $betValue := 20
-  let $gameId := 123
+function c:bet($gameId as xs:string, $betValue as xs:integer) {
   
   return (p:bet($gameId,$betValue))
 };
@@ -101,10 +96,7 @@ declare
 %updating
 %rest:path("/blackjack/hit")
 %rest:GET
-function c:hit($gameId as xs:string) { 
-
-  (: ToDo: placeholder value has to be eliminated after button implementation :)
-  let $gameId := 123
+function c:hit($gameId as xs:string) {
   
   return (p:hit($gameId,fn:false()))
 };
@@ -117,9 +109,6 @@ declare
 %rest:GET
 function c:stand($gameId as xs:string) {
 
-  (: ToDo: placeholder value has to be eliminated after button implementation :)
-  let $gameId := 123
-  
   return (p:stand($gameId))
 };
 
@@ -129,9 +118,6 @@ declare
 %rest:path("/blackjack/insurance")
 %rest:GET
 function c:insurance($gameId as xs:string) {
-
-  (: ToDo: placeholder value has to be eliminated after button implementation :)
-  let $gameId := 123
   
   return (p:insurance($gameId))
 };

@@ -13,11 +13,17 @@ ALL DOCUMENTATION IS TO DO IN ENGLISH (except doc-book)
 
 ToDos 11/08/2017
 
-* Transform the four function calls in dealer.xqm accordign to template
-* Double-check: Calculate cards value function in player.xqm
-* Check for iteration in dealer.xqm d:oneCardForAllPlayer function
-* Currently cards are shuffled twice. > Change in dealer.xqm and player.xqm
-* Hit, bet, ... where to check variables?
+MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found! Do not just write them there, but MARK THEM!
+
+* Review: all functions (e.g. calculateCardsValue*** functions)
+* Insurance function implementation
+* ToDos in code (e.g. answer questions in comments, implement/discuss need of constructors, correct the logic, ...)
+* Css for starting pages
+* Testing
+* DocBook (no compile errors and no typos)
+* Dynamic adding of players during game in next round should be possible
+* Casino.xqm (define the rest of the elements and attributes)
+* New function for the dealer for drawing cards repeatedly is needed
 
 ------------------------------------------------------------------------------------------------------------------------
 

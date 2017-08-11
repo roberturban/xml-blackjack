@@ -5,10 +5,10 @@ import module namespace t = "blackjack/tools" at "tools.xqm";
 import module namespace p = "blackjack/player" at "player.xqm";
 import module namespace d = "blackjack/dealer" at "dealer.xqm";
 
+(: constructors for game still ToDo (?) :)
+
 (: open database blackjack, locate resource within database and navigate to its top element :)
 declare variable $g:casino := db:open("blackjack")/casino;
-
-(: constructors for game still ToDo :)
 
 (: this function creates a new game instance, with players' names and lower and upper bet limits as parameters :)
 declare function g:createNewGame($maxBet as xs:integer, $minBet as xs:integer,
@@ -36,14 +36,14 @@ declare function g:createNewGame($maxBet as xs:integer, $minBet as xs:integer,
 
 (: this function inserts a new game instance into the casino server :)
 declare %updating function g:insertGame($game as element(game)) {
-  insert node $game as first into $cas:casino
+  insert node $game as first into $g:casino
 };
 
 (: this function deletes a game instance from the casino server :)
 (: the game instance to be deleted is referenced by its gameId :)
 (:due to efficiency, iterate only over matching games, which usually should be a single game :)
 declare %updating function g:deleteGame($gameId as xs:string) {
-  for $game in $cas:casino/game[@id=$gameId]
+  for $game in $g:casino/game[@id=$gameId]
     return delete node $game
 };
 

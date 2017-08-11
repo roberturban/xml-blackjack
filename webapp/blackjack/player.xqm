@@ -23,21 +23,20 @@ declare function p:newPlayer($name as xs:string, $balance as xs:integer) as elem
     </player>
 };
 
-(: this function takes a card from the stack and inserts it into the hand of the activeplayer :)
-declare %updating function p:drawCardPlayer($gameId as xs:string, $hidden as xs:boolean, $playerId as xs:int) {
+(: this function takes a card from the stack and inserts it into the hand of the respective player :)
+declare %updating function p:drawCardPlayer($gameId as xs:string, $hidden as xs:boolean, $playerId as xs:integer) {
   let $game := $p:casino/game[@id=$gameId]
-  (: Remove this random as cards are already shuffled before :)
-  let $cardNo := t:random(312)
   let $newCard :=
     if ($hidden) then 
-        $game/cards/card[position()=$cardNo]
+        (: cards are already shuffled before, so take the top one :)
+        $game/cards/card[position()=1]
     else
-        d:turnHiddenCard($game/cards/card[position()=$cardNo])
+        d:turnHiddenCard($game/cards/card[position()=1])
   
   return (
         (: insert the newCard into the player's hand and delelte it from the stack :)
         insert node $newCard into $game/players/player[@id=$playerId]/hand,
-        delete node $game/cards/card[position()=$cardNo]
+        delete node $game/cards/card[position()=1]
   )
 };
 
@@ -59,7 +58,7 @@ declare %updating function p:bet($gameId as xs:string, $betValue as xs:integer) 
 
 (: this function implements the hit action of a player :)
 declare function p:hit($gameId as xs:string)) {
-  (: Check for < 21 :)
+  (: check for < 21 :)
   let $currentCardsValue := p:calculateCardsValuePlayer()
   
   return
@@ -83,7 +82,7 @@ declare function p:insurance($gameId as xs:string) {
 
 (: sum up all the values of a player's cards :)
 (: in case of an A, decide whether value is 11 or 1 :)
-declare function p:calculateCardsValuePlayer($gameId as xs:string, $playerId as xs:int) as xs:integer {
+declare function p:calculateCardsValuePlayer($gameId as xs:string, $playerId as xs:integer) as xs:integer {
   let $game := $p:casino/game[@id=$gameId]
   
   (: the amount of cards of the player's hand :)
