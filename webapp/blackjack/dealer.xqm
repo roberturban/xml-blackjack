@@ -10,6 +10,7 @@ declare variable $d:casino := db:open("blackjack")/casino;
 
 (: constructors for dealer still ToDo :)
 
+
 (: ToDo: testing and finishing :)
 (: ToDo: What is this function meant to do? What stands its name for? Rename it :)
 (:
@@ -17,7 +18,6 @@ declare %updating function d:dealerAI($gameId as xs:string) {
     if (d:calculateCardsValueDealer($gameId)<17) then (
         d:drawCardDealer($gameId,fn:false()),
         d:dealerAI($gameId)
-        (: ToDo: Recursion is really wanted here!?? :)
     )
     else (
         g:checkWinningStatusAll($gameId)
@@ -28,6 +28,7 @@ declare %updating function d:dealerAI($gameId as xs:string) {
 (: this function takes a card from the stack and inserts it into the hand of the dealer :)
 declare %updating function d:drawCardDealer($gameId as xs:string, $hidden as xs:boolean) {
     let $game := $d:casino/game[@id=$gameId]
+    (: Remove this random as cards are already shuffled before :)
     let $cardNo := t:random(312)
     let $newCard :=
         if ($hidden) then
@@ -162,6 +163,7 @@ declare function d:oneCardForAllPlayers($gameId as xs:string) {
     
     (: iterate over the players' seats of the table :)
     (: position 1 is the most left to the dealer, 5 the most right to the dealer :)
+    (: BUG: Incomplete for iteration ?! :)
     for ($i in (1 to 5)) (
         (: currentPlayer is the player at position i :)
         let $currentPlayer := $game/players/player[@id=$i]
@@ -178,6 +180,7 @@ declare function d:oneCardForAllPlayers($gameId as xs:string) {
 };
 
 
+(: Recheck this function and adapt to kalah mankalaj exampe:)
 (: this function deals out the initial cards to every player and the dealer :)
 declare %updating function d:dealOutInitialCards($gameId as xs:string) {
     d:oneCardForAllPlayers($gameId)

@@ -26,6 +26,7 @@ declare function p:newPlayer($name as xs:string, $balance as xs:integer) as elem
 (: this function takes a card from the stack and inserts it into the hand of the activeplayer :)
 declare %updating function p:drawCardPlayer($gameId as xs:string, $hidden as xs:boolean, $playerId as xs:int) {
   let $game := $p:casino/game[@id=$gameId]
+  (: Remove this random as cards are already shuffled before :)
   let $cardNo := t:random(312)
   let $newCard :=
     if ($hidden) then 
@@ -57,7 +58,7 @@ declare %updating function p:bet($gameId as xs:string, $betValue as xs:integer) 
 };
 
 (: this function implements the hit action of a player :)
-declare fucntion p:hit($gameId as xs:string)) {
+declare function p:hit($gameId as xs:string)) {
   (: Check for < 21 :)
   let $currentCardsValue := p:calculateCardsValuePlayer()
   
@@ -71,12 +72,12 @@ declare fucntion p:hit($gameId as xs:string)) {
 }
 
 (: this function implements the stand action of a player :)
-declare fucntion p:stand($gameId as xs:string) {
+declare function p:stand($gameId as xs:string) {
   return g:checkWinningStatus($gameId,fn:false())
 }
 
 (: this function implements the insurance action of a player :)
-declare fucntion p:insurance($gameId as xs:string) {
+declare function p:insurance($gameId as xs:string) {
   (: ToDo: implement insurance :)
 }
 

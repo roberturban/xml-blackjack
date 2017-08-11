@@ -11,6 +11,16 @@ ALL DOCUMENTATION IS TO DO IN ENGLISH (except doc-book)
 
 ------------------------------------------------------------------------------------------------------------------------
 
+ToDos 11/08/2017
+
+* Transform the four function calls in dealer.xqm accordign to template
+* Double-check: Calculate cards value function in player.xqm
+* Check for iteration in dealer.xqm d:oneCardForAllPlayer function
+* Currently cards are shuffled twice. > Change in dealer.xqm and player.xqm
+* Hit, bet, ... where to check variables?
+
+------------------------------------------------------------------------------------------------------------------------
+
 ToDos 07/21/2017
 
 * Transform dummy functions into fully-developed ones (hit, stand, ...) ---> in player.xqm
