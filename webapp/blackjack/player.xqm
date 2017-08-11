@@ -4,7 +4,6 @@ module namespace p = "blackjack/player";
 import module namespace d = "blackjack/dealer" at "dealer.xqm";
 import module namespace g = "blackjack/game" at "game.xqm";
 import module namespace t = "blackjack/tools" at "tools.xqm";
-import module namespace cas = "blackjack/casino" at "casino.xqm";
 
 (: open database blackjack, locate resource within database and navigate to its top element :)
 declare variable $p:casino := db:open("blackjack")/casino;
