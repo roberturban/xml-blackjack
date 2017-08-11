@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Define Game Parameters</title>
+          <link rel="stylesheet" type="text/css" href="cssStyleSheet.css"/>
     </head>
-    <body>
-        <form action="/blackjack/form" style="display:flex; flex-direction:column;">
-            <div>
+    
+    <body class= "container second">
+        <h1> Tragen Sie bitte ihren Namen und ihr Guthaben ein</h1>
+        <div>
                 <label for="playername1">Name of Player 1:</label>
                 <input type="text" name="playername1" id="playername1" value="Player 1"/>
                 <label for="balance1">Balance:</label>
@@ -37,15 +38,16 @@
                 <input type="number" name="balance5" id="balance5" value="100"/><br></br>
             </div>
             <div>
+                <br></br>
                 <label for="maxBet">Maximum Bet</label>
-                <input type="number" name="maxBet" id="maxBet" value="100"/><br></br>
-            </div>
-            <div>
+                <input type="number" name="maxBet" id="maxBet" value="100"/><br></br><br></br>
                 <label for="minBet">Minimum Bet</label>
                 <input type="number" name="minBet" id="minBet" value="10"/><br></br>
             </div>
+           
             
-            <input type="submit" value="Submit parameters and start playing!"/>
-        </form>
+            <input class = "container submit" type="submit" value="Submit"/>
+        
     </body>
+    
 </html>
