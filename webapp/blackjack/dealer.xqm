@@ -177,7 +177,22 @@ declare function d:oneCardForAllPlayers($gameId as xs:string) {
     
     (: iterate over the players' seats of the table :)
     (: position 1 is the most left to the dealer, 5 the most right to the dealer :)
+
     for $i in (1 to 5)
     where $game/players/player[@id=$i]/@balance != 0
         return p:drawCardPlayer($gameId, fn:false(), $i)
+
+    for ($i in (1 to 5)) (
+        (: currentPlayer is the player at position i :)
+        let $currentPlayer := $game/players/player[@id=$i]
+        
+        if ($currentPlayer/@balance = 0) then (
+            (: do nothing, because that means at position i is no player :)
+        )
+        else (
+            (: balance is != 0, that means a player is playing at position i :)
+            (: hence, get the player a random, open card and delete it from the stack :)
+            p:drawCardPlayer($gameId, fn:false(), $i)
+        )
+    )
 };
