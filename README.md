@@ -11,7 +11,7 @@ ALL DOCUMENTATION IS TO DO IN ENGLISH (except doc-book)
 
 ------------------------------------------------------------------------------------------------------------------------
 
-ToDos 11/08/2017
+ToDos 08/11/2017
 
 MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found! Do not just write them there, but MARK THEM!
 
@@ -24,6 +24,7 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * Dynamic adding of players during game in next round should be possible
 * Casino.xqm (define the rest of the elements and attributes)
 * New function for the dealer for drawing cards repeatedly is needed
+* Presentation
 
 ------------------------------------------------------------------------------------------------------------------------
 
