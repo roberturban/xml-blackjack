@@ -133,7 +133,7 @@ declare %updating function d:oneCardForAllPlayers($gameId as xs:string) {
     (: iterate over the players' seats of the table :)
     (: position 1 is the most left to the dealer, 5 the most right to the dealer :)
     for $player in $game/players/player
-    where $player/@balance != 0
+    where $player/@balance > 0
         (: balance is != 0, that means a player is playing at position i :)
         (: hence, get the player a random, open card and delete it from the stack :)
         return p:drawCardPlayer($gameId, fn:false(), $player)
