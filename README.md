@@ -18,7 +18,6 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * Review: all functions (e.g. calculateCardsValue*** functions)
 * Insurance function implementation
 * ToDos in code (e.g. answer questions in comments, implement/discuss need of constructors, correct the logic, ...)
-* Css for starting pages
 * Testing
 * DocBook (no compile errors and no typos)
 * Dynamic adding of players during game in next round should be possible
