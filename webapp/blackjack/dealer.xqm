@@ -3,6 +3,7 @@ xquery version "3.0"  encoding "UTF-8";
 module namespace d = "blackjack/dealer";
 import module namespace g = "blackjack/game" at "game.xqm";
 import module namespace p = "blackjack/player" at "player.xqm";
+import module namespace t = "blackjack/tools" at "tools.xqm";
 
 (: open database blackjack, locate resource within database and navigate to its top element :)
 declare variable $d:casino := db:open("blackjack")/casino;
@@ -112,12 +113,12 @@ declare function d:calculateCardsValueDealer($gameId as xs:string) as xs:integer
                     (: can be <= 21, but can also be > 21 :)
                     ($valueOfCardsWithoutAsses + $amountOfAsses)
                 )
-                else if (($valueGap = 11) and ($amountOfAsses > 1) then (
+                else if (($valueGap = 11) and ($amountOfAsses > 1)) then (
                     (: asses can only count as 1 each :)
                     (: can be <= 21, but can also be > 21 :)
                     ($valueOfCardsWithoutAsses + $amountOfAsses)
                 )
-                else if (($valueGap = 11) and ($amountOfAsses = 1) then (
+                else if (($valueGap = 11) and ($amountOfAsses = 1)) then (
                     (: single As counts 11 :)
                     (: dealer got a Blackjack :)
                     21
@@ -157,16 +158,17 @@ declare %updating function d:turnHiddenCard($card as element(card)) {
 
 (: this function deals out the initial cards to every player and the dealer :)
 declare %updating function d:dealOutInitialCards($gameId as xs:string) {
-    d:oneCardForAllPlayers($gameId)
+    let $x := fn:true()
+    return (d:oneCardForAllPlayers($gameId),
     
     (: after having dealt out the first cards for all players, get the dealer his first hidden card :)
-    d:drawCardDealer($gameId, fn:true())
+    d:drawCardDealer($gameId, fn:true()),
     
     (: after the dealer got his first hidden card, get the players their second open card :)
-    d:oneCardForAllPlayers($gameId)
+    d:oneCardForAllPlayers($gameId),
     
     (: finally, the dealer gets his second card, but this one is open now :)
-    d:drawCardDealer($gameId, fn:false())
+    d:drawCardDealer($gameId, fn:false()))
 };
 
 (: this function gets all players, who participate in this game (--> balance > 0), one open card :)
@@ -175,17 +177,7 @@ declare function d:oneCardForAllPlayers($gameId as xs:string) {
     
     (: iterate over the players' seats of the table :)
     (: position 1 is the most left to the dealer, 5 the most right to the dealer :)
-    for ($i in (1 to 5)) (
-        (: currentPlayer is the player at position i :)
-        let $currentPlayer := $game/players/player[@id=$i]
-        
-        if ($currentPlayer/@balance = 0) then (
-            (: do nothing, because that means at position i is no player :)
-        )
-        else (
-            (: balance is != 0, that means a player is playing at position i :)
-            (: hence, get the player a random, open card and delete it from the stack :)
-            p:drawCardPlayer($gameId, fn:false(), $i)
-        )
-    )
+    for $i in (1 to 5)
+    where $game/players/player[@id=$i]/@balance != 0
+        return p:drawCardPlayer($gameId, fn:false(), $i)
 };

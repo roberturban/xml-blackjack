@@ -1,6 +1,7 @@
 xquery version "3.0"  encoding "UTF-8";
 
 module namespace p = "blackjack/player";
+import module namespace d = "blackjack/dealer" at "dealer.xqm";
 import module namespace g = "blackjack/game" at "game.xqm";
 import module namespace t = "blackjack/tools" at "tools.xqm";
 
