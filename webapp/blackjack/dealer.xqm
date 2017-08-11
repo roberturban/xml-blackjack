@@ -1,4 +1,8 @@
-
+xquery version "3.0"  encoding "UTF-8"; 
+ 
+module namespace d = "blackjack/dealer"; 
+import module namespace g = "blackjack/game" at "game.xqm"; 
+import module namespace p = "blackjack/player" at "player.xqm"; 
 import module namespace t = "blackjack/tools" at "tools.xqm";
 
 (: open database blackjack, locate resource within database and navigate to its top element :)
@@ -159,6 +163,7 @@ declare function d:oneCardForAllPlayers($gameId as xs:string) {
     
     (: iterate over the players' seats of the table :)
     (: position 1 is the most left to the dealer, 5 the most right to the dealer :)
+     (: BUG: Incomplete for iteration ?! :) 
     for ($i in (1 to 5)) (
         (: currentPlayer is the player at position i :)
         let $currentPlayer := $game/players/player[@id=$i]
