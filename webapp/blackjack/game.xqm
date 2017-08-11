@@ -11,12 +11,10 @@ import module namespace d = "blackjack/dealer" at "dealer.xqm";
 declare variable $g:casino := db:open("blackjack")/casino;
 
 (: this function creates a new game instance, with players' names and lower and upper bet limits as parameters :)
-declare function g:createNewGame($maxBet as xs:integer, $minBet as xs:integer,
-                                $playerNames as xs:string+, $balances as xs:integer+) as element(game) {
+declare function g:createNewGame($maxBet as xs:integer, $minBet as xs:integer,$playerNames as xs:string+, $balances as xs:integer+) as element(game) {
   let $id := t:generateID()
   let $players := <players>
-        {for $p in $playerNames
-            count $i
+        {for $p in $playerNames count $i
             return p:newPlayer($p, $balances[$i])
         }
         </players>
@@ -54,8 +52,7 @@ declare %updating function g:setActivePlayer($gameId as xs:string) {
   let $players := $game/players/*
   let $playerId := $game/activePlayer/@id
   return replace value of node $game/activePlayer/@id with $players[@id=$playerId]/following::*[1]/@id
-  (: ToDo: check, if it was the last player :)
-  (: ToDo: why ...following::id[1] ? :)
+  (: If last player: activePlayer/@id = "" :)
 };
 
 (: ToDo: testing and finishing :)
@@ -71,15 +68,15 @@ declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
 (: ToDo: before calling this function with $endOfGame = true, it has to be ensured that the dealer is >= 17 :)
 declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame as xs:boolean) {
   let $game := $g:casino/game[@id=$gameId]
-  let $playerId := $game/activePlayer/@id    
-  
+  let $playerId := $game/activePlayer/@id
+
   let $betValue := $game/players/player[@id=$playerId]/bet
   let $balanceValue := $game/players/player[@id=$playerId]/balance
-  
-  let $valueOfCardsPlayer := p:calculateCardsValuePlayer($gameId)
+
+  let $valueOfCardsPlayer := p:calculateCardsValuePlayer($game/players/player[@id=$playerId])
   let $valueOfCardsDealer := d:calculateCardsValueDealer($gameId)
-  
-  return ( 
+
+  return (
         if ($endOfGame = fn:true()) then (
             if($valueOfCardsPlayer > 21) then (
                 (: in this case, the player lost anyways :)
@@ -121,15 +118,15 @@ declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame
                 delete node $game/players/player[@id=$playerId]/hand/*,
                 g:setActivePlayer($gameId)
              )
-            else (               
+            else (
                 g:setActivePlayer($gameId)
             )
          )
-    )            
+    )
 };
 
 declare function g:getDeck() as element(cards) {
-    let $deck := 
+    let $deck :=
             <cards>
               <card>
               	<hidden>true</hidden>
@@ -408,10 +405,9 @@ declare function g:shuffleCards() as element(cards) {
 
     let $shuffled-deck :=
         for $i in $deck/card
-        (: order by xs:string($i/value) :)
         order by t:random(count($deck/card))
         return $i
-    
+
     return
       <cards>
         {$shuffled-deck}

@@ -37,22 +37,46 @@ declare
 %rest:path("/blackjack/form")
 %rest:GET
 function c:handleInit() {
-  let $maxBet := request:parameter("maxBet")
-  let $minBet := request:parameter("minBet")
-  let $playerNames := 
+  let $maxBet := xs:integer(request:parameter("maxBet"))
+  let $minBet := xs:integer(request:parameter("minBet"))
+  let $playerNames :=
       (request:parameter("playername1", ""),
       request:parameter("playername2", ""),
       request:parameter("playername3", ""),
       request:parameter("playername4", ""),
       request:parameter("playername5", ""))
-  let $balances := 
+  let $balances :=
       (request:parameter("balance1", ""),
       request:parameter("balance2", ""),
       request:parameter("balance3", ""),
       request:parameter("balance4", ""),
       request:parameter("balance5", ""))
-  let $game := g:createNewGame($maxBet, $minBet,$playerNames, $balances)
   
+  let $playerNamesChecked :=
+        (for $i in $playerNames
+        where $i != ""
+        return $i)
+  let $balancesChecked :=
+        (for $i in $balances
+        return(
+        if  (fn:number($i)) then
+            $i
+        else
+            0
+        ))
+  let $minBetChecked :=
+        (if ($minBet < 0) then
+            0
+        else
+            $minBet)
+  let $maxBetChecked :=
+        (if ($maxBet < 1) then
+            1
+        else
+            $maxBet)
+        
+  let $game := g:createNewGame($maxBetChecked,$minBetChecked,$playerNamesChecked,$balancesChecked)
+
   return (db:output(c:redirectToTransformator($game/@id)), g:insertGame($game))
 };
 
@@ -63,10 +87,10 @@ declare function c:redirectToTransformator($gameId as xs:string) {
 };
 
 (: this function transforms the game session from the database to HTML using XSLT :)
-declare 
+declare
 %rest:path('/blackjack/transform/{$gameId}')
 %rest:GET
-%output:media-type("text/html") 
+%output:media-type("text/html")
 function c:transformToHtml($gameId as xs:string) {
   let $game := $c:casinoCollection/casino/game[@id=$gameId]
   return xslt:transform-text($game, $c:xsltTransformator)
