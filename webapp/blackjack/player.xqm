@@ -24,18 +24,14 @@ declare function p:newPlayer($name as xs:string, $balance as xs:integer) as elem
 };
 
 (: this function takes a card from the stack and inserts it into the hand of the respective player :)
-declare %updating function p:drawCardPlayer($gameId as xs:string, $hidden as xs:boolean, $playerId as xs:integer) {
+declare %updating function p:drawCardPlayer($gameId as xs:string, $hidden as xs:boolean, $player as element(player)) {
   let $game := $p:casino/game[@id=$gameId]
-  let $newCard :=
-    if ($hidden) then 
-        (: cards are already shuffled before, so take the top one :)
-        $game/cards/card[position()=1]
-    else
-        d:turnHiddenCard($game/cards/card[position()=1])
+  let $newCard := $game/cards/card[position()=1]
   
   return (
         (: insert the newCard into the player's hand and delelte it from the stack :)
-        insert node $newCard into $game/players/player[@id=$playerId]/hand,
+        d:turnHiddenCard($newCard),
+        insert node $newCard into $player/hand,
         delete node $game/cards/card[position()=1]
   )
 };
@@ -57,45 +53,47 @@ declare %updating function p:bet($gameId as xs:string, $betValue as xs:integer) 
 };
 
 (: this function implements the hit action of a player :)
-declare function p:hit($gameId as xs:string)) {
+declare %updating function p:hit($gameId as xs:string) {
+  let $game := $p:casino/game[@id=$gameId]
+  let $player := $game/players/player[@id=$game/activePlayer/@id]
   (: check for < 21 :)
-  let $currentCardsValue := p:calculateCardsValuePlayer()
+  let $currentCardsValue := p:calculateCardsValuePlayer($player)
   
   return
     if ($currentCardsValue < 21) then (
-        p:drawCardPlayer($gameId,fn:false())
+        p:drawCardPlayer($gameId,fn:false(), $player)
     )
     else (
         (: ToDo: Error :)
     )
-}
+};
 
 (: this function implements the stand action of a player :)
-declare function p:stand($gameId as xs:string) {
-  return g:checkWinningStatus($gameId,fn:false())
-}
+declare %updating function p:stand($gameId as xs:string) {
+  let $false := fn:false()
+  return g:checkWinningStatus($gameId,$false)
+};
 
 (: this function implements the insurance action of a player :)
-declare function p:insurance($gameId as xs:string) {
+(:declare %updating function p:insurance($gameId as xs:string) {
   (: ToDo: implement insurance :)
-}
+};:)
 
 (: sum up all the values of a player's cards :)
 (: in case of an A, decide whether value is 11 or 1 :)
-declare function p:calculateCardsValuePlayer($gameId as xs:string, $playerId as xs:integer) as xs:integer {
-  let $game := $p:casino/game[@id=$gameId]
+declare function p:calculateCardsValuePlayer($player as element(player)) as xs:integer {
   
   (: the amount of cards of the player's hand :)
-  let $amountOfCards := fn:count($game/players/player[@id=$playerId]/hand/card)
+  let $amountOfCards := fn:count($player/hand/card)
   (: number of A cards in the player's hand :)
-  let $amountOfAsses := fn:count($game/players/player[@id=$playerId]/hand/card/@value='A')
+  let $amountOfAsses := fn:count($player/hand/card/@value='A')
   (: amount of cards, which are not asses :)
   let $amountOfNotAsses := $amountOfCards - $amountOfAsses
   
   
   let $valueOfCardsWithoutAsses :=  
         fn:sum(
-            for $card in $game/players/player[@id=$playerId]/hand/card
+            for $card in $player/hand/card
                 return (
                     if (($card/@value = 'J') or ($card/@value = 'Q') or ($card/@value = 'K')) then
                         10
@@ -151,12 +149,12 @@ declare function p:calculateCardsValuePlayer($gameId as xs:string, $playerId as 
                     (: can be <= 21, but can also be > 21 :)
                     ($valueOfCardsWithoutAsses + $amountOfAsses)
                 )
-                else if (($valueGap = 11) and ($amountOfAsses > 1) then (
+                else if (($valueGap = 11) and ($amountOfAsses > 1)) then (
                     (: asses can only count as 1 each :)
                     (: can be <= 21, but can also be > 21 :)
                     ($valueOfCardsWithoutAsses + $amountOfAsses)
                 )
-                else if (($valueGap = 11) and ($amountOfAsses = 1) then (
+                else if (($valueGap = 11) and ($amountOfAsses = 1)) then (
                     (: single As counts 11 :)
                     (: player got a Blackjack :)
                     21

@@ -5,6 +5,7 @@ module namespace c = "blackjack/controller";
 declare namespace xslt = "http://basex.org/modules/xslt";
 import module namespace g = "blackjack/game" at "game.xqm";
 import module namespace p = "blackjack/player" at "player.xqm";
+import module namespace d = "blackjack/dealer" at "dealer.xqm";
 import module namespace request = "http://exquery.org/ns/request";
 
 declare variable $c:index := doc("index.html");
@@ -19,14 +20,6 @@ declare
 %rest:GET
 function c:start() {
   $c:index
-};
-
-(: this function displays the Blackjack-Picture :)
-declare
-%rest:path("/blackjack/picture")
-%rest:GET
-function c:picture() {
-  ddtek:serialize-to-url($c:blackjackIMG, "method=binary")
 };
 
 (: this function creates the input start form for player names, maxBet and minBet :)
@@ -83,41 +76,35 @@ function c:transformToHtml($gameId as xs:string) {
 (: this funtion calls the bet action of the activePlayer :)
 declare
 %updating
-%rest:path("/blackjack/bet")
+%rest:path("/blackjack/bet/{$gameId}/{$betValue}")
 %rest:GET
 function c:bet($gameId as xs:string, $betValue as xs:integer) {
-  
-  return (p:bet($gameId,$betValue))
+  p:bet($gameId,$betValue)
 };
-
 
 (: this funtion calls the hit action of the activePlayer :)
 declare
 %updating
-%rest:path("/blackjack/hit")
+%rest:path("/blackjack/hit/{$gameId}")
 %rest:GET
 function c:hit($gameId as xs:string) {
-  
-  return (p:hit($gameId,fn:false()))
+  p:hit($gameId)
 };
-
 
 (: this funtion calls the stand action of the activePlayer :)
 declare
 %updating
-%rest:path("/blackjack/stand")
+%rest:path("/blackjack/stand/{$gameId}")
 %rest:GET
 function c:stand($gameId as xs:string) {
-
-  return (p:stand($gameId))
+  p:stand($gameId)
 };
 
 (: this funtion calls the insurance action of the activePlayer :)
-declare
+(:declare
 %updating
-%rest:path("/blackjack/insurance")
+%rest:path("/blackjack/insurance/{$gameId}")
 %rest:GET
 function c:insurance($gameId as xs:string) {
-  
-  return (p:insurance($gameId))
-};
+  p:insurance($gameId)
+};:)

@@ -13,12 +13,7 @@ declare variable $d:casino := db:open("blackjack")/casino;
 (: this function takes a card from the stack and inserts it into the hand of the dealer :)
 declare %updating function d:drawCardDealer($gameId as xs:string, $hidden as xs:boolean) {
     let $game := $d:casino/game[@id=$gameId]
-    let $newCard :=
-        if ($hidden) then
-            (: cards are already shuffled before, so take the top one :)
-            $game/cards/card[position()=1]
-        else
-            d:turnHiddenCard($game/cards/card[position()=1])
+    let $newCard := $game/cards/card[position()=1]
   
     return (
         (: insert the new card into the dealer's hand and delete it from the stack :)
@@ -128,20 +123,20 @@ declare function d:calculateCardsValueDealer($gameId as xs:string) as xs:integer
 
 (: hidden attribute of the card to turn up is set to false :)
 declare %updating function d:turnHiddenCard($card as element(card)) {
-  replace value of node $card//@hidden with 'false'
+  replace value of node $card/hidden/text() with 'false'
 };
 
 (: this function gets all players, who participate in this game (--> balance > 0), one open card :)
-declare function d:oneCardForAllPlayers($gameId as xs:string) {
+declare %updating function d:oneCardForAllPlayers($gameId as xs:string) {
     let $game := $d:casino/game[@id=$gameId]
     
     (: iterate over the players' seats of the table :)
     (: position 1 is the most left to the dealer, 5 the most right to the dealer :)
-    for $i in (1 to 5)
-    where $game/players/player[@id=$i]/@balance != 0
+    for $player in $game/players/player
+    where $player/@balance != 0
         (: balance is != 0, that means a player is playing at position i :)
         (: hence, get the player a random, open card and delete it from the stack :)
-        return p:drawCardPlayer($gameId, fn:false(), $i)
+        return p:drawCardPlayer($gameId, fn:false(), $player)
 };
 
 (: this function deals out the initial cards to every player and the dealer :)
