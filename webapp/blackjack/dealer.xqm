@@ -181,8 +181,4 @@ declare function d:oneCardForAllPlayers($gameId as xs:string) {
     for $i in (1 to 5)
     where $game/players/player[@id=$i]/@balance != 0
         return p:drawCardPlayer($gameId, fn:false(), $i)
-
-    for $i in (1 to 5)
-    where $game/players/player[@id=$i]/@balance != 0
-        return p:drawCardPlayer($gameId, fn:false(), $i)
 };
