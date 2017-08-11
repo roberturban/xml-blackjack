@@ -125,10 +125,10 @@ function c:stand($gameId as xs:string) {
 };
 
 (: this funtion calls the insurance action of the activePlayer :)
-(:declare
+declare
 %updating
 %rest:path("/blackjack/insurance/{$gameId}")
 %rest:GET
 function c:insurance($gameId as xs:string) {
   p:insurance($gameId)
-};:)
+};

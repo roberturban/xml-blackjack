@@ -75,9 +75,19 @@ declare %updating function p:stand($gameId as xs:string) {
 };
 
 (: this function implements the insurance action of a player :)
-(:declare %updating function p:insurance($gameId as xs:string) {
-  (: ToDo: implement insurance :)
-};:)
+(: only updates if there is atleast one ace in the hand of the dealer :)
+declare %updating function p:insurance($gameId as xs:string) {
+  let $game := $p:casino/game[@id=$gameId]
+  let $playerId := $game/activePlayer/@id
+  let $betValue := $game/players/player[@id=$playerId]/bet
+  
+  return (
+    if(count(for $i in $game/dealer/hand/card
+    where $i/value = "A" and $i/hidden = "false"
+    return "A")>0) then
+        replace value of node $game/players/player[@id=$playerId]/insurance with ($betValue div 2)
+    else())
+};
 
 (: sum up all the values of a player's cards :)
 (: in case of an A, decide whether value is 11 or 1 :)
