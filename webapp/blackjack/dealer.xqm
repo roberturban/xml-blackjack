@@ -315,18 +315,19 @@ declare %updating function d:dealOutInitialCards($gameId as xs:string) {
 (: works. delete other dealOutInitialCards if everbody agrees :)
 declare %updating function d:dealOutInitialCards2($gameId as xs:string) {
     let $game := $g:casino/game[@id=$gameId]
-    for $i at $pos in $game/players/player
+    let $players := $game/players/player[balance > 0]
+    for $i at $pos in $players
         return (
                 (: ToDo: Change order. ATM: Everbody get's two cards successive :)
-                insert node d:turnHiddenCard($game/cards/card[1+(($pos - 1)*2)]) into $game/players/player[@id=$i/@id]/hand,
-                delete node $game/cards/card[1+(($pos - 1)*2)],
-                insert node d:turnHiddenCard($game/cards/card[2+(($pos - 1)*2)]) into $game/players/player[@id=$i/@id]/hand,
-                delete node $game/cards/card[2+(($pos - 1)*2)],
-                if ($pos = count($game/players/player)) then (
-                    insert node d:turnHiddenCard($game/cards/card[1+($pos*2)]) into $game/dealer/hand,
-                    delete node $game/cards/card[1+($pos*2)],
-                    insert node $game/cards/card[2+($pos*2)] into $game/dealer/hand,
-                    delete node $game/cards/card[2+($pos*2)] )
+                insert node d:turnHiddenCard($game/cards/card[1+($pos - 1)]) into $game/players/player[@id=$i/@id]/hand,
+                delete node $game/cards/card[1+($pos - 1)]],
+                insert node d:turnHiddenCard($game/cards/card[1+count($players)+($pos - 1)]) into $game/players/player[@id=$i/@id]/hand,
+                delete node $game/cards/card[1+count($players)+($pos - 1)],
+                if ($pos = count($players)) then (
+                    insert node d:turnHiddenCard($game/cards/card[1+count($players)]) into $game/dealer/hand,
+                    delete node $game/cards/card[1+count($players)],
+                    insert node $game/cards/card[1+(count($players)*2)] into $game/dealer/hand,
+                    delete node $game/cards/card[1+(count($players)*2)] )
                 else()
                 )                 
 };

@@ -103,7 +103,7 @@
             <circle cx="{$xRoundTable}" cy="{$yRoundTable}" r="{$radiusOuterTable}" fill="black" clip-path="url(#bot)" />    
             <rect x="{$xInnerRectTable}" y="{$yInnerRectTable}" width="{$widthInnerTable}" height="{$heightInnerRectTable}" fill="darkgreen" stroke="white" stroke-width="5" rx="{$borderradiusTable}" clip-path="url(#rec)" />
             <circle cx="{$xRoundTable}" cy="{$yRoundTable}" r="{$radiusInnerTable}" fill="darkgreen" stroke="white" stroke-width="5" clip-path="url(#bot)" />
-            <!-- ToDo: this image has to be referenced from our own server!!!! -->
+            
             <image id="BJ-logo"
                 xlink:href="/static/blackjack/blackjack.png"
                 x="{$xLogo}" y="{$yLogo}" height="100" width="300">
