@@ -68,10 +68,10 @@ declare %updating function p:hit($gameId as xs:string) {
 };
 
 (: this function implements the stand action of a player :)
-declare %updating function p:stand($gameId as xs:string) {
+(:declare %updating function p:stand($gameId as xs:string) {
   let $false := fn:false()
   return g:checkWinningStatus($gameId,$false)
-};
+};:)
 
 (: this function implements the insurance action of a player :)
 (: only updates if there is atleast one ace in the hand of the dealer :)

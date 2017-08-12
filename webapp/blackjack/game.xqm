@@ -63,16 +63,16 @@ declare %updating function g:setActivePlayer($gameId as xs:string) {
 
 (: ToDo: testing and finishing :)
 (: ToDo: What does finishing mean? --> Please be clear :)
-declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
+(:declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
     let $game := $g:casino/game[@id=$gameId]
     for $i in $game/players/player[bet != 0]
     return (g:checkWinningStatus($gameId,fn:true()),
             g:setActivePlayer($gameId))
-};
+};:)
 
 (: this function checks whether the activePlayer or the dealer wins this round :)
 (: ToDo: before calling this function with $endOfGame = true, it has to be ensured that the dealer is >= 17 :)
-declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame as xs:boolean) {
+(:declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame as xs:boolean) {
   let $game := $g:casino/game[@id=$gameId]
   let $playerId := $game/activePlayer/@id
 
@@ -129,7 +129,7 @@ declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame
             )
          )
     )
-};
+};:)
 
 declare function g:getDeck() as element(cards) {
     let $deck :=

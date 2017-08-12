@@ -116,13 +116,13 @@ function c:hit($gameId as xs:string) {
 };
 
 (: this funtion calls the stand action of the activePlayer :)
-declare
+(:declare
 %updating
 %rest:path("/blackjack/stand/{$gameId}")
 %rest:GET
 function c:stand($gameId as xs:string) {
   p:stand($gameId)
-};
+};:)
 
 (: this funtion calls the insurance action of the activePlayer :)
 declare
@@ -131,4 +131,23 @@ declare
 %rest:GET
 function c:insurance($gameId as xs:string) {
   p:insurance($gameId)
+};
+
+
+(: this funtion calls the insurance action of the activePlayer :)
+declare
+%updating
+%rest:path("/blackjack/deal/{$gameId}")
+%rest:GET
+function c:deal($gameId as xs:string) {
+  d:dealOutInitialCards($gameId)
+};
+
+(: this funtion calls the insurance action of the activePlayer :)
+declare
+%updating
+%rest:path("/blackjack/turn/{$gameId}")
+%rest:GET
+function c:turn($gameId as xs:string) {
+  d:dealerTurn($gameId)
 };
