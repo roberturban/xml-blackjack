@@ -51,7 +51,13 @@ declare %updating function g:setActivePlayer($gameId as xs:string) {
   let $game := $g:casino/game[@id=$gameId]
   let $players := $game/players/*
   let $playerId := $game/activePlayer/@id
-  return replace value of node $game/activePlayer/@id with $players[@id=$playerId]/following::*[1]/@id
+  
+  return (
+        if($players[@id=$playerId]/following::*[1]/@id = "") then
+            d:dealerTurn($gameId)
+        else
+            replace value of node $game/activePlayer/@id with $players[@id=$playerId]/following::*[1]/@id
+        )
   (: If last player: activePlayer/@id = "" :)
 };
 
