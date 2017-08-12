@@ -53,83 +53,78 @@ declare %updating function g:setActivePlayer($gameId as xs:string) {
   let $playerId := $game/activePlayer/@id
   
   return (
-        if($players[@id=$playerId]/following::*[1]/@id = "") then
-            d:dealerTurn($gameId)
+        (: If last player: activePlayer/@id = "" :)
+        if(not($players[@id=$playerId]/following::*[1]/@id)) then
+            (replace value of node $game/activePlayer/@id with $players[@id=$playerId]/following::*[1]/@id,
+            d:dealerTurn($gameId))
         else
             replace value of node $game/activePlayer/@id with $players[@id=$playerId]/following::*[1]/@id
         )
-  (: If last player: activePlayer/@id = "" :)
 };
 
 (: ToDo: testing and finishing :)
 (: ToDo: What does finishing mean? --> Please be clear :)
-(:declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
+declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
     let $game := $g:casino/game[@id=$gameId]
-    for $i in $game/players/player[bet != 0]
-    return (g:checkWinningStatus($gameId,fn:true()),
-            g:setActivePlayer($gameId))
-};:)
+    for $player in $game/players/player[bet > 0]
+    return g:checkWinningStatus($gameId,fn:true(), $player)
+};
 
 (: this function checks whether the activePlayer or the dealer wins this round :)
 (: ToDo: before calling this function with $endOfGame = true, it has to be ensured that the dealer is >= 17 :)
-(:declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame as xs:boolean) {
+declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame as xs:boolean, $player as element(player)) {
   let $game := $g:casino/game[@id=$gameId]
-  let $playerId := $game/activePlayer/@id
 
-  let $betValue := $game/players/player[@id=$playerId]/bet
-  let $balanceValue := $game/players/player[@id=$playerId]/balance
+  let $betValue := $player/bet
+  let $balanceValue := $player/balance
 
-  let $valueOfCardsPlayer := p:calculateCardsValuePlayer($game/players/player[@id=$playerId])
-  let $valueOfCardsDealer := d:calculateCardsValueDealer($gameId)
+  let $valueOfCardsPlayer := p:calculateCardsValuePlayer($gameId, $player, 0)
+  let $valueOfCardsDealer := d:calculateCardsValueDealer($gameId, 0)
 
   return (
         if ($endOfGame = fn:true()) then (
             if($valueOfCardsPlayer > 21) then (
                 (: in this case, the player lost anyways :)
-                replace value of node $game/players/player[@id=$playerId]/bet with 0,
-                delete node $game/players/player[@id=$playerId]/hand/*
+                replace value of node $player/bet with 0,
+                delete node $player/hand/*
             )
             else (
                 (: check, whether dealer is over 21 or a tie :)
-                if ($valueOfCardsDealer > 21 | ($valueOfCardsDealer = $valueOfCardsPlayer)) then (
+                if (($valueOfCardsDealer > 21) or ($valueOfCardsDealer = $valueOfCardsPlayer)) then (
                     (: EYERY player wins and gets back his/her bet :)
                     (: even in case dealer and player both have a BlackJack, the player only gets back his/her bet :)
-                    replace value of node $game/players/player[@id=$playerId]/bet with ($balanceValue+$betValue),
-                    replace value of node $game/players/player[@id=$playerId]/bet with 0,
-                    delete node $game/players/player[@id=$playerId]/hand/*
+                    replace value of node $player/balance with ($balanceValue+$betValue),
+                    replace value of node $player/bet with 0,
+                    delete node $player/hand/*
                 )
                 (: dealer and player are <= 21 and no tie :)
                 (: therefore, card values of player and dealer need to be compared against each other :)
                 else if ($valueOfCardsDealer > $valueOfCardsPlayer) then (
                     (: player loses :)
-                    replace value of node $game/players/player[@id=$playerId]/bet with 0,
-                    delete node $game/players/player[@id=$playerId]/hand/*
+                    replace value of node $player/bet with 0,
+                    delete node $player/hand/*
                 )
                 else if ($valueOfCardsPlayer = 21) then (
                     (: player got a BlackJack:)
-                    replace value of node $game/players/player[@id=$playerId]/bet with ($balanceValue+$betValue*2.5),
-                    replace value of node $game/players/player[@id=$playerId]/bet with 0,
-                    delete node $game/players/player[@id=$playerId]/hand/*
+                    replace value of node $player/balance with ($balanceValue+$betValue*2.5),
+                    replace value of node $player/bet with 0,
+                    delete node $player/hand/*
                 )
                 else (
-                    replace value of node $game/players/player[@id=$playerId]/bet with ($balanceValue+$betValue*2),
-                    replace value of node $game/players/player[@id=$playerId]/bet with 0,
-                    delete node $game/players/player[@id=$playerId]/hand/*
+                    replace value of node $player/balance with ($balanceValue+$betValue*2),
+                    replace value of node $player/bet with 0,
+                    delete node $player/hand/*
                 )
              )
          )
         else (
             if($valueOfCardsPlayer > 21) then (
-                replace value of node $game/players/player[@id=$playerId]/bet with 0,
-                delete node $game/players/player[@id=$playerId]/hand/*,
-                g:setActivePlayer($gameId)
-             )
-            else (
-                g:setActivePlayer($gameId)
-            )
+                replace value of node $player/bet with 0,
+                delete node $player/hand/*
+            ) else ()
          )
     )
-};:)
+};
 
 declare function g:getDeck() as element(cards) {
     let $deck :=

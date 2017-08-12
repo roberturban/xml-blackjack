@@ -56,7 +56,7 @@ declare %updating function p:hit($gameId as xs:string) {
   let $game := $p:casino/game[@id=$gameId]
   let $player := $game/players/player[@id=$game/activePlayer/@id]
   (: check for < 21 :)
-  let $currentCardsValue := p:calculateCardsValuePlayer($player)
+  let $currentCardsValue := p:calculateCardsValuePlayer($gameId, $player, 1)
   
   return
     if ($currentCardsValue < 21) then (
@@ -64,14 +64,15 @@ declare %updating function p:hit($gameId as xs:string) {
     )
     else (
         (: ToDo: Error :)
+        (p:drawCardPlayer($gameId,fn:false(), $player),
+        g:setActivePlayer($gameId))
     )
 };
 
 (: this function implements the stand action of a player :)
-(:declare %updating function p:stand($gameId as xs:string) {
-  let $false := fn:false()
-  return g:checkWinningStatus($gameId,$false)
-};:)
+declare %updating function p:stand($gameId as xs:string) {
+  g:setActivePlayer($gameId)
+};
 
 (: this function implements the insurance action of a player :)
 (: only updates if there is atleast one ace in the hand of the dealer :)
@@ -88,93 +89,110 @@ declare %updating function p:insurance($gameId as xs:string) {
     else())
 };
 
-(: sum up all the values of a player's cards :)
-(: in case of an A, decide whether value is 11 or 1 :)
-declare function p:calculateCardsValuePlayer($player as element(player)) as xs:integer {
+(: calculates value of player's hand + $cardsDrawn from stack :)
+declare function p:calculateCardsValuePlayer($gameId as xs:string, $player as element(player), $cardsDrawn as xs:integer) as xs:double {
+  let $game := $p:casino/game[@id=$gameId]
   
   (: the amount of cards of the player's hand :)
-  let $amountOfCards := fn:count($player/hand/card)
+  let $amountOfCards := $cardsDrawn + fn:count($player/hand/card)
   (: number of A cards in the player's hand :)
-  let $amountOfAces := fn:sum(  for $card in $player/hand/card
-                                where $card/value = "A"
+  let $amountOfAces := (fn:sum(  for $card at $pos in $game/cards/card
+                                where $card/value = "A" and $pos <= $cardsDrawn
                                 return 1)
-  (: amount of cards, which are not Aces :)
+                                +
+                       fn:sum(  for $card in $player/hand/card
+                                where $card/value = "A"
+                                return 1))
+  (: amount of cards, which are not aces :)
   let $amountOfNotAces := $amountOfCards - $amountOfAces
   
   
   let $valueOfCardsWithoutAces :=  
-        fn:sum(
+        (fn:sum(
+            for $card at $pos in $game/cards/card
+            where $pos <= $cardsDrawn
+                return (
+                    if (($card/value = 'J') or ($card/value = 'Q') or ($card/value = 'K')) then
+                        10
+                    else if ($card/value = 'A') then
+                        (: do not consider the asses right now :)
+                        0
+                    else
+                        ($card/value)
+                        ))
+                        +
+         fn:sum(
             for $card in $player/hand/card
                 return (
                     if (($card/value = 'J') or ($card/value = 'Q') or ($card/value = 'K')) then
                         10
                     else if ($card/value = 'A') then
-                        (: do not consider the Aces right now :)
+                        (: do not consider the asses right now :)
                         0
                     else
                         ($card/value)
-                ) 
+                )) 
         )
         
     let $valueGap := (21 - $valueOfCardsWithoutAces)
     
     return (
         if ($valueGap < 0) then (
-            (: in this case, valueOfCardsWithoutAces is already > 21 :)
+            (: in this case, valueOfCardsWithoutAsses is already > 21 :)
             (: thus, return 22 as default value, because it only matters > 21 and not the exact value :)
             22
         )
         else if (($valueGap = 0) and ($amountOfAces > 0)) then (
-            (: player is over 21 :)
+            (: dealer is over 21 :)
             (: thus, return 22 as default value, because it only matters > 21 and not the exact value :)
             22
         )
         else if (($valueGap = 0) and ($amountOfAces = 0)) then (
-            (: player got a Blackjack :)
+            (: dealer got a Blackjack :)
             21
         )
         else if (($valueGap > 0) and ($amountOfAces = 0)) then (
-            (: player has no Aces, but < 21 :)
-            (: valueOfCardsWithoutAces is the overallValue, because player has no Aces :)
+            (: dealer has no asses, but < 21 :)
+            (: valueOfCardsWithoutAsses is the overallValue, because dealer has no asses :)
             $valueOfCardsWithoutAces
         )
         else (
-            (: this is the case for (($valueGap > 0) and ($amountOfAces > 0)) :)
-            (: as amountOfAces cannot be < 0, this is the last "outer" case :)
+            (: this is the case for (($valueGap > 0) and ($amountOfAsses > 0)) :)
+            (: as amountOfAsses cannot be < 0, this is the last "outer" case :)
             
-            (: adding Aces might still be possible, hence check for the appropriate values (11 or 1) :)  
+            (: adding asses might still be possible, hence check for the appropriate values (11 or 1) :)  
             if ($valueGap = $amountOfAces) then (
-                (: in this case, each As has to be calculated as 1 for a Blackjack of the player :)
+                (: in this case, each As has to be calculated as 1 for a Blackjack of the dealer :)
                 21
             )
             else if ($valueGap < $amountOfAces) then (
-                (: even if each As goes with value 1, the player will end up with a sum > 21 :)
+                (: even if each As goes with value 1, the dealer will end up with a sum > 21 :)
                 (: thus, return 22 as default value, because it only matters > 21 and not the exact value :)
                 22
             )
             else (
-                (: this is the case, where $valueGap > $amountOfAces :)
+                (: this is the case, where $valueGap > $amountOfAsses :)
                 (: now check, which single As has to count as 11 or as 1 :)
                 if ($valueGap < 11) then (
-                    (: Aces can only count as 1 each :)
+                    (: asses can only count as 1 each :)
                     (: can be <= 21, but can also be > 21 :)
                     ($valueOfCardsWithoutAces + $amountOfAces)
                 )
                 else if (($valueGap = 11) and ($amountOfAces > 1)) then (
-                    (: Aces can only count as 1 each :)
+                    (: asses can only count as 1 each :)
                     (: can be <= 21, but can also be > 21 :)
                     ($valueOfCardsWithoutAces + $amountOfAces)
                 )
                 else if (($valueGap = 11) and ($amountOfAces = 1)) then (
                     (: single As counts 11 :)
-                    (: player got a Blackjack :)
+                    (: dealer got a Blackjack :)
                     21
                 )
                 else (
-                    (: this is the case, where (($valueGap > 11) and ($amountOfAces > 0)) is true :)
+                    (: this is the case, where (($valueGap > 11) and ($amountOfAsses > 0)) is true :)
                     (: more than one As can never be counted as 11, as one would be over 21 automatically otherwise (2*11 = 22) :)
                     
-                    (: try out if it's better to count one As as 11 and all the others as 1, or if it's better to count all Aces as 1 :)
+                    (: try out if it's better to count one As as 11 and all the others as 1, or if it's better to count all asses as 1 :)
                     if (($valueOfCardsWithoutAces + 11 + ($amountOfAces - 1)) <= 21) then (
                         ($valueOfCardsWithoutAces + 11 + ($amountOfAces - 1))
                     )

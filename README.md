@@ -15,15 +15,16 @@ ToDos 08/11/2017
 
 MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found! Do not just write them there, but MARK THEM!
 
-* Review: all functions (e.g. calculateCardsValue*** functions)
 * Insurance function implementation
 * ToDos in code (e.g. answer questions in comments, implement/discuss need of constructors, correct the logic, ...)
 * Testing
 * DocBook (no compile errors and no typos)
-* Dynamic adding of players during game in next round should be possible
-* Casino.xqm (define the rest of the elements and attributes)
-* New function for the dealer for drawing cards repeatedly is needed
+* (Dynamic adding of players during game in next round should be possible)
+* (Casino.xqm (define the rest of the elements and attributes))
 * Presentation
+* Delete old game
+* Bet vor Ausgabe der Karten
+* GUI auf Spiel anpassen
 
 ------------------------------------------------------------------------------------------------------------------------
 

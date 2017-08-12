@@ -186,12 +186,12 @@
                 <text x="{$xButtonCenter + 225}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Stand</text>
             </g>
             
-            <a xlink:href="/blackjack/newGame" xlink:title="start new game">
+            <!--<a xlink:href="/blackjack/newGame" xlink:title="start new game">
                 <g class="active_button">
                     <use xlink:href="#button" x="{$xButton}" y="250"></use>
                     <text x="{$xButtonCenter}" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Start new Game</text>
                 </g>
-            </a>
+            </a>-->
         </svg>
     </xsl:template>
     
