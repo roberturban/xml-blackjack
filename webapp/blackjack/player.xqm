@@ -75,16 +75,17 @@ declare %updating function p:stand($gameId as xs:string) {
 };
 
 (: this function implements the insurance action of a player :)
-(: only updates if there is atleast one ace in the hand of the dealer :)
+(: only updates if there is at least one ace in the hand of the dealer :)
+(: this action must only be possible, if the first card of the dealer is an ace :)
 declare %updating function p:insurance($gameId as xs:string) {
   let $game := $p:casino/game[@id=$gameId]
   let $playerId := $game/activePlayer/@id
   let $betValue := $game/players/player[@id=$playerId]/bet
   
   return (
-    if(count(for $i in $game/dealer/hand/card
-    where $i/value = "A" and $i/hidden = "false"
-    return "A")>0) then
+    if(count(for $card in $game/dealer/hand/card
+    where (($card/value = 'A') and ($card/hidden = 'false'))
+    return 'A')>0) then
         replace value of node $game/players/player[@id=$playerId]/insurance with ($betValue div 2)
     else())
 };
@@ -97,11 +98,11 @@ declare function p:calculateCardsValuePlayer($gameId as xs:string, $player as el
   let $amountOfCards := $cardsDrawn + fn:count($player/hand/card)
   (: number of A cards in the player's hand :)
   let $amountOfAces := (fn:sum(  for $card at $pos in $game/cards/card
-                                where $card/value = "A" and $pos <= $cardsDrawn
+                                where (($card/value = 'A') and ($pos <= $cardsDrawn))
                                 return 1)
                                 +
                        fn:sum(  for $card in $player/hand/card
-                                where $card/value = "A"
+                                where $card/value = 'A'
                                 return 1))
   (: amount of cards, which are not aces :)
   let $amountOfNotAces := $amountOfCards - $amountOfAces

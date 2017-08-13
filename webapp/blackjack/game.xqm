@@ -5,8 +5,6 @@ import module namespace t = "blackjack/tools" at "tools.xqm";
 import module namespace p = "blackjack/player" at "player.xqm";
 import module namespace d = "blackjack/dealer" at "dealer.xqm";
 
-(: constructors for game still ToDo (?) :)
-
 (: open database blackjack, locate resource within database and navigate to its top element :)
 declare variable $g:casino := db:open("blackjack")/casino;
 
@@ -53,7 +51,7 @@ declare %updating function g:setActivePlayer($gameId as xs:string) {
   let $playerId := $game/activePlayer/@id
   
   return (
-        (: If last player: activePlayer/@id = "" :)
+        (: after last player: activePlayer/@id = "" :)
         if(not($players[@id=$playerId]/following::*[1]/@id)) then
             (replace value of node $game/activePlayer/@id with $players[@id=$playerId]/following::*[1]/@id,
             d:dealerTurn($gameId))
@@ -64,13 +62,14 @@ declare %updating function g:setActivePlayer($gameId as xs:string) {
 
 (: ToDo: testing and finishing :)
 (: ToDo: What does finishing mean? --> Please be clear :)
+(: this function checks the winning status for all players :)
 declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
     let $game := $g:casino/game[@id=$gameId]
     for $player in $game/players/player[bet > 0]
-    return g:checkWinningStatus($gameId,fn:true(), $player)
+        return g:checkWinningStatus($gameId,fn:true(), $player)
 };
 
-(: this function checks whether the activePlayer or the dealer wins this round :)
+(: this function checks whether a player or the dealer wins this round :)
 (: ToDo: before calling this function with $endOfGame = true, it has to be ensured that the dealer is >= 17 :)
 declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame as xs:boolean, $player as element(player)) {
   let $game := $g:casino/game[@id=$gameId]

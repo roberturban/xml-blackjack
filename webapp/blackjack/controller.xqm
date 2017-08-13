@@ -37,8 +37,9 @@ declare
 %rest:path("/blackjack/form")
 %rest:GET
 function c:handleInit() {
-  let $maxBet := xs:integer(request:parameter("maxBet"))
-  let $minBet := xs:integer(request:parameter("minBet"))
+
+  let $maxBet := (request:parameter("maxBet"))
+  let $minBet := (request:parameter("minBet"))
   let $playerNames :=
       (request:parameter("playername1", ""),
       request:parameter("playername2", ""),
@@ -52,35 +53,83 @@ function c:handleInit() {
       request:parameter("balance4", ""),
       request:parameter("balance5", ""))
   
-  let $playerNamesChecked :=
-        (for $i in $playerNames
-        where $i != ""
-        return $i)
+  (: naming conventiones are not restrictive :)
+  
+  (: for the balance, only positive values are allowed :)
+  (: otherwise, the balance is set to 0 by default, which means player cannot play :)
   let $balancesChecked :=
         (for $i in $balances
-        return(
-        if  (fn:number($i)) then
-            $i
-        else
-            0
-        ))
-  let $minBetChecked :=
-        (if ($minBet < 0) then
-            0
-        else
-            $minBet)
-  let $maxBetChecked :=
-        (if ($maxBet < 1) then
-            1
-        else
-            $maxBet)
+            return (
+                if (fn:not(c:is-a-number($i))) then (
+                    0
+                )
+                else (
+                    if ($i > 0) then (
+                        (: consider the integer range :)
+                        if ($i <= 9223372036854775807) then (
+                            $i
+                        )
+                        else (
+                            9223372036854775807
+                        )
+                    )
+                    else (
+                        0
+                    )
+                )
+            )
+        )
         
-  let $game := g:createNewGame($maxBetChecked,$minBetChecked,$playerNamesChecked,$balancesChecked)
+  let $maxBetChecked :=
+        if (fn:not(c:is-a-number($maxBet))) then (
+            100
+        )
+        else (
+            if ($maxBet > 0) then (
+                (: consider the integer range :)
+                if ($maxBet <= 9223372036854775807) then (
+                    $maxBet
+                )
+                else (
+                    9223372036854775807
+                )
+            )
+            else (
+                100
+            )
+        )
+                
+  let $minBetChecked :=
+        if (fn:not(c:is-a-number($minBet))) then (
+            0
+        )
+        else (
+            if ($minBet > 0) then (
+                (: consider the integer range :)
+                if ($minBet <= $maxBetChecked) then (
+                    $minBet
+                )
+                else (
+                    0
+                )
+            )
+            else (
+                0
+            )
+        )
+        
+  let $game := g:createNewGame($maxBetChecked,$minBetChecked,$playerNames,$balancesChecked)
 
   return (db:output(c:redirectToTransformator($game/@id)), g:insertGame($game))
 };
 
-(: Redirects to the Transformator-URL :)
+(: this function checks whether the parameter is a number :)
+(: copied from http://www.xqueryfunctions.com/xq/functx_is-a-number.html :)
+declare function c:is-a-number ( $value as xs:anyAtomicType? )  as xs:boolean {
+   string(number($value)) != 'NaN'
+};
+
+(: redirects to the Transformator-URL :)
 declare function c:redirectToTransformator($gameId as xs:string) {
   let $url := fn:concat("/blackjack/transform/", $gameId)
   return web:redirect($url)
@@ -134,7 +183,7 @@ function c:insurance($gameId as xs:string) {
 };
 
 
-(: this funtion calls the insurance action of the activePlayer :)
+(: this funtion calls the dealOutInitialCards function :)
 declare
 %updating
 %rest:path("/blackjack/deal/{$gameId}")
@@ -143,7 +192,7 @@ function c:deal($gameId as xs:string) {
   d:dealOutInitialCards($gameId)
 };
 
-(: this funtion calls the insurance action of the activePlayer :)
+(: this funtion calls the dealerTurn function, after all players have been served :)
 declare
 %updating
 %rest:path("/blackjack/turn/{$gameId}")
@@ -152,11 +201,20 @@ function c:turn($gameId as xs:string) {
   d:dealerTurn($gameId)
 };
 
-(: this funtion calls the insurance action of the activePlayer :)
+(: this funtion calls the checkWinningStatusAll function, in order to check, which players won and lost :)
 declare
 %updating
 %rest:path("/blackjack/win/{$gameId}")
 %rest:GET
 function c:win($gameId as xs:string) {
   g:checkWinningStatusAll($gameId)
+};
+
+(: this funtion calls the deleteGame function :)
+declare
+%updating
+%rest:path("/blackjack/deleteGame/{$gameId}")
+%rest:GET
+function c:deleteGame($gameId as xs:string) {
+  g:deleteGame($gameId)
 };

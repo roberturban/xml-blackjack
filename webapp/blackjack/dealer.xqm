@@ -1,14 +1,12 @@
 xquery version "3.0"  encoding "UTF-8"; 
  
 module namespace d = "blackjack/dealer"; 
-import module namespace g = "blackjack/game" at "game.xqm"; 
-import module namespace p = "blackjack/player" at "player.xqm"; 
+import module namespace g = "blackjack/game" at "game.xqm";
+import module namespace p = "blackjack/player" at "player.xqm";
 import module namespace t = "blackjack/tools" at "tools.xqm";
-
 
 (: open database blackjack, locate resource within database and navigate to its top element :)
 declare variable $d:casino := db:open("blackjack")/casino;
-
 
 declare %updating function d:dealerTurn($gameId as xs:string){
     let $game := $d:casino/game[@id=$gameId]
@@ -17,7 +15,7 @@ declare %updating function d:dealerTurn($gameId as xs:string){
             d:dealerTurnHelper($gameId,0))
 };
 
-(: Calculate how many cards the dealer would draw from the stack and afterwards draw them :)
+(: calculate how many cards the dealer would draw from the stack and afterwards draw them :)
 declare %updating function d:dealerTurnHelper($gameId as xs:string,$cardsDrawn as xs:integer) {
         if(d:calculateCardsValueDealer($gameId,$cardsDrawn)<17) then
             (
@@ -25,24 +23,23 @@ declare %updating function d:dealerTurnHelper($gameId as xs:string,$cardsDrawn a
         else(
             if($cardsDrawn > 0) then
                 d:dealerTurnDrawer($gameId,fn:false(),$cardsDrawn)
-            else()
-            
-            )
+            else()         
+        )
 };
-
 
 (: this function takes a card from the stack and inserts it into the hand of the dealer :)
 declare %updating function d:dealerTurnDrawer($gameId as xs:string, $hidden as xs:boolean, $drawPos as xs:integer) {
     let $game := $d:casino/game[@id=$gameId]
     
-    return(
-        for $i at $pos in $game/cards/card
+    return (
+        for $card at $pos in $game/cards/card
         where $pos <= $drawPos
-        return(
-        insert node d:turnHiddenCard($i) into $game/dealer/hand,
-        delete node $game/cards/card[$pos])
-        )
-    
+        return (
+            insert node d:turnHiddenCard($card) into $game/dealer/hand,
+            delete node $game/cards/card[$pos]
+        ),
+        g:checkWinningStatusAll($gameId)
+    )
 };
 
 (: calculates value of dealers hand + $cardsDrawn from stack :)
@@ -53,11 +50,11 @@ declare function d:calculateCardsValueDealer($gameId as xs:string,$cardsDrawn as
   let $amountOfCards := $cardsDrawn + fn:count($game/dealer/hand/card)
   (: number of A cards in the dealer's hand :)
   let $amountOfAces := (fn:sum(  for $card at $pos in $game/cards/card
-                                where $card/value = "A" and $pos <= $cardsDrawn
+                                where (($card/value = 'A') and ($pos <= $cardsDrawn))
                                 return 1)
                                 +
                        fn:sum(  for $card in $game/dealer/hand/card
-                                where $card/value = "A"
+                                where $card/value = 'A'
                                 return 1))
   (: amount of cards, which are not aces :)
   let $amountOfNotAces := $amountOfCards - $amountOfAces

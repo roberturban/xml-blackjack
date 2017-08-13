@@ -15,16 +15,22 @@ ToDos 08/11/2017
 
 MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found! Do not just write them there, but MARK THEM!
 
-* Insurance function implementation
+* Insurance function implementation to review/finish
 * ToDos in code (e.g. answer questions in comments, implement/discuss need of constructors, correct the logic, ...)
 * Testing
 * DocBook (no compile errors and no typos)
+* Presentation
+* Bet vor Ausgabe der Karten
+* GUI auf Spiel anpassen (e.g.: hit, stand, bet, insurance buttons need to be integrated in GUI, ...)
+* Error pages displaying to user
+* concat all the game logic (--> function calls sequence)
+* Update class diagram
+* Old ToDos
+
+Lower prio:
 * (Dynamic adding of players during game in next round should be possible)
 * (Casino.xqm (define the rest of the elements and attributes))
-* Presentation
-* Delete old game
-* Bet vor Ausgabe der Karten
-* GUI auf Spiel anpassen
+
 
 ------------------------------------------------------------------------------------------------------------------------
 
