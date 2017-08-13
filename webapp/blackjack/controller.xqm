@@ -65,12 +65,12 @@ function c:handleInit() {
                 )
                 else (
                     if ($i > 0) then (
-                        (: consider the integer range :)
-                        if ($i <= 9223372036854775807) then (
+                        (: consider the integer range +-9223372036854775807:)
+                        if ($i <= 1000000000) then (
                             $i
                         )
                         else (
-                            9223372036854775807
+                            1000000000
                         )
                     )
                     else (
@@ -86,12 +86,12 @@ function c:handleInit() {
         )
         else (
             if ($maxBet > 0) then (
-                (: consider the integer range :)
-                if ($maxBet <= 9223372036854775807) then (
+                (: consider the integer range +-9223372036854775807 :)
+                if ($maxBet <= 1000000000) then (
                     $maxBet
                 )
                 else (
-                    9223372036854775807
+                    1000000000
                 )
             )
             else (
