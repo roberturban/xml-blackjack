@@ -86,10 +86,9 @@
     
     
     <!-- XSL Basic Template Start Point -->
-    <xsl:template match="game">
+    <xsl:template match="game">  
         <!-- Variables -->
-        <xsl:variable name="turnOfPlayerOne" select="turnOfPlayerOne"/>
-        <xsl:variable name="gameOver" select="gameOver"/>
+        <xsl:variable name="gameId" select="./@id"/>
         
         <!-- Game board -->
         <svg xmlns="http://www.w3.org/2000/svg" width="1250" height="800">
@@ -110,7 +109,7 @@
             </image>
             
             <defs>
-                <rect id="cardSpot" height="70" width="50" rx="6"/>
+                <rect id="kartenplatz" height="70" width="50" rx="6"/>
             </defs>
             
             <use x="{$xKartenplatz1}" y="{$yKartenplatz1}" xlink:href="#kartenplatz" stroke="white" fill="none" />
@@ -145,12 +144,53 @@
                     <ellipse cx="25" cy="30" rx="25" ry="30" fill="none" stroke="black" stroke-width="6"></ellipse>
                     <path d="M-30,120 c0,-75 110,-75 110,0" fill="none" stroke="black" stroke-width="6"/>
                 </g>
+                
+                <g id="avatar_active">
+                    <ellipse cx="25" cy="30" rx="25" ry="30" fill="green" stroke="black" stroke-width="6"></ellipse>
+                    <path d="M-30,120 c0,-75 110,-75 110,0" fill="green" stroke="black" stroke-width="6"/>
+                </g>
             </defs>
-            <use xlink:href="#avatar" x="{$xAvatar1}" y="{$yAvatar1}"></use>
-            <use xlink:href="#avatar" x="{$xAvatar2}" y="{$yAvatar2}" transform="rotate(30 0 0)"></use>
-            <use xlink:href="#avatar" x="{$xAvatar3}" y="{$yAvatar3}" transform="rotate(60 0 0)"></use>
-            <use xlink:href="#avatar" x="{$xAvatar4}" y="{$yAvatar4}" transform="rotate(-30 0 0)"></use>
-            <use xlink:href="#avatar" x="{$xAvatar5}" y="{$yAvatar5}" transform="rotate(-60 0 0)"></use>
+            
+            <xsl:choose>
+                <xsl:when test="activePlayer/@id = players/player[3]/@id">
+                    <use xlink:href="#avatar_active" x="{$xAvatar1}" y="{$yAvatar1}"></use>
+                </xsl:when>
+                <xsl:otherwise>
+                    <use xlink:href="#avatar" x="{$xAvatar1}" y="{$yAvatar1}"></use>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="activePlayer/@id = players/player[4]/@id">
+                    <use xlink:href="#avatar_active" x="{$xAvatar2}" y="{$yAvatar2}" transform="rotate(30 0 0)"></use>
+                </xsl:when>
+                <xsl:otherwise>
+                    <use xlink:href="#avatar" x="{$xAvatar2}" y="{$yAvatar2}" transform="rotate(30 0 0)"></use>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="activePlayer/@id = players/player[5]/@id">
+                    <use xlink:href="#avatar_active" x="{$xAvatar3}" y="{$yAvatar3}" transform="rotate(60 0 0)"></use>
+                </xsl:when>
+                <xsl:otherwise>
+                    <use xlink:href="#avatar" x="{$xAvatar3}" y="{$yAvatar3}" transform="rotate(60 0 0)"></use>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="activePlayer/@id = players/player[2]/@id">
+                    <use xlink:href="#avatar_active" x="{$xAvatar4}" y="{$yAvatar4}" transform="rotate(-30 0 0)"></use>
+                </xsl:when>
+                <xsl:otherwise>
+                    <use xlink:href="#avatar" x="{$xAvatar4}" y="{$yAvatar4}" transform="rotate(-30 0 0)"></use>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="activePlayer/@id = players/player[1]/@id">
+                    <use xlink:href="#avatar_active" x="{$xAvatar5}" y="{$yAvatar5}" transform="rotate(-60 0 0)"></use>
+                </xsl:when>
+                <xsl:otherwise>
+                    <use xlink:href="#avatar" x="{$xAvatar5}" y="{$yAvatar5}" transform="rotate(-60 0 0)"></use>
+                </xsl:otherwise>
+            </xsl:choose>
 
             <defs>
                 <rect id="button" width="{$widthButton}" height="{$heightButton}"></rect>
@@ -171,27 +211,38 @@
                 }
             </style>
             
-            <g class="disactive_button" style="display: none;">
-                <use xlink:href="#button" x="{$xButton - 225}" y="{$yButton}"></use>
-                <text x="{$xButtonCenter - 225}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Insurance</text>
-            </g>
-            
-            <g class="active_button" style="display: none;">
-                <use xlink:href="#button" x="{$xButton}" y="{$yButton}"></use>
-                <text x="{$xButtonCenter}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Hit</text>
-            </g>
-            
-            <g class="disactive_button" style="display: none;">
-                <use xlink:href="#button" x="{$xButton + 225}" y="{$yButton}"></use>
-                <text x="{$xButtonCenter + 225}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Stand</text>
-            </g>
-            
-            <!--<a xlink:href="/blackjack/newGame" xlink:title="start new game">
+            <xsl:if test="step = 'play'">
                 <g class="active_button">
-                    <use xlink:href="#button" x="{$xButton}" y="250"></use>
-                    <text x="{$xButtonCenter}" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Start new Game</text>
+                    <a href="/blackjack/insurance/{$gameId}">
+                      <use xlink:href="#button" x="{$xButton - 225}" y="{$yButton}"></use>
+                      <text x="{$xButtonCenter - 225}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Insurance</text>
+                    </a>
                 </g>
-            </a>-->
+                
+                <g class="active_button">
+                    <a href="/blackjack/hit/{$gameId}">
+                     <use xlink:href="#button" x="{$xButton}" y="{$yButton}"></use>
+                     <text x="{$xButtonCenter}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Hit</text>
+                    </a>
+                </g>
+                
+                <g class="active_button">
+                    <a href="/blackjack/stand/{$gameId}">
+                      <use xlink:href="#button" x="{$xButton + 225}" y="{$yButton}"></use>
+                      <text x="{$xButtonCenter + 225}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Stand</text>
+                    </a>
+                </g>
+            </xsl:if>
+            
+            
+            <xsl:if test="step = 'finishing'">
+               <g class="active_button">
+                   <a xlink:href="/blackjack/finishing/{$gameId}" xlink:title="go on...">
+                       <use xlink:href="#button" x="{$xButton}" y="250"></use>
+                       <text x="{$xButtonCenter}" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Go on...</text>
+                   </a>
+               </g>   
+            </xsl:if>
         </svg>
     </xsl:template>
     

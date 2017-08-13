@@ -23,7 +23,7 @@ declare %updating function d:dealerTurnHelper($gameId as xs:string,$cardsDrawn a
         else(
             if($cardsDrawn > 0) then
                 d:dealerTurnDrawer($gameId,fn:false(),$cardsDrawn)
-            else()         
+            else ( )
         )
 };
 
@@ -31,15 +31,13 @@ declare %updating function d:dealerTurnHelper($gameId as xs:string,$cardsDrawn a
 declare %updating function d:dealerTurnDrawer($gameId as xs:string, $hidden as xs:boolean, $drawPos as xs:integer) {
     let $game := $d:casino/game[@id=$gameId]
     
-    return (
+    return
         for $card at $pos in $game/cards/card
         where $pos <= $drawPos
         return (
             insert node d:turnHiddenCard($card) into $game/dealer/hand,
             delete node $game/cards/card[$pos]
-        ),
-        g:checkWinningStatusAll($gameId)
-    )
+        )
 };
 
 (: calculates value of dealers hand + $cardsDrawn from stack :)

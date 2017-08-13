@@ -152,7 +152,9 @@ declare
 %rest:path("/blackjack/bet/{$gameId}/{$betValue}")
 %rest:GET
 function c:bet($gameId as xs:string, $betValue as xs:integer) {
-  p:bet($gameId,$betValue)
+  if ($c:casinoCollection/casino/game[@id = $gameId]/step = 'bet') then (
+    (db:output(c:redirectToTransformator($gameId)),p:bet($gameId,$betValue))
+  ) else ( )
 };
 
 (: this funtion calls the hit action of the activePlayer :)
@@ -161,7 +163,9 @@ declare
 %rest:path("/blackjack/hit/{$gameId}")
 %rest:GET
 function c:hit($gameId as xs:string) {
-  p:hit($gameId)
+  if ($c:casinoCollection/casino/game[@id = $gameId]/step = 'play') then (
+    (db:output(c:redirectToTransformator($gameId)),p:hit($gameId))
+  ) else ( )
 };
 
 (: this funtion calls the stand action of the activePlayer :)
@@ -170,7 +174,9 @@ declare
 %rest:path("/blackjack/stand/{$gameId}")
 %rest:GET
 function c:stand($gameId as xs:string) {
-  p:stand($gameId)
+  if ($c:casinoCollection/casino/game[@id = $gameId]/step = 'play') then (
+    (db:output(c:redirectToTransformator($gameId)),p:stand($gameId))
+  ) else ( )
 };
 
 (: this funtion calls the insurance action of the activePlayer :)
@@ -179,7 +185,21 @@ declare
 %rest:path("/blackjack/insurance/{$gameId}")
 %rest:GET
 function c:insurance($gameId as xs:string) {
-  p:insurance($gameId)
+  if ($c:casinoCollection/casino/game[@id = $gameId]/step = 'play') then (
+    (db:output(c:redirectToTransformator($gameId)),p:insurance($gameId))
+  ) else ( )
+};
+
+(: this funtion calls the checkWinningStatusAll function, in order to check, which players won and lost :)
+(: executed on clicking the "Go on..."-Button :)
+declare
+%updating
+%rest:path("/blackjack/finishing/{$gameId}")
+%rest:GET
+function c:finishing($gameId as xs:string) {
+  if ($c:casinoCollection/casino/game[@id = $gameId]/step = 'finishing') then (
+    (db:output(c:redirectToTransformator($gameId)),g:checkWinningStatusAll($gameId))
+  ) else ( )
 };
 
 
@@ -199,15 +219,6 @@ declare
 %rest:GET
 function c:turn($gameId as xs:string) {
   d:dealerTurn($gameId)
-};
-
-(: this funtion calls the checkWinningStatusAll function, in order to check, which players won and lost :)
-declare
-%updating
-%rest:path("/blackjack/win/{$gameId}")
-%rest:GET
-function c:win($gameId as xs:string) {
-  g:checkWinningStatusAll($gameId)
 };
 
 (: this funtion calls the deleteGame function :)

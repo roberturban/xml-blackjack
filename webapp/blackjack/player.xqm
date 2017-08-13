@@ -39,15 +39,17 @@ declare %updating function p:drawCardPlayer($gameId as xs:string, $hidden as xs:
 declare %updating function p:bet($gameId as xs:string, $betValue as xs:integer) {
   let $game := $p:casino/game[@id=$gameId]
   let $playerId := $game/activePlayer/@id
-  let $newBalance := $game/players/player[@id=$playerId]/balance - $betValue
+  let $player := $game/players/player[@id=$playerId]
+  let $newBalance := $player/balance - $betValue
   
   return 
-    if (($betValue > $game/maxBet) or ($betValue < $game/minBet)) then (
+    if (($betValue > $game/maxBet) or ($betValue < $game/minBet) or ($betValue > $player/balance)) then (
         (: ToDo: ERROR :)
     )
     else (
-        replace value of node $game/players/player[@id=$playerId]/balance with $newBalance,
-        replace value of node $game/players/player[@id=$playerId]/bet with $betValue
+        replace value of node $player/balance with $newBalance,
+        replace value of node $player/bet with $betValue,
+        g:setActivePlayer($gameId)
     )
 };
 
@@ -59,7 +61,7 @@ declare %updating function p:hit($gameId as xs:string) {
   let $currentCardsValue := p:calculateCardsValuePlayer($gameId, $player, 1)
   
   return
-    if ($currentCardsValue < 21) then (
+    if ($currentCardsValue <= 21) then (
         p:drawCardPlayer($gameId,fn:false(), $player)
     )
     else (

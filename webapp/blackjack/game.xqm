@@ -18,6 +18,7 @@ declare function g:createNewGame($maxBet as xs:integer, $minBet as xs:integer,$p
         </players>
   return
     <game id = "{$id}">
+      <step>bet</step>
       <maxBet>{$maxBet}</maxBet>
       <minBet>{$minBet}</minBet>
       <activePlayer>{$players/player[1]/@id}</activePlayer>
@@ -51,10 +52,22 @@ declare %updating function g:setActivePlayer($gameId as xs:string) {
   let $playerId := $game/activePlayer/@id
   
   return (
-        (: after last player: activePlayer/@id = "" :)
-        if(not($players[@id=$playerId]/following::*[1]/@id)) then
-            (replace value of node $game/activePlayer/@id with $players[@id=$playerId]/following::*[1]/@id,
-            d:dealerTurn($gameId))
+        (: after last player: activePlayer/@id is not present :)
+        if (not($players[@id=$playerId]/following::*[1]/@id)) then
+            (
+                if ($game/step = 'bet') then
+                (
+                    replace value of node $game/activePlayer/@id with $players[1]/@id,
+                    replace value of node $game/step with 'play',
+                    d:dealOutInitialCards($gameId)
+                )
+                else
+                (
+                    replace value of node $game/activePlayer/@id with $players[@id=$playerId]/following::*[1]/@id,
+                    replace value of node $game/step with 'finishing',
+                    d:dealerTurn($gameId)
+                )
+            )
         else
             replace value of node $game/activePlayer/@id with $players[@id=$playerId]/following::*[1]/@id
         )
@@ -65,8 +78,12 @@ declare %updating function g:setActivePlayer($gameId as xs:string) {
 (: this function checks the winning status for all players :)
 declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
     let $game := $g:casino/game[@id=$gameId]
-    for $player in $game/players/player[bet > 0]
-        return g:checkWinningStatus($gameId,fn:true(), $player)
+    return (
+        for $player in $game/players/player[bet > 0]
+            return g:checkWinningStatus($gameId, fn:true(), $player),
+        replace value of node $game/activePlayer/@id with $game/players/player[1]/@id,
+        replace value of node $game/step with 'bet'
+    )
 };
 
 (: this function checks whether a player or the dealer wins this round :)
@@ -88,17 +105,16 @@ declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame
                 delete node $player/hand/*
             )
             else (
-                (: check, whether dealer is over 21 or a tie :)
-                if (($valueOfCardsDealer > 21) or ($valueOfCardsDealer = $valueOfCardsPlayer)) then (
+                (: tie :)
+                if ($valueOfCardsDealer = $valueOfCardsPlayer) then (
                     (: EYERY player wins and gets back his/her bet :)
                     (: even in case dealer and player both have a BlackJack, the player only gets back his/her bet :)
                     replace value of node $player/balance with ($balanceValue+$betValue),
                     replace value of node $player/bet with 0,
                     delete node $player/hand/*
                 )
-                (: dealer and player are <= 21 and no tie :)
-                (: therefore, card values of player and dealer need to be compared against each other :)
-                else if ($valueOfCardsDealer > $valueOfCardsPlayer) then (
+                (: dealer wins :)
+                else if (($valueOfCardsDealer > $valueOfCardsPlayer) and ($valueOfCardsDealer <= 21)) then (
                     (: player loses :)
                     replace value of node $player/bet with 0,
                     delete node $player/hand/*
@@ -109,6 +125,7 @@ declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame
                     replace value of node $player/bet with 0,
                     delete node $player/hand/*
                 )
+                (: player has more points than dealer or dealer is over 21 :)
                 else (
                     replace value of node $player/balance with ($balanceValue+$betValue*2),
                     replace value of node $player/bet with 0,
