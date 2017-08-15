@@ -104,7 +104,7 @@
             <circle cx="{$xRoundTable}" cy="{$yRoundTable}" r="{$radiusInnerTable}" fill="darkgreen" stroke="white" stroke-width="5" clip-path="url(#bot)" />
             
             <image id="BJ-logo"
-                xlink:href="/static/blackjack/blackjack.png"
+                xlink:href="/static/img/blackjack.png"
                 x="{$xLogo}" y="{$yLogo}" height="100" width="300">
             </image>
             
