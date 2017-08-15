@@ -1,4 +1,4 @@
-body.welcome {
+.welcome {
   background: url("/static/blackjack/img/startImage.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -6,6 +6,7 @@ body.welcome {
   background-size: cover;
 }
 
+/*
 a:link {
   color: #DBDBDB;
   text-decoration: underline;
@@ -78,3 +79,4 @@ input.submit {
   align-self: center;
   margin-top: 50px;
 }
+*/
