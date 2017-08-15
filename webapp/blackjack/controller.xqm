@@ -11,7 +11,7 @@ import module namespace request = "http://exquery.org/ns/request";
 declare variable $c:index := doc("index.html");
 declare variable $c:initGame := doc("initGame.html");
 declare variable $c:casinoCollection := db:open("blackjack");
-declare variable $c:blackjackIMG := doc("../static/img/blackjack.png");
+declare variable $c:blackjackIMG := doc("/static/blackjack/img/blackjack.png");
 declare variable $c:xsltTransformator := doc("xsltTransformator.xsl");
 
 (: this function displays the start screen to the player :)
@@ -52,9 +52,9 @@ function c:handleInit() {
       request:parameter("balance3", ""),
       request:parameter("balance4", ""),
       request:parameter("balance5", ""))
-  
+
   (: naming conventiones are not restrictive :)
-  
+
   (: for the balance, only positive values are allowed :)
   (: otherwise, the balance is set to 0 by default, which means player cannot play :)
   let $balancesChecked :=
@@ -79,7 +79,7 @@ function c:handleInit() {
                 )
             )
         )
-        
+
   let $maxBetChecked :=
         if (fn:not(c:is-a-number($maxBet))) then (
             100
@@ -98,7 +98,7 @@ function c:handleInit() {
                 100
             )
         )
-                
+
   let $minBetChecked :=
         if (fn:not(c:is-a-number($minBet))) then (
             0
@@ -117,7 +117,7 @@ function c:handleInit() {
                 0
             )
         )
-        
+
   let $game := g:createNewGame($maxBetChecked,$minBetChecked,$playerNames,$balancesChecked)
 
   return (db:output(c:redirectToTransformator($game/@id)), g:insertGame($game))

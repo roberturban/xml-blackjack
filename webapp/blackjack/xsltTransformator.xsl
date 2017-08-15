@@ -6,10 +6,10 @@
     xmlns:fun="http://www11.in.tum.de/"
     exclude-result-prefixes="xs"
     version="2.0">
-    
+
     <!-- XSLT transformator Output -->
     <xsl:output method="html" encoding="UTF-8"/>
-    
+
     <!-- Variables for the table -->
     <xsl:variable name="xTable" select="number(100)"/>
     <xsl:variable name="yTable" select="number(10)"/>
@@ -25,11 +25,11 @@
     <xsl:variable name="heightInnerRectTable" select="number(180)"/>
     <xsl:variable name="xInnerRectTable" select="number(152)"/>
     <xsl:variable name="yInnerRectTable" select="number(40)"/>
-    
+
     <!-- Variables for logo -->
     <xsl:variable name="xLogo" select="number(450)"/>
     <xsl:variable name="yLogo" select="number(50)"/>
-    
+
     <!-- Kartenplaetze -->
     <xsl:variable name="xKartenplatz1" select="number(575)"/>
     <xsl:variable name="yKartenplatz1" select="number(460)"/>
@@ -41,15 +41,15 @@
     <xsl:variable name="yKartenplatz4" select="number(150)"/>
     <xsl:variable name="xKartenplatz5" select="number(325)"/>
     <xsl:variable name="yKartenplatz5" select="number(-115)"/>
-    
+
     <!-- Ablagestapel -->
     <xsl:variable name="xAblagestapel" select="number(80)"/>
     <xsl:variable name="yAblagestapel" select="number(-280)"/>
-    
+
     <!-- Variables for Text -->
     <xsl:variable name="xText" select="number(600)"/>
     <xsl:variable name="yText" select="number(200)"/>
-    
+
     <!-- Variables for Avatars -->
     <xsl:variable name="xAvatar1" select="number(575)"/>
     <xsl:variable name="yAvatar1" select="number(625)"/>
@@ -61,7 +61,7 @@
     <xsl:variable name="yAvatar4" select="number(920)"/>
     <xsl:variable name="xAvatar5" select="number(220)"/>
     <xsl:variable name="yAvatar5" select="number(1100)"/>
-    
+
     <!-- Variables for Buttons -->
     <xsl:variable name="widthButton" select="number(200)"/>
     <xsl:variable name="heightButton" select="number(50)"/>
@@ -69,7 +69,7 @@
     <xsl:variable name="yButton" select="number(750)"/>
     <xsl:variable name="xButton" select="$xButtonCenter - 100"/>
     <xsl:variable name="yTextButton" select="$yButton + 30"/>
-    
+
     <!-- XSL Basic Template Start Point -->
     <xsl:template match="/">
         <html>
@@ -83,13 +83,13 @@
             </body>
         </html>
     </xsl:template>
-    
-    
+
+
     <!-- XSL Basic Template Start Point -->
-    <xsl:template match="game">  
+    <xsl:template match="game">
         <!-- Variables -->
         <xsl:variable name="gameId" select="./@id"/>
-        
+
         <!-- Game board -->
         <svg xmlns="http://www.w3.org/2000/svg" width="1250" height="800">
             <clipPath id="rec">
@@ -99,19 +99,19 @@
             <clipPath id="bot">
                 <path d="M 0 150 h 1100 v 600 h -700 z"/>
             </clipPath>
-            <circle cx="{$xRoundTable}" cy="{$yRoundTable}" r="{$radiusOuterTable}" fill="black" clip-path="url(#bot)" />    
+            <circle cx="{$xRoundTable}" cy="{$yRoundTable}" r="{$radiusOuterTable}" fill="black" clip-path="url(#bot)" />
             <rect x="{$xInnerRectTable}" y="{$yInnerRectTable}" width="{$widthInnerTable}" height="{$heightInnerRectTable}" fill="darkgreen" stroke="white" stroke-width="5" rx="{$borderradiusTable}" clip-path="url(#rec)" />
             <circle cx="{$xRoundTable}" cy="{$yRoundTable}" r="{$radiusInnerTable}" fill="darkgreen" stroke="white" stroke-width="5" clip-path="url(#bot)" />
-            
+
             <image id="BJ-logo"
-                xlink:href="/static/img/blackjack.png"
+                xlink:href="/static/blackjack/img/blackjack.png"
                 x="{$xLogo}" y="{$yLogo}" height="100" width="300">
             </image>
-            
+
             <defs>
                 <rect id="kartenplatz" height="70" width="50" rx="6"/>
             </defs>
-            
+
             <use x="{$xKartenplatz1}" y="{$yKartenplatz1}" xlink:href="#kartenplatz" stroke="white" fill="none" />
             <use x="{$xKartenplatz2}" y="{$yKartenplatz2}" transform="rotate(-30 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
             <use x="{$xKartenplatz3}" y="{$yKartenplatz3}" transform="rotate(-60 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
@@ -129,28 +129,28 @@
                     PAYS 2 TO 1 | INSURANCE | PAYS 2 TO 1
                 </textPath>
             </text>
-            
+
             <text x="{$xText}" y="{$yText}" font-family="Verdana" font-size="50" fill="white" text-anchor="middle" font-weight="bold">
                 BLACK JACK
             </text>
-            
+
             <use x="{$xAblagestapel}" y="{$yAblagestapel}" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
             <use x="{$xAblagestapel + 3}" y="{$yAblagestapel - 3}" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
             <use x="{$xAblagestapel + 6}" y="{$yAblagestapel - 6}" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
             <use x="{$xAblagestapel + 9}" y="{$yAblagestapel - 9}" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
-            
+
             <defs>
                 <g id="avatar">
                     <ellipse cx="25" cy="30" rx="25" ry="30" fill="none" stroke="black" stroke-width="6"></ellipse>
                     <path d="M-30,120 c0,-75 110,-75 110,0" fill="none" stroke="black" stroke-width="6"/>
                 </g>
-                
+
                 <g id="avatar_active">
                     <ellipse cx="25" cy="30" rx="25" ry="30" fill="green" stroke="black" stroke-width="6"></ellipse>
                     <path d="M-30,120 c0,-75 110,-75 110,0" fill="green" stroke="black" stroke-width="6"/>
                 </g>
             </defs>
-            
+
             <xsl:choose>
                 <xsl:when test="activePlayer/@id = players/player[3]/@id">
                     <use xlink:href="#avatar_active" x="{$xAvatar1}" y="{$yAvatar1}"></use>
@@ -200,17 +200,17 @@
                 fill: white;
                 stroke: black;
                 }
-                
-                .active_button:hover{ 
+
+                .active_button:hover{
                 opacity: 0.9;
                 }
-                
+
                 .disactive_button{
                 fill: white;
                 stroke: grey;
                 }
             </style>
-            
+
             <xsl:if test="step = 'play'">
                 <g class="active_button">
                     <a href="/blackjack/insurance/{$gameId}">
@@ -218,14 +218,14 @@
                       <text x="{$xButtonCenter - 225}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Insurance</text>
                     </a>
                 </g>
-                
+
                 <g class="active_button">
                     <a href="/blackjack/hit/{$gameId}">
                      <use xlink:href="#button" x="{$xButton}" y="{$yButton}"></use>
                      <text x="{$xButtonCenter}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Hit</text>
                     </a>
                 </g>
-                
+
                 <g class="active_button">
                     <a href="/blackjack/stand/{$gameId}">
                       <use xlink:href="#button" x="{$xButton + 225}" y="{$yButton}"></use>
@@ -233,17 +233,17 @@
                     </a>
                 </g>
             </xsl:if>
-            
-            
+
+
             <xsl:if test="step = 'finishing'">
                <g class="active_button">
                    <a xlink:href="/blackjack/finishing/{$gameId}" xlink:title="go on...">
                        <use xlink:href="#button" x="{$xButton}" y="250"></use>
                        <text x="{$xButtonCenter}" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Go on...</text>
                    </a>
-               </g>   
+               </g>
             </xsl:if>
         </svg>
     </xsl:template>
-    
+
 </xsl:stylesheet>
