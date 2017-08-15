@@ -1,0 +1,72 @@
+body.welcome {
+  background-image: url("startImage.jpg");
+}
+
+a:link {
+  color: #DBDBDB;
+  text-decoration: underline;
+  font-style: italic;
+  top: 25%;
+  left: 35%;
+  position: absolute;
+  font-size: 22pt;
+}
+
+a.team:link {
+  color: #DBDBDB;
+  text-decoration: underline;
+  font-style: italic;
+  top: 85%;
+  left: 80%;
+  position: absolute;
+  font-size: 16pt;
+}
+
+a:hover {
+  color: #E6C25A;
+}
+
+a.team:hover {
+  color: #E6C25A;
+}
+
+a:visited {
+  color: #DBDBDB;
+}
+
+a.team:visited {
+  color: #DBDBDB;
+}
+
+body.second {
+  background-color: #1A2D1B;
+}
+
+div {
+  column-count: 2;
+  margin: auto;
+  height: 100%;
+  width: 50%;
+}
+
+label {
+  font-size: 17pt;
+  text-align: center;
+  color: #E6C25A;
+}
+
+input {
+  font-size: 17pt;
+  text-align: center;
+}
+
+h1 {
+  font-size: 25pt;
+  font-weight: bold;
+  text-align: center;
+  color: #E6C25A;
+}
+
+input.submit {
+  background-color: #E6C25A;
+}

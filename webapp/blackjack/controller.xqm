@@ -11,7 +11,7 @@ import module namespace request = "http://exquery.org/ns/request";
 declare variable $c:index := doc("index.html");
 declare variable $c:initGame := doc("initGame.html");
 declare variable $c:casinoCollection := db:open("blackjack");
-declare variable $c:blackjackIMG := doc("img/blackjack.png");
+declare variable $c:blackjackIMG := doc("../static/img/blackjack.png");
 declare variable $c:xsltTransformator := doc("xsltTransformator.xsl");
 
 (: this function displays the start screen to the player :)
