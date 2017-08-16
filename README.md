@@ -26,7 +26,6 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * Review/test concatenated game logic
 * Update class diagram
 * CSS for start pages
-* Implement: empty player name means player is not on the table
 * Check for players on the table (name != "" and balance > 1 and bet > 0 and bet <= balance) in all relevant functions (e.g. setActivePlayer, ...)
 * Old ToDos
 
