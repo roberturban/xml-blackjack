@@ -11,7 +11,7 @@ ALL DOCUMENTATION IS TO DO IN ENGLISH (except doc-book)
 
 ------------------------------------------------------------------------------------------------------------------------
 
-ToDos 08/21/2017
+ToDos 08/16/2017
 
 MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found! Do not just write them there, but MARK THEM!
 
@@ -19,7 +19,7 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * ToDos in code (e.g. answer questions in comments, implement/discuss need of constructors, correct the logic, ...)
 * Testing
 * DocBook
-* Presentation slides
+* Presentation slides (inclusive class and sequence diagram, architecture overview, ...)
 * Bet text field before displaying the cards
 * GUI (z.B.: Hit, stand, insurance buttons need to be clickable only when possible)
 * Error pages displaying to user (--> see ToDos in code)
