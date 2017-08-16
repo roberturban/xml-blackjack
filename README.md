@@ -11,6 +11,32 @@ ALL DOCUMENTATION IS TO DO IN ENGLISH (except doc-book)
 
 ------------------------------------------------------------------------------------------------------------------------
 
+ToDos 08/21/2017
+
+MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found! Do not just write them there, but MARK THEM!
+
+* Review/test insurance function implementation
+* ToDos in code (e.g. answer questions in comments, implement/discuss need of constructors, correct the logic, ...)
+* Testing
+* DocBook
+* Presentation slides
+* Bet text field before displaying the cards
+* GUI (z.B.: Hit, stand, insurance buttons need to be clickable only when possible)
+* Error pages displaying to user (--> see ToDos in code)
+* Review/test concatenated game logic
+* Update class diagram
+* CSS for start pages
+* Implement: empty player name means player is not on the table
+* Old ToDos
+
+Lower prio:
+* (Dynamic adding of players during game in next round should be possible)
+* (Casino.xqm (define the rest of the elements and attributes))
+* (Bet round with coins)
+
+
+------------------------------------------------------------------------------------------------------------------------
+
 ToDos 08/11/2017
 
 MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found! Do not just write them there, but MARK THEM!
