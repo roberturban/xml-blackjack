@@ -53,7 +53,7 @@ function c:handleInit() {
       request:parameter("balance4", ""),
       request:parameter("balance5", ""))
 
-  (: naming conventiones are not restrictive :)
+  (: naming conventiones are not restrictive, but empty player name means no player :)
 
   (: for the balance, only positive values are allowed :)
   (: otherwise, the balance is set to 0 by default, which means player cannot play :)

@@ -26,7 +26,9 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * Review/test concatenated game logic
 * Update class diagram
 * CSS for start pages
-* Check for players on the table (name != "" and balance > 1 and bet > 0 and bet <= balance) in all relevant functions (e.g. setActivePlayer, ...)
+* At least 1 player has to be playing when starting a new game (currently it is possible to start a new game without anyone playing)
+* Check for players actually playing on the table (name != "" and balance >= 1 and bet > 0 and bet <= balance) in all relevant functions (e.g. setActivePlayer, checkWinningStatusA, after bet round when activePlayer is 1 again, ...)
+* After deleting a player, the other players should remain on their seats at the table (--> no right shifting in GUI)
 * Old ToDos
 
 Lower prio:
