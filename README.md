@@ -18,7 +18,7 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * ToDos in code (e.g. answer questions in comments, correct the logic, ...)
 * Testing
 * DocBook
-* Presentation slides (inclusive calss and sequence diagram, architecture overview, ...)
+* Presentation slides (inclusive class and sequence diagram, architecture/technology overview, ...)
 * Bet text field before displaying the cards
 * GUI (e.g.: Hit, stand, insurance buttons need to be clickable only when possible)
 * Error pages displaying to user (--> see ToDos in code)
