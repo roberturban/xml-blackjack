@@ -56,7 +56,7 @@ declare %updating function g:setActivePlayer($gameId as xs:string) {
   let $playerId := $game/activePlayer/@id
   
   return (
-        (: after last player: activePlayer/@id is not present :)
+        (: after last player: activePlayer/@id is empty ("") :)
         if (not($players[@id=$playerId]/following::*[1]/@id)) then
             (
                 if ($game/step = 'bet') then
@@ -84,7 +84,8 @@ declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
         for $player in $game/players/player[bet > 0]
             return g:checkWinningStatus($gameId, fn:true(), $player),
         replace value of node $game/activePlayer/@id with $game/players/player[1]/@id,
-        replace value of node $game/step with 'bet'
+        replace value of node $game/step with 'bet',
+        delete node $game/dealer/hand/*
     )
 };
 
