@@ -189,13 +189,16 @@
                     <text x="{$xAvatar1+25}" y="{$yAvatar1+110}" fill="white" text-anchor="middle" dominant-baseline="central">
                       <xsl:value-of select="$player3"/>
                     </text>
-
                 </xsl:when>
                 <xsl:otherwise>
-                    <use xlink:href="#avatar" x="{$xAvatar1}" y="{$yAvatar1}"></use>
-                    <text x="{$xAvatar1+25}" y="{$yAvatar1+110}" fill="black" text-anchor="middle" dominant-baseline="central">
-                      <xsl:value-of select="$player3"/>
-                    </text>
+                    <xsl:choose>
+                        <xsl:when test="players/player[3]">
+                            <use xlink:href="#avatar" x="{$xAvatar1}" y="{$yAvatar1}"></use>
+                            <text x="{$xAvatar1+25}" y="{$yAvatar1+110}" fill="black" text-anchor="middle" dominant-baseline="central">
+                                <xsl:value-of select="$player3"/>
+                            </text>
+                        </xsl:when>
+                    </xsl:choose>
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:choose>
@@ -206,10 +209,14 @@
                     </text>
                 </xsl:when>
                 <xsl:otherwise>
-                    <use xlink:href="#avatar" x="{$xAvatar2}" y="{$yAvatar2}" transform="rotate(30 0 0)"></use>
-                    <text x="{$xAvatar2+25}" y="{$yAvatar2+110}" transform="rotate(30 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
-                      <xsl:value-of select="$player4"/>
-                    </text>
+                    <xsl:choose>
+                        <xsl:when test="players/player[4]">
+                            <use xlink:href="#avatar" x="{$xAvatar2}" y="{$yAvatar2}" transform="rotate(30 0 0)"></use>
+                            <text x="{$xAvatar2+25}" y="{$yAvatar2+110}" transform="rotate(30 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
+                                <xsl:value-of select="$player4"/>
+                            </text>
+                        </xsl:when>
+                    </xsl:choose>
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:choose>
@@ -220,10 +227,14 @@
                     </text>
                 </xsl:when>
                 <xsl:otherwise>
-                    <use xlink:href="#avatar" x="{$xAvatar3}" y="{$yAvatar3}" transform="rotate(60 0 0)"></use>
-                    <text x="{$xAvatar3+25}" y="{$yAvatar3+110}" transform="rotate(60 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
-                      <xsl:value-of select="$player5"/>
-                    </text>
+                    <xsl:choose>
+                        <xsl:when test="players/player[5]">
+                            <use xlink:href="#avatar" x="{$xAvatar3}" y="{$yAvatar3}" transform="rotate(60 0 0)"></use>
+                            <text x="{$xAvatar3+25}" y="{$yAvatar3+110}" transform="rotate(60 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
+                                <xsl:value-of select="$player5"/>
+                            </text>
+                        </xsl:when>
+                    </xsl:choose>
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:choose>
@@ -234,10 +245,14 @@
                     </text>
                 </xsl:when>
                 <xsl:otherwise>
-                    <use xlink:href="#avatar" x="{$xAvatar4}" y="{$yAvatar4}" transform="rotate(-30 0 0)"></use>
-                    <text x="{$xAvatar4+25}" y="{$yAvatar4+110}" transform="rotate(-30 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
-                      <xsl:value-of select="$player2"/>
-                    </text>
+                    <xsl:choose>
+                        <xsl:when test="players/player[2]">
+                            <use xlink:href="#avatar" x="{$xAvatar4}" y="{$yAvatar4}" transform="rotate(-30 0 0)"></use>
+                            <text x="{$xAvatar4+25}" y="{$yAvatar4+110}" transform="rotate(-30 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
+                                <xsl:value-of select="$player2"/>
+                            </text>
+                        </xsl:when>
+                    </xsl:choose>
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:choose>
@@ -248,10 +263,14 @@
                     </text>
                 </xsl:when>
                 <xsl:otherwise>
-                    <use xlink:href="#avatar" x="{$xAvatar5}" y="{$yAvatar5}" transform="rotate(-60 0 0)"></use>
-                    <text x="{$xAvatar5+25}" y="{$yAvatar5+110}" transform="rotate(-60 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
-                      <xsl:value-of select="$player1"/>
-                    </text>
+                    <xsl:choose>
+                        <xsl:when test="players/player[1]">
+                            <use xlink:href="#avatar" x="{$xAvatar5}" y="{$yAvatar5}" transform="rotate(-60 0 0)"></use>
+                            <text x="{$xAvatar5+25}" y="{$yAvatar5+110}" transform="rotate(-60 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
+                                <xsl:value-of select="$player1"/>
+                            </text>
+                        </xsl:when>
+                    </xsl:choose>
                 </xsl:otherwise>
             </xsl:choose>
 

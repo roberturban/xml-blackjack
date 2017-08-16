@@ -13,7 +13,11 @@ declare function g:createNewGame($maxBet as xs:integer, $minBet as xs:integer,$p
   let $id := t:generateID()
   let $players := <players>
         {for $p in $playerNames count $i
-            return p:newPlayer($p, $balances[$i])
+            return(
+            if ($balances[$i] <= 0 or $p = "") then
+            ()
+            else(
+            p:newPlayer($p, $balances[$i])))
         }
         </players>
   return
