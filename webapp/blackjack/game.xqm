@@ -85,8 +85,27 @@ declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
             return g:checkWinningStatus($gameId, fn:true(), $player),
         replace value of node $game/activePlayer/@id with $game/players/player[1]/@id,
         replace value of node $game/step with 'bet',
-        delete node $game/dealer/hand/*
+        delete node $game/dealer/hand/*,
+        g:checkDeckLength($gameId)
     )
+};
+
+declare %updating function g:checkDeckLength($gameId as xs:string){
+  let $game := $g:casino/game[@id=$gameId]
+  let $deck := <cards>
+                    {g:getDeck()/*}
+                    {g:getDeck()/*}
+                    {g:getDeck()/*}
+                    {g:getDeck()/*}
+                    {g:getDeck()/*}
+                    {g:getDeck()/*}
+                </cards>
+  return(
+    if(count($game/cards/*)<(312*0.6)) then (
+        replace node $game/cards with $deck
+    )
+    else ()
+  )
 };
 
 (: this function checks whether a player or the dealer wins this round :)
