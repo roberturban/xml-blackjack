@@ -196,11 +196,6 @@
                     <text x="{$xAvatar1+25}" y="{$yAvatar1+110}" fill="black" text-anchor="middle" dominant-baseline="central">
                       <xsl:value-of select="$player3"/>
                     </text>
-                    <use xlink:href="#chip-1" x="{$xAvatar1+0}" y="{$yAvatar1+150}" />
-                    <use xlink:href="#chip-2" x="{$xAvatar1+10}" y="{$yAvatar1+150}" />
-                    <use xlink:href="#chip-5" x="{$xAvatar1+20}" y="{$yAvatar1+150}" />
-                    <use xlink:href="#chip-10" x="{$xAvatar1+30}" y="{$yAvatar1+150}" />
-                    <use xlink:href="#chip-20" x="{$xAvatar1+40}" y="{$yAvatar1+150}" />
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:choose>
@@ -209,7 +204,6 @@
                     <text x="{$xAvatar2+25}" y="{$yAvatar2+110}" transform="rotate(30 0 0)" fill="white" text-anchor="middle" dominant-baseline="central">
                       <xsl:value-of select="$player4"/>
                     </text>
-
                 </xsl:when>
                 <xsl:otherwise>
                     <use xlink:href="#avatar" x="{$xAvatar2}" y="{$yAvatar2}" transform="rotate(30 0 0)"></use>
