@@ -154,6 +154,33 @@
                     <ellipse cx="25" cy="30" rx="25" ry="30" fill="green" stroke="black" stroke-width="6"></ellipse>
                     <path d="M-30,120 c0,-75 110,-75 110,0" fill="green" stroke="black" stroke-width="6"/>
                 </g>
+
+                <g id="chip-coin">
+                    <circle r="15" stroke="black" stroke-width="3" fill="gold" />
+                </g>
+
+                <text id="chip-value-2" font-size="11.5" fill="black">2</text>
+                <text id="chip-value-5" font-size="11.5" fill="black">5</text>
+                <text id="chip-value-10" font-size="11.5" fill="black">10</text>
+                <text id="chip-value-20" font-size="11.5" fill="black">20</text>
+
+                <g id="chip-2">
+                    <use xlink:href="#chip-coin" />
+                    <use xlink:href="#chip-value-2" x="-2" y="5" />
+                </g>
+                <g id="chip-5">
+                    <use xlink:href="#chip-coin" />
+                    <use xlink:href="#chip-value-5" x="-2" y="5" />
+                </g>
+                <g id="chip-10">
+                    <use xlink:href="#chip-coin" />
+                    <use xlink:href="#chip-value-10" x="-2" y="5" />
+                </g>
+                <g id="chip-20">
+                    <use xlink:href="#chip-coin" />
+                    <use xlink:href="#chip-value-20" x="-2" y="5" />
+                </g>
+
             </defs>
 
             <xsl:choose>
@@ -162,12 +189,18 @@
                     <text x="{$xAvatar1+25}" y="{$yAvatar1+110}" fill="white" text-anchor="middle" dominant-baseline="central">
                       <xsl:value-of select="$player3"/>
                     </text>
+
                 </xsl:when>
                 <xsl:otherwise>
                     <use xlink:href="#avatar" x="{$xAvatar1}" y="{$yAvatar1}"></use>
                     <text x="{$xAvatar1+25}" y="{$yAvatar1+110}" fill="black" text-anchor="middle" dominant-baseline="central">
                       <xsl:value-of select="$player3"/>
                     </text>
+                    <use xlink:href="#chip-1" x="{$xAvatar1+0}" y="{$yAvatar1+150}" />
+                    <use xlink:href="#chip-2" x="{$xAvatar1+10}" y="{$yAvatar1+150}" />
+                    <use xlink:href="#chip-5" x="{$xAvatar1+20}" y="{$yAvatar1+150}" />
+                    <use xlink:href="#chip-10" x="{$xAvatar1+30}" y="{$yAvatar1+150}" />
+                    <use xlink:href="#chip-20" x="{$xAvatar1+40}" y="{$yAvatar1+150}" />
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:choose>
@@ -176,6 +209,7 @@
                     <text x="{$xAvatar2+25}" y="{$yAvatar2+110}" transform="rotate(30 0 0)" fill="white" text-anchor="middle" dominant-baseline="central">
                       <xsl:value-of select="$player4"/>
                     </text>
+
                 </xsl:when>
                 <xsl:otherwise>
                     <use xlink:href="#avatar" x="{$xAvatar2}" y="{$yAvatar2}" transform="rotate(30 0 0)"></use>
