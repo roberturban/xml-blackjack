@@ -101,20 +101,20 @@ function c:handleInit() {
 
   let $minBetChecked :=
         if (fn:not(c:is-a-number($minBet))) then (
-            0
+            1
         )
         else (
-            if ($minBet > 0) then (
+            if ($minBet > 1) then (
                 (: consider the integer range :)
                 if ($minBet <= $maxBetChecked) then (
                     $minBet
                 )
                 else (
-                    0
+                    1
                 )
             )
             else (
-                0
+                1
             )
         )
 
