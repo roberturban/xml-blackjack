@@ -66,7 +66,7 @@ declare function d:calculateCardsValueDealer($gameId as xs:string,$cardsDrawn as
                     if (($card/value = 'J') or ($card/value = 'Q') or ($card/value = 'K')) then
                         10
                     else if ($card/value = 'A') then
-                        (: do not consider the asses right now :)
+                        (: do not consider the aces right now :)
                         0
                     else
                         ($card/value)
@@ -78,7 +78,7 @@ declare function d:calculateCardsValueDealer($gameId as xs:string,$cardsDrawn as
                     if (($card/value = 'J') or ($card/value = 'Q') or ($card/value = 'K')) then
                         10
                     else if ($card/value = 'A') then
-                        (: do not consider the asses right now :)
+                        (: do not consider the aces right now :)
                         0
                     else
                         ($card/value)
@@ -89,7 +89,7 @@ declare function d:calculateCardsValueDealer($gameId as xs:string,$cardsDrawn as
     
     return (
         if ($valueGap < 0) then (
-            (: in this case, valueOfCardsWithoutAsses is already > 21 :)
+            (: in this case, valueOfCardsWithoutAces is already > 21 :)
             (: thus, return 22 as default value, because it only matters > 21 and not the exact value :)
             22
         )
@@ -103,15 +103,15 @@ declare function d:calculateCardsValueDealer($gameId as xs:string,$cardsDrawn as
             21
         )
         else if (($valueGap > 0) and ($amountOfAces = 0)) then (
-            (: dealer has no asses, but < 21 :)
-            (: valueOfCardsWithoutAsses is the overallValue, because dealer has no asses :)
+            (: dealer has no aces, but < 21 :)
+            (: valueOfCardsWithoutAces is the overallValue, because dealer has no aces :)
             $valueOfCardsWithoutAces
         )
         else (
-            (: this is the case for (($valueGap > 0) and ($amountOfAsses > 0)) :)
-            (: as amountOfAsses cannot be < 0, this is the last "outer" case :)
+            (: this is the case for (($valueGap > 0) and ($amountOfAces > 0)) :)
+            (: as amountOfAces cannot be < 0, this is the last "outer" case :)
             
-            (: adding asses might still be possible, hence check for the appropriate values (11 or 1) :)  
+            (: adding aces might still be possible, hence check for the appropriate values (11 or 1) :)  
             if ($valueGap = $amountOfAces) then (
                 (: in this case, each As has to be calculated as 1 for a Blackjack of the dealer :)
                 21
@@ -122,15 +122,15 @@ declare function d:calculateCardsValueDealer($gameId as xs:string,$cardsDrawn as
                 22
             )
             else (
-                (: this is the case, where $valueGap > $amountOfAsses :)
+                (: this is the case, where $valueGap > $amountOfAces :)
                 (: now check, which single As has to count as 11 or as 1 :)
                 if ($valueGap < 11) then (
-                    (: asses can only count as 1 each :)
+                    (: aces can only count as 1 each :)
                     (: can be <= 21, but can also be > 21 :)
                     ($valueOfCardsWithoutAces + $amountOfAces)
                 )
                 else if (($valueGap = 11) and ($amountOfAces > 1)) then (
-                    (: asses can only count as 1 each :)
+                    (: aces can only count as 1 each :)
                     (: can be <= 21, but can also be > 21 :)
                     ($valueOfCardsWithoutAces + $amountOfAces)
                 )
@@ -140,10 +140,10 @@ declare function d:calculateCardsValueDealer($gameId as xs:string,$cardsDrawn as
                     21
                 )
                 else (
-                    (: this is the case, where (($valueGap > 11) and ($amountOfAsses > 0)) is true :)
+                    (: this is the case, where (($valueGap > 11) and ($amountOfAces > 0)) is true :)
                     (: more than one As can never be counted as 11, as one would be over 21 automatically otherwise (2*11 = 22) :)
                     
-                    (: try out if it's better to count one As as 11 and all the others as 1, or if it's better to count all asses as 1 :)
+                    (: try out if it's better to count one As as 11 and all the others as 1, or if it's better to count all aces as 1 :)
                     if (($valueOfCardsWithoutAces + 11 + ($amountOfAces - 1)) <= 21) then (
                         ($valueOfCardsWithoutAces + 11 + ($amountOfAces - 1))
                     )
@@ -165,7 +165,7 @@ declare function d:turnHiddenCard($card as element(card)) as element(card) {
   return $mod
 };
 
-(: works. delete other dealOutInitialCards if everbody agrees :)
+(: this function deals out two intial cards for every player and the dealer in the correct sequence :)
 declare %updating function d:dealOutInitialCards($gameId as xs:string) {
     let $game := $g:casino/game[@id=$gameId]
     let $players := $game/players/player[balance > 0]

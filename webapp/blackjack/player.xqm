@@ -8,8 +8,6 @@ import module namespace t = "blackjack/tools" at "tools.xqm";
 (: open database blackjack, locate resource within database and navigate to its top element :)
 declare variable $p:casino := db:open("blackjack")/casino;
 
-(: further constructors for player still ToDo :)
-
 (: this function creates a new player with a name :)
 declare function p:newPlayer($name as xs:string, $balance as xs:integer) as element(player) {
   let $id := t:generateID()
@@ -85,11 +83,13 @@ declare %updating function p:insurance($gameId as xs:string) {
   let $betValue := $game/players/player[@id=$playerId]/bet
   
   return (
-    if(count(for $card in $game/dealer/hand/card
-    where (($card/value = 'A') and ($card/hidden = 'false'))
-    return 'A')>0) then
+    (: insurance is only possible, if the first open card of the dealer is an Ace :)
+    if (($game/dealer/hand/card[1]/value = 'A') and ($game/dealer/hand/card[1]/hidden = 'false')) then (
         replace value of node $game/players/player[@id=$playerId]/insurance with ($betValue div 2)
-    else())
+    )
+    else (
+    )
+  )
 };
 
 (: calculates value of player's hand + $cardsDrawn from stack :)
@@ -118,7 +118,7 @@ declare function p:calculateCardsValuePlayer($gameId as xs:string, $player as el
                     if (($card/value = 'J') or ($card/value = 'Q') or ($card/value = 'K')) then
                         10
                     else if ($card/value = 'A') then
-                        (: do not consider the asses right now :)
+                        (: do not consider the aces right now :)
                         0
                     else
                         ($card/value)
@@ -130,7 +130,7 @@ declare function p:calculateCardsValuePlayer($gameId as xs:string, $player as el
                     if (($card/value = 'J') or ($card/value = 'Q') or ($card/value = 'K')) then
                         10
                     else if ($card/value = 'A') then
-                        (: do not consider the asses right now :)
+                        (: do not consider the aces right now :)
                         0
                     else
                         ($card/value)
@@ -141,7 +141,7 @@ declare function p:calculateCardsValuePlayer($gameId as xs:string, $player as el
     
     return (
         if ($valueGap < 0) then (
-            (: in this case, valueOfCardsWithoutAsses is already > 21 :)
+            (: in this case, valueOfCardsWithoutAces is already > 21 :)
             (: thus, return 22 as default value, because it only matters > 21 and not the exact value :)
             22
         )
@@ -155,15 +155,15 @@ declare function p:calculateCardsValuePlayer($gameId as xs:string, $player as el
             21
         )
         else if (($valueGap > 0) and ($amountOfAces = 0)) then (
-            (: dealer has no asses, but < 21 :)
-            (: valueOfCardsWithoutAsses is the overallValue, because dealer has no asses :)
+            (: dealer has no aces, but < 21 :)
+            (: valueOfCardsWithoutAces is the overallValue, because dealer has no aces :)
             $valueOfCardsWithoutAces
         )
         else (
-            (: this is the case for (($valueGap > 0) and ($amountOfAsses > 0)) :)
-            (: as amountOfAsses cannot be < 0, this is the last "outer" case :)
+            (: this is the case for (($valueGap > 0) and ($amountOfAces > 0)) :)
+            (: as amountOfAces cannot be < 0, this is the last "outer" case :)
             
-            (: adding asses might still be possible, hence check for the appropriate values (11 or 1) :)  
+            (: adding aces might still be possible, hence check for the appropriate values (11 or 1) :)  
             if ($valueGap = $amountOfAces) then (
                 (: in this case, each As has to be calculated as 1 for a Blackjack of the dealer :)
                 21
@@ -174,15 +174,15 @@ declare function p:calculateCardsValuePlayer($gameId as xs:string, $player as el
                 22
             )
             else (
-                (: this is the case, where $valueGap > $amountOfAsses :)
+                (: this is the case, where $valueGap > $amountOfAces :)
                 (: now check, which single As has to count as 11 or as 1 :)
                 if ($valueGap < 11) then (
-                    (: asses can only count as 1 each :)
+                    (: aces can only count as 1 each :)
                     (: can be <= 21, but can also be > 21 :)
                     ($valueOfCardsWithoutAces + $amountOfAces)
                 )
                 else if (($valueGap = 11) and ($amountOfAces > 1)) then (
-                    (: asses can only count as 1 each :)
+                    (: aces can only count as 1 each :)
                     (: can be <= 21, but can also be > 21 :)
                     ($valueOfCardsWithoutAces + $amountOfAces)
                 )
@@ -192,10 +192,10 @@ declare function p:calculateCardsValuePlayer($gameId as xs:string, $player as el
                     21
                 )
                 else (
-                    (: this is the case, where (($valueGap > 11) and ($amountOfAsses > 0)) is true :)
+                    (: this is the case, where (($valueGap > 11) and ($amountOfAces > 0)) is true :)
                     (: more than one As can never be counted as 11, as one would be over 21 automatically otherwise (2*11 = 22) :)
                     
-                    (: try out if it's better to count one As as 11 and all the others as 1, or if it's better to count all asses as 1 :)
+                    (: try out if it's better to count one As as 11 and all the others as 1, or if it's better to count all aces as 1 :)
                     if (($valueOfCardsWithoutAces + 11 + ($amountOfAces - 1)) <= 21) then (
                         ($valueOfCardsWithoutAces + 11 + ($amountOfAces - 1))
                     )
