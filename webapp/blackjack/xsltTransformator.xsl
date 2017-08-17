@@ -41,6 +41,9 @@
     <xsl:variable name="yKartenplatz4" select="number(150)"/>
     <xsl:variable name="xKartenplatz5" select="number(325)"/>
     <xsl:variable name="yKartenplatz5" select="number(-115)"/>
+    <xsl:variable name="xKartenplatzDealer" select="number(575)"/>
+    <xsl:variable name="yKartenplatzDealer" select="number(60)"/>
+    
 
     <!-- Ablagestapel -->
     <xsl:variable name="xAblagestapel" select="number(80)"/>
@@ -106,6 +109,7 @@
         <xsl:variable name="player5" select="players/player[5]"/>
         <xsl:variable name="player1" select="players/player[1]"/>
         <xsl:variable name="player2" select="players/player[2]"/>
+        <xsl:variable name="dealer" select="dealer"/>
 
         <!-- Game board -->
         <svg xmlns="http://www.w3.org/2000/svg" width="1250" height="830">
@@ -120,10 +124,10 @@
             <rect x="{$xInnerRectTable}" y="{$yInnerRectTable}" width="{$widthInnerTable}" height="{$heightInnerRectTable}" fill="darkgreen" stroke="white" stroke-width="5" rx="{$borderradiusTable}" clip-path="url(#rec)" />
             <circle cx="{$xRoundTable}" cy="{$yRoundTable}" r="{$radiusInnerTable}" fill="darkgreen" stroke="white" stroke-width="5" clip-path="url(#bot)" />
 
-            <image id="BJ-logo"
+           <!-- <image id="BJ-logo"
                 xlink:href="/static/blackjack/img/blackjack.png"
                 x="{$xLogo}" y="{$yLogo}" height="100" width="300">
-            </image>
+            </image>-->
 
             <defs>
                 <rect id="kartenplatz" height="70" width="50" rx="6"/>
@@ -134,6 +138,8 @@
             <use x="{$xKartenplatz1}" y="{$yKartenplatz1}" transform="rotate(-60 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
             <use x="{$xKartenplatz4}" y="{$yKartenplatz4}" transform="rotate(30 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
             <use x="{$xKartenplatz5}" y="{$yKartenplatz5}" transform="rotate(60 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
+            <use x="{$xKartenplatzDealer}" y="{$yKartenplatzDealer}" xlink:href="#kartenplatz" stroke="white" fill="none"/>
+            
             <defs>
                 <path id="insurance_text_path" d="M353,148 a90,90 0 0,0 494,0"/>
             </defs>
@@ -433,10 +439,10 @@
                    </a>
                </g>
             </xsl:if>
-            
+          
             <!-- show cards
             black cards (#kartenplatz as placeholder), template match missing for values, see: https://stackoverflow.com/questions/18585309/how-to-call-template-with-name-as-a-variable-in-xslt-->
-           
+            
             <xsl:for-each select="$player1/hand/card">
                 <xsl:choose>
                     <xsl:when test= "self::node()/color='diamonds'">
@@ -476,7 +482,7 @@
             <xsl:for-each select="$player3/hand/card">
                 <xsl:choose>
                     <xsl:when test= "self::node()/color='diamonds'">
-                        <use x="{$xKartenplatz3 - 15+ position()*15}" y="{$yKartenplatz3}" xlink:href="#kartenplatz" stroke= "white" />
+                      <use x="{$xKartenplatz3 - 15+ position()*15}" y="{$yKartenplatz3}" xlink:href="#kartenplatz" stroke= "white" />
                     </xsl:when>
                     <xsl:when test= "self::node()/color='hearts'">
                         <use x="{$xKartenplatz3 - 15 + position()*15}" y="{$yKartenplatz3}" xlink:href="#kartenplatz" stroke= "white" />
@@ -520,6 +526,22 @@
                     </xsl:when>
                     <xsl:when test= "self::node()/color='clubs'">
                         <use x="{$xKartenplatz5 -15 + position()*15}" y="{$yKartenplatz5}" transform="rotate(60 0 0)" xlink:href="#kartenplatz" stroke= "white" />
+                    </xsl:when>
+                </xsl:choose> 
+            </xsl:for-each>
+            <xsl:for-each select="$dealer/hand/card">
+                <xsl:choose>
+                    <xsl:when test= "self::node()/color='diamonds'">
+                        <use x="{$xKartenplatzDealer - 15+ position()*15}" y="{$yKartenplatzDealer}"  xlink:href="#kartenplatz" stroke= "white" />
+                    </xsl:when>
+                    <xsl:when test= "self::node()/color='hearts'">
+                        <use x="{$xKartenplatzDealer - 15 + position()*15}" y="{$yKartenplatzDealer}"  xlink:href="#kartenplatz" stroke= "white" />
+                    </xsl:when>
+                    <xsl:when test= "self::node()/color='spades'">
+                        <use x="{$xKartenplatzDealer - 15 + position()*15}" y="{$yKartenplatzDealer}" xlink:href="#kartenplatz" stroke= "white"/>
+                    </xsl:when>
+                    <xsl:when test= "self::node()/color='clubs'">
+                        <use x="{$xKartenplatzDealer -15 + position()*15}" y="{$yKartenplatzDealer}"  xlink:href="#kartenplatz" stroke= "white" />
                     </xsl:when>
                 </xsl:choose> 
             </xsl:for-each>
