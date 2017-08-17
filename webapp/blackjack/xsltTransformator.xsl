@@ -61,6 +61,18 @@
     <xsl:variable name="yAvatar4" select="number(920)"/>
     <xsl:variable name="xAvatar5" select="number(220)"/>
     <xsl:variable name="yAvatar5" select="number(1100)"/>
+    
+    <!-- Variables for Coins -->
+    <xsl:variable name="xCoin1" select="number(1026)"/>
+    <xsl:variable name="yCoin1" select="number(320)"/>
+    <xsl:variable name="xCoin2" select="number(862)"/>
+    <xsl:variable name="yCoin2" select="number(508)"/>
+    <xsl:variable name="xCoin3" select="number(601)"/>
+    <xsl:variable name="yCoin3" select="number(585)"/>
+    <xsl:variable name="xCoin4" select="number(325)"/>
+    <xsl:variable name="yCoin4" select="number(500)"/>
+    <xsl:variable name="xCoin5" select="number(175)"/>
+    <xsl:variable name="yCoin5" select="number(320)"/>
 
     <!-- Variables for Buttons -->
     <xsl:variable name="widthButton" select="number(200)"/>
@@ -182,7 +194,47 @@
                 </g>
 
             </defs>
-
+            <xsl:choose>
+                <xsl:when test="$player1/bet>0">
+                    <use x="{$xCoin1}" y="{$yCoin1}" xlink:href="#chip-coin" />
+                    <text x="{$xCoin1}" y="{$yCoin1}"  fill="black" text-anchor="middle" dominant-baseline="central"  >
+                        <xsl:value-of select="$player1/bet"/>
+                    </text>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$player2/bet>0">
+                    <use x="{$xCoin2}" y="{$yCoin2}" xlink:href="#chip-coin" />
+                    <text x="{$xCoin2}" y="{$yCoin2}" fill="black" text-anchor="middle" dominant-baseline="central" >
+                        <xsl:value-of select="$player2/bet"/>
+                    </text>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$player3/bet>0">
+                    <use x="{$xCoin3}" y="{$yCoin3}" xlink:href="#chip-coin" />
+                    <text x="{$xCoin3}" y="{$yCoin3}" fill="black" text-anchor="middle" dominant-baseline="central">
+                        <xsl:value-of select="$player3/bet"/>
+                    </text>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$player4/bet>0">
+                    <use x="{$xCoin4}" y="{$yCoin4}" xlink:href="#chip-coin" />
+                    <text x="{$xCoin4}" y="{$yCoin4}" fill="black" text-anchor="middle" dominant-baseline="central" >
+                        <xsl:value-of select="$player4/bet"/>
+                    </text>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$player5/bet>0">
+                    <use x="{$xCoin5}" y="{$yCoin5}" xlink:href="#chip-coin" />
+                    <text x="{$xCoin5}" y="{$yCoin5}" fill="black" text-anchor="middle" dominant-baseline="central" >
+                        <xsl:value-of select="$player5/bet"/>
+                    </text>
+                </xsl:when>
+            </xsl:choose>
+  
             <xsl:choose>
                 <xsl:when test="activePlayer/@id = players/player[3]/@id">
                     <use xlink:href="#avatar_active" x="{$xAvatar1}" y="{$yAvatar1}"></use>
@@ -323,6 +375,7 @@
                 stroke: grey;
                 }
             </style>
+            
             
             <xsl:variable name="minBet" select="./minBet"/>
             <xsl:if test="step = 'bet'">
