@@ -104,7 +104,7 @@ function c:handleInit() {
             1
         )
         else (
-            if ($minBet > 1) then (
+            if ($minBet > 0) then (
                 (: consider the integer range :)
                 if ($minBet <= $maxBetChecked) then (
                     $minBet
@@ -154,6 +154,23 @@ declare
 function c:bet($gameId as xs:string, $betValue as xs:integer) {
   if ($c:casinoCollection/casino/game[@id = $gameId]/step = 'bet') then (
     (db:output(c:redirectToTransformator($gameId)),p:bet($gameId,$betValue))
+  ) else ( )
+};
+
+
+
+(: this function creates a new game instance from input form and call write into database :)
+(: then redirect to transformator :)
+declare
+%updating
+%rest:path("/blackjack/bet-form/{$gameId}")
+%rest:GET
+function c:bet-form($gameId as xs:string) {
+  let $bet := (request:parameter("bet"))
+  (: Bet is checked in player :)
+  
+  return if ($c:casinoCollection/casino/game[@id = $gameId]/step = 'bet') then (
+    (db:output(c:redirectToTransformator($gameId)),p:bet($gameId,$bet))
   ) else ( )
 };
 

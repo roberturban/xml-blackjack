@@ -292,6 +292,29 @@
                 stroke: grey;
                 }
             </style>
+            
+            <xsl:variable name="minBet" select="./minBet"/>
+            <xsl:if test="step = 'bet'">
+                <switch>
+                    <foreignObject x="{$xButton}" y="{$yButton}" width="500" height="100">
+                        <form action="/blackjack/bet-form/{$gameId}" style="display:flex; flex-direction:column;" xmlns="http://www.w3.org/1999/xhmtl">
+                          <table>
+                              <tr>
+                                  <td width="50">
+                                      <label for="bet">Bet: </label>
+                                  </td>
+                                  <td width="50">
+                                      <input type="number" name="bet" id="bet" value="{$minBet}"/>
+                                  </td>
+                                  <td width="150">
+                                      <input class = "active_button" type="submit" value="submit bet"/>
+                                  </td>
+                              </tr>
+                          </table>
+                      </form>
+                    </foreignObject>
+                </switch>
+            </xsl:if>
 
             <xsl:if test="step = 'play'">
                 <g class="active_button">
