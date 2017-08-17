@@ -106,7 +106,8 @@ function c:handleInit() {
         else (
             if ($minBet > 0) then (
                 (: consider the integer range :)
-                if ($minBet <= $maxBetChecked) then (
+                (: compare of two variables only with this workaround :)
+                if (($minBet - $maxBetChecked) <= 0) then (
                     $minBet
                 )
                 else (

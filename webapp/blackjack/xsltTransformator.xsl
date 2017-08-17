@@ -41,6 +41,8 @@
     <xsl:variable name="yKartenplatz4" select="number(150)"/>
     <xsl:variable name="xKartenplatz5" select="number(325)"/>
     <xsl:variable name="yKartenplatz5" select="number(-115)"/>
+    <xsl:variable name="xKartenplatzDealer" select="number(680)"/>
+    <xsl:variable name="yKartenplatzDealer" select="number(80)"/>
 
     <!-- Ablagestapel -->
     <xsl:variable name="xAblagestapel" select="number(80)"/>
@@ -273,7 +275,553 @@
                     </xsl:choose>
                 </xsl:otherwise>
             </xsl:choose>
-
+            
+            <defs>
+                <g id="generic-blackjack-table">
+                    <!-- blackjack-table -->
+                    <image x="200" y="-200" width="1000" height="1000"
+                        xlink:href="https://www.rightcasino.com/media/need-to-know/games/blackjack/blackjack_table.png" />
+                    
+                    <!-- blackjack-logo -->
+                    <image
+                        xlink:href="https://blackjackiminternet.biz/images/blackjack-im-internet2.jpg"
+                        x="120" y="50" height="100" width="1175" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="generic-card-border">
+                    <rect height="350" width="250" x="45" y="10" rx="30" ry="30"
+                        style="fill:white;stroke:black;stroke-width:5;opacity:1.0" />
+                </g>
+            </defs>
+            
+            <!-- all black numbers -->
+            <defs>
+                <g id="black-2">
+                    <!-- top left number -->
+                    <text id="black-card-number-2" x="57" y="50" font-size="35"
+                        fill="black">2
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#black-card-number-2" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="black-3">
+                    <!-- top left number -->
+                    <text id="black-card-number-3" x="57" y="50" font-size="35"
+                        fill="black">3
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#black-card-number-3" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="black-4">
+                    <!-- top left number -->
+                    <text id="black-card-number-4" x="57" y="50" font-size="35"
+                        fill="black">4
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#black-card-number-4" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="black-5">
+                    <!-- top left number -->
+                    <text id="black-card-number-5" x="57" y="50" font-size="35"
+                        fill="black">5
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#black-card-number-5" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="black-6">
+                    <!-- top left number -->
+                    <text id="black-card-number-6" x="57" y="50" font-size="35"
+                        fill="black">6
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#black-card-number-6" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="black-7">
+                    <!-- top left number -->
+                    <text id="black-card-number-7" x="57" y="50" font-size="35"
+                        fill="black">7
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#black-card-number-7" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="black-8">
+                    <!-- top left number -->
+                    <text id="black-card-number-8" x="57" y="50" font-size="35"
+                        fill="black">8
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#black-card-number-8" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="black-9">
+                    <!-- top left number -->
+                    <text id="black-card-number-9" x="57" y="50" font-size="35"
+                        fill="black">9
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#black-card-number-9" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="black-10">
+                    <!-- top left number -->
+                    <text id="black-card-number-10" x="57" y="50" font-size="35"
+                        fill="black">10
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#black-card-number-10" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="black-A">
+                    <!-- top left number -->
+                    <text id="black-card-number-A" x="57" y="50" font-size="35"
+                        fill="black">A
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#black-card-number-A" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            
+            <!-- all red numbers -->
+            <defs>
+                <g id="red-2">
+                    <!-- top left number -->
+                    <text id="red-card-number-2" x="57" y="50" font-size="35"
+                        fill="red">2
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#red-card-number-2" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="red-3">
+                    <!-- top left number -->
+                    <text id="red-card-number-3" x="57" y="50" font-size="35"
+                        fill="red">3
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#red-card-number-3" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="red-4">
+                    <!-- top left number -->
+                    <text id="red-card-number-4" x="57" y="50" font-size="35"
+                        fill="red">4
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#red-card-number-4" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="red-5">
+                    <!-- top left number -->
+                    <text id="red-card-number-5" x="57" y="50" font-size="35"
+                        fill="red">5
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#red-card-number-5" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="red-6">
+                    <!-- top left number -->
+                    <text id="red-card-number-6" x="57" y="50" font-size="35"
+                        fill="red">6
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#red-card-number-6" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="red-7">
+                    <!-- top left number -->
+                    <text id="red-card-number-7" x="57" y="50" font-size="35"
+                        fill="red">7
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#red-card-number-7" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="red-8">
+                    <!-- top left number -->
+                    <text id="red-card-number-8" x="57" y="50" font-size="35"
+                        fill="red">8
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#red-card-number-8" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="red-9">
+                    <!-- top left number -->
+                    <text id="red-card-number-9" x="57" y="50" font-size="35"
+                        fill="red">9
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#red-card-number-9" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="red-10">
+                    <!-- top left number -->
+                    <text id="red-card-number-10" x="57" y="50" font-size="35"
+                        fill="red">10
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#red-card-number-10" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="red-A">
+                    <!-- top left number -->
+                    <text id="red-card-number-A" x="57" y="50" font-size="35"
+                        fill="red">A
+                    </text>
+                    <!-- bottom right number -->
+                    <use xlink:href="#red-card-number-A" x="200" y="290"
+                        transform="rotate(180, 268, 330)" />
+                </g>
+            </defs>
+            
+            
+            <!-- all 4 card types -->
+            <defs>
+                <g id="hearts">
+                    <!-- top middle heart -->
+                    <polygon points="170,160 130,115 210,115" style="stroke:red;fill:red;stroke-width:1" />
+                    <circle cx="150" cy="109" r="20" style="stroke:red;fill:red" />
+                    <circle cx="190" cy="109" r="20" style="stroke:red;fill:red" />
+                    
+                    <!-- bottom middle heart -->
+                    <polygon points="170,210 130,255 210,255" style="stroke:red;fill:red;stroke-width:1" />
+                    <circle cx="150" cy="261" r="20" style="stroke:red;fill:red" />
+                    <circle cx="190" cy="261" r="20" style="stroke:red;fill:red" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="diamonds">
+                    <!-- top middle diamond -->
+                    <polygon points="170,30 140,80 170,130 200,80" style="fill:red;stroke:red;stroke-width:1" />
+                    
+                    <!-- bottom middle diamond -->
+                    <polygon points="170,230 140,280 170,330 200,280" style="fill:red;stroke:red;stroke-width:1" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="clubs">
+                    <!-- top middle suit -->
+                    <image x="135" y="60" width="80" height="80"
+                        xlink:href="http://www.bikerstammtisch.com/Poker/Kreuz1.png" />
+                    
+                    <!-- bottom middle suit -->
+                    <image x="135" y="220" width="80" height="80"
+                        xlink:href="http://www.bikerstammtisch.com/Poker/Kreuz1.png"
+                        transform="rotate(180, 175, 265)" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="spades">
+                    
+                    <!-- top middle peak -->
+                    <polygon points="170,80 130,125 210,125" style="stroke-width:1" />
+                    <circle cx="150" cy="131" r="20" />
+                    <circle cx="190" cy="131" r="20" />
+                    <line x1="170" y1="120" x2="170" y2="175"
+                        style="stroke:black;fill:black;stroke-width:10" />
+                    
+                    <!-- bottom middle peak -->
+                    <polygon points="170,300 130,255 210,255" style="fill:black;stroke:black;stroke-width:1" />
+                    <circle cx="150" cy="249" r="20" style="stroke:black;fill:black" />
+                    <circle cx="190" cy="249" r="20" style="stroke:black;fill:black" />
+                    <line x1="170" y1="205" x2="170" y2="260"
+                        style="stroke:black;fill:black;stroke-width:10" />
+                </g>
+            </defs>
+            
+            
+            <!-- all special cards (with pics) -->
+            <!-- diamonds -->
+            <defs>
+                <g id="diamonds-K">
+                    <image xlink:href="https://t4.ftcdn.net/jpg/00/40/03/67/500_F_40036731_mPYQRYDtnqpLXIqxewu5bmq5q8ItclVE.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="diamonds-Q">
+                    <use xlink:href="#generic-card-border" />
+                    <image xlink:href="
+                        https://t4.ftcdn.net/jpg/00/40/22/75/500_F_40227576_KVEzuQcMDkW9KrFNoVIhTBjaKwAiWnnh.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="diamonds-J">
+                    <use xlink:href="#generic-card-border" />
+                    <image xlink:href="https://t3.ftcdn.net/jpg/00/40/03/66/500_F_40036663_ezasrJwmIyGGPlLptnFD76PPm9wukzyF.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
+            <!-- hearts -->
+            <defs>
+                <g id="hearts-K">
+                    <image xlink:href="https://t3.ftcdn.net/jpg/00/40/03/64/500_F_40036471_ezXtaJezu9hsSeuk6CpQHVm2zXaH8WZd.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="hearts-Q">
+                    <image xlink:href="https://t3.ftcdn.net/jpg/00/40/03/64/500_F_40036449_s0yWNKg9MyFrZ4siWskMTxvdFEltiFIQ.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="hearts-J">
+                    <image xlink:href="https://t3.ftcdn.net/jpg/00/40/03/64/500_F_40036415_56z5BJ2vcHYOW34CG3xdpDDPRH2VKGMF.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
+            <!-- clubs -->
+            <defs>
+                <g id="clubs-K">
+                    <image xlink:href="https://t3.ftcdn.net/jpg/00/40/03/70/500_F_40037001_yiHav7FQ1ww6Tl5PbQXI0wGRF0CBLigA.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="clubs-Q">
+                    <image xlink:href="https://t3.ftcdn.net/jpg/00/40/22/76/500_F_40227647_m0JvJccVZuHargU9QnT0s7gqkU55VC47.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="clubs-J">
+                    <image xlink:href="https://t4.ftcdn.net/jpg/00/40/03/69/500_F_40036926_6E84Mh57txnlb6a3LhA58y0I5ELGAQL6.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
+            <!-- spades -->
+            <defs>
+                <g id="spades-K">
+                    <image xlink:href="https://t3.ftcdn.net/jpg/00/40/03/72/500_F_40037201_OzwAPPdNIESKCALqZ1UZTrUHC1ub8csM.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="spades-Q">
+                    <image xlink:href="https://t4.ftcdn.net/jpg/00/40/03/71/500_F_40037169_qHdy4yyUxubUewdd6MKK84tRy2zLkFsR.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
+            <defs>
+                <g id="spades-J">
+                    <image xlink:href="https://t4.ftcdn.net/jpg/00/40/03/71/500_F_40037139_yHRxBbB4ITnfYJ7AW0CDqszVJ9wiR0HG.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
+            <!-- Player 1 -->
+            <xsl:for-each select="players/player[1]/hand/card">
+                <xsl:variable name="counter" select="position()-1"/>
+                <xsl:variable name="color" select="color"/>
+                <xsl:variable name="value" select="value"/>
+                <use x="{($xKartenplatz3 - 25 + (50*$counter))*5}" y="{$yKartenplatz3*5 -100}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(-60 0 0)" />
+                <xsl:choose>
+                    <xsl:when test="hidden = 'true'">
+                        <!-- TODO: Kartenrückseite -->
+                    </xsl:when>
+                    <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
+                        <use x="{($xKartenplatz3 - 25 + (50*$counter))*5}" y="{$yKartenplatz3*5 -100}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                    </xsl:when>
+                    <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
+                        <use x="{($xKartenplatz3 - 25 + (50*$counter))*5}" y="{$yKartenplatz3*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(-60 0 0)" />
+                        <use x="{($xKartenplatz3 - 25 + (50*$counter))*5}" y="{$yKartenplatz3*5 -100}" xlink:href="#red-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <use x="{($xKartenplatz3 - 25 + (50*$counter))*5}" y="{$yKartenplatz3*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(-60 0 0)" />
+                        <use x="{($xKartenplatz3 - 25 + (50*$counter))*5}" y="{$yKartenplatz3*5 -100}" xlink:href="#black-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+            
+            <!-- Player 2 -->
+            <xsl:for-each select="players/player[2]/hand/card">
+                <xsl:variable name="counter" select="position()-1"/>
+                <xsl:variable name="color" select="color"/>
+                <xsl:variable name="value" select="value"/>
+                <use x="{($xKartenplatz2 - 25 + (50*$counter))*5}" y="{$yKartenplatz2*5 -100}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(-30 0 0)" />
+                <xsl:choose>
+                    <xsl:when test="hidden = 'true'">
+                        <!-- TODO: Kartenrückseite -->
+                    </xsl:when>
+                    <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
+                        <use x="{($xKartenplatz2 - 25 + (50*$counter))*5}" y="{$yKartenplatz2*5 -100}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                    </xsl:when>
+                    <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
+                        <use x="{($xKartenplatz2 - 25 + (50*$counter))*5}" y="{$yKartenplatz2*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(-30 0 0)" />
+                        <use x="{($xKartenplatz2 - 25 + (50*$counter))*5}" y="{$yKartenplatz2*5 -100}" xlink:href="#red-{$value}" transform="scale(0.2) rotate(-30 0 0)" />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <use x="{($xKartenplatz2 - 25 + (50*$counter))*5}" y="{$yKartenplatz2*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(-30 0 0)" />
+                        <use x="{($xKartenplatz2 - 25 + (50*$counter))*5}" y="{$yKartenplatz2*5 -100}" xlink:href="#black-{$value}" transform="scale(0.2) rotate(-30 0 0)" />
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+            
+            <!-- Player 3 -->
+            <xsl:for-each select="players/player[3]/hand/card">
+                <xsl:variable name="counter" select="position()-1"/>
+                <xsl:variable name="color" select="color"/>
+                <xsl:variable name="value" select="value"/>
+                <use x="{($xKartenplatz1 - 25 + (50*$counter))*5}" y="{$yKartenplatz1*5 -100}" xlink:href="#generic-card-border" transform="scale(0.2)" />
+                <xsl:choose>
+                    <xsl:when test="hidden = 'true'">
+                        <!-- TODO: Kartenrückseite -->
+                    </xsl:when>
+                    <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
+                        <use x="{($xKartenplatz1 - 25 + (50*$counter))*5}" y="{$yKartenplatz1*5 -100}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                    </xsl:when>
+                    <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
+                        <use x="{($xKartenplatz1 - 25 + (50*$counter))*5}" y="{$yKartenplatz1*5 -100}" xlink:href="#{$color}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatz1 - 25 + (50*$counter))*5}" y="{$yKartenplatz1*5 -100}" xlink:href="#red-{$value}" transform="scale(0.2)" />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <use x="{($xKartenplatz1 - 25 + (50*$counter))*5}" y="{$yKartenplatz1*5 -100}" xlink:href="#{$color}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatz1 - 25 + (50*$counter))*5}" y="{$yKartenplatz1*5 -100}" xlink:href="#black-{$value}" transform="scale(0.2)" />
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+            
+            <!-- Player 4 -->
+            <xsl:for-each select="players/player[4]/hand/card">
+                <xsl:variable name="counter" select="position()-1"/>
+                <xsl:variable name="color" select="color"/>
+                <xsl:variable name="value" select="value"/>
+                <use x="{($xKartenplatz4 - 25 + (50*$counter))*5}" y="{$yKartenplatz4*5 -100}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(30 0 0)" />
+                <xsl:choose>
+                    <xsl:when test="hidden = 'true'">
+                        <!-- TODO: Kartenrückseite -->
+                    </xsl:when>
+                    <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
+                        <use x="{($xKartenplatz4 - 25 + (50*$counter))*5}" y="{$yKartenplatz4*5 -100}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                    </xsl:when>
+                    <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
+                        <use x="{($xKartenplatz4 - 25 + (50*$counter))*5}" y="{$yKartenplatz4*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(30 0 0)" />
+                        <use x="{($xKartenplatz4 - 25 + (50*$counter))*5}" y="{$yKartenplatz4*5 -100}" xlink:href="#red-{$value}" transform="scale(0.2) rotate(30 0 0)" />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <use x="{($xKartenplatz4 - 25 + (50*$counter))*5}" y="{$yKartenplatz4*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(30 0 0)" />
+                        <use x="{($xKartenplatz4 - 25 + (50*$counter))*5}" y="{$yKartenplatz4*5 -100}" xlink:href="#black-{$value}" transform="scale(0.2) rotate(30 0 0)" />
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+            
+            <!-- Player 5 -->
+            <xsl:for-each select="players/player[5]/hand/card">
+                <xsl:variable name="counter" select="position()-1"/>
+                <xsl:variable name="color" select="color"/>
+                <xsl:variable name="value" select="value"/>
+                <use x="{($xKartenplatz5 - 25 + (50*$counter))*5}" y="{$yKartenplatz5*5 -100}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(60 0 0)" />
+                <xsl:choose>
+                    <xsl:when test="hidden = 'true'">
+                        <!-- TODO: Kartenrückseite -->
+                    </xsl:when>
+                    <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
+                        <use x="{($xKartenplatz5 - 25 + (50*$counter))*5}" y="{$yKartenplatz5*5 -100}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                    </xsl:when>
+                    <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
+                        <use x="{($xKartenplatz5 - 25 + (50*$counter))*5}" y="{$yKartenplatz5*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(60 0 0)" />
+                        <use x="{($xKartenplatz5 - 25 + (50*$counter))*5}" y="{$yKartenplatz5*5 -100}" xlink:href="#red-{$value}" transform="scale(0.2) rotate(60 0 0)" />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <use x="{($xKartenplatz5 - 25 + (50*$counter))*5}" y="{$yKartenplatz5*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(60 0 0)" />
+                        <use x="{($xKartenplatz5 - 25 + (50*$counter))*5}" y="{$yKartenplatz5*5 -100}" xlink:href="#black-{$value}" transform="scale(0.2) rotate(60 0 0)" />
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+            
+            <!-- Dealer -->
+            <xsl:for-each select="dealer/hand/card">
+                <xsl:variable name="counter" select="position()-1"/>
+                <xsl:variable name="color" select="color"/>
+                <xsl:variable name="value" select="value"/>
+                <use x="{($xKartenplatzDealer - 25 + (50*$counter))*5}" y="{$yKartenplatzDealer*5 -100}" xlink:href="#generic-card-border" transform="scale(0.2)" />
+                <xsl:choose>
+                    <xsl:when test="hidden = 'true'">
+                        <!-- TODO: Kartenrückseite -->
+                    </xsl:when>
+                    <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
+                        <use x="{($xKartenplatzDealer - 25 + (50*$counter))*5}" y="{$yKartenplatzDealer*5 -100}" xlink:href="#{$color}-{$value}" transform="scale(0.2)" />
+                    </xsl:when>
+                    <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
+                        <use x="{($xKartenplatzDealer - 25 + (50*$counter))*5}" y="{$yKartenplatzDealer*5 -100}" xlink:href="#{$color}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatzDealer - 25 + (50*$counter))*5}" y="{$yKartenplatzDealer*5 -100}" xlink:href="#red-{$value}" transform="scale(0.2)" />
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <use x="{($xKartenplatzDealer - 25 + (50*$counter))*5}" y="{$yKartenplatzDealer*5 -100}" xlink:href="#{$color}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatzDealer - 25 + (50*$counter))*5}" y="{$yKartenplatzDealer*5 -100}" xlink:href="#black-{$value}" transform="scale(0.2)" />
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+            
             <defs>
                 <rect id="button" width="{$widthButton}" height="{$heightButton}"></rect>
             </defs>

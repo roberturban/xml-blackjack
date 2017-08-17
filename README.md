@@ -30,6 +30,7 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * After deleting a player, the other players should remain on their seats at the table (--> no right shifting in GUI)
 * Dealer gets his first two cards AFTER the bet-round (at the moment, the dealer gets 2 x 2cards due to the bet-round)
 * Old ToDos
+* Kartenrückseite
 
 Lower prio:
 * (Dynamic adding of players during game in next round should be possible)
