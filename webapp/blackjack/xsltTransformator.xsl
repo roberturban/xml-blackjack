@@ -31,12 +31,12 @@
     <xsl:variable name="yLogo" select="number(50)"/>
 
     <!-- Kartenplaetze -->
-    <xsl:variable name="xKartenplatz1" select="number(575)"/>
-    <xsl:variable name="yKartenplatz1" select="number(460)"/>
+    <xsl:variable name="xKartenplatz3" select="number(575)"/>
+    <xsl:variable name="yKartenplatz3" select="number(460)"/>
     <xsl:variable name="xKartenplatz2" select="number(475)"/>
     <xsl:variable name="yKartenplatz2" select="number(750)"/>
-    <xsl:variable name="xKartenplatz3" select="number(220)"/>
-    <xsl:variable name="yKartenplatz3" select="number(925)"/>
+    <xsl:variable name="xKartenplatz1" select="number(220)"/>
+    <xsl:variable name="yKartenplatz1" select="number(925)"/>
     <xsl:variable name="xKartenplatz4" select="number(510)"/>
     <xsl:variable name="yKartenplatz4" select="number(150)"/>
     <xsl:variable name="xKartenplatz5" select="number(325)"/>
@@ -63,12 +63,24 @@
     <xsl:variable name="yAvatar4" select="number(920)"/>
     <xsl:variable name="xAvatar5" select="number(220)"/>
     <xsl:variable name="yAvatar5" select="number(1100)"/>
+    
+    <!-- Variables for Coins -->
+    <xsl:variable name="xCoin1" select="number(1026)"/>
+    <xsl:variable name="yCoin1" select="number(320)"/>
+    <xsl:variable name="xCoin2" select="number(862)"/>
+    <xsl:variable name="yCoin2" select="number(508)"/>
+    <xsl:variable name="xCoin3" select="number(601)"/>
+    <xsl:variable name="yCoin3" select="number(585)"/>
+    <xsl:variable name="xCoin4" select="number(325)"/>
+    <xsl:variable name="yCoin4" select="number(500)"/>
+    <xsl:variable name="xCoin5" select="number(175)"/>
+    <xsl:variable name="yCoin5" select="number(320)"/>
 
     <!-- Variables for Buttons -->
     <xsl:variable name="widthButton" select="number(200)"/>
     <xsl:variable name="heightButton" select="number(50)"/>
     <xsl:variable name="xButtonCenter" select="number(600)"/>
-    <xsl:variable name="yButton" select="number(750)"/>
+    <xsl:variable name="yButton" select="number(780)"/>
     <xsl:variable name="xButton" select="$xButtonCenter - 100"/>
     <xsl:variable name="yTextButton" select="$yButton + 30"/>
 
@@ -91,14 +103,14 @@
     <xsl:template match="game">
         <!-- Variables -->
         <xsl:variable name="gameId" select="./@id"/>
-        <xsl:variable name="player3" select="players/player[3]/name"/>
-        <xsl:variable name="player4" select="players/player[4]/name"/>
-        <xsl:variable name="player5" select="players/player[5]/name"/>
-        <xsl:variable name="player1" select="players/player[1]/name"/>
-        <xsl:variable name="player2" select="players/player[2]/name"/>
+        <xsl:variable name="player3" select="players/player[3]"/>
+        <xsl:variable name="player4" select="players/player[4]"/>
+        <xsl:variable name="player5" select="players/player[5]"/>
+        <xsl:variable name="player1" select="players/player[1]"/>
+        <xsl:variable name="player2" select="players/player[2]"/>
 
         <!-- Game board -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="1250" height="800">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1250" height="830">
             <clipPath id="rec">
                 <rect x="{$xTable}" y="{$yTable}" width="{$widthTable}" height="{$heightRectTable}"/>
             </clipPath>
@@ -110,20 +122,22 @@
             <rect x="{$xInnerRectTable}" y="{$yInnerRectTable}" width="{$widthInnerTable}" height="{$heightInnerRectTable}" fill="darkgreen" stroke="white" stroke-width="5" rx="{$borderradiusTable}" clip-path="url(#rec)" />
             <circle cx="{$xRoundTable}" cy="{$yRoundTable}" r="{$radiusInnerTable}" fill="darkgreen" stroke="white" stroke-width="5" clip-path="url(#bot)" />
 
-            <image id="BJ-logo"
+           <!-- <image id="BJ-logo"
                 xlink:href="/static/blackjack/img/blackjack.png"
                 x="{$xLogo}" y="{$yLogo}" height="100" width="300">
-            </image>
+            </image>-->
 
             <defs>
                 <rect id="kartenplatz" height="70" width="50" rx="6"/>
             </defs>
 
-            <use x="{$xKartenplatz1}" y="{$yKartenplatz1}" xlink:href="#kartenplatz" stroke="white" fill="none" />
+            <use x="{$xKartenplatz3}" y="{$yKartenplatz3}" xlink:href="#kartenplatz" stroke="white" fill="none" />
             <use x="{$xKartenplatz2}" y="{$yKartenplatz2}" transform="rotate(-30 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
-            <use x="{$xKartenplatz3}" y="{$yKartenplatz3}" transform="rotate(-60 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
+            <use x="{$xKartenplatz1}" y="{$yKartenplatz1}" transform="rotate(-60 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
             <use x="{$xKartenplatz4}" y="{$yKartenplatz4}" transform="rotate(30 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
             <use x="{$xKartenplatz5}" y="{$yKartenplatz5}" transform="rotate(60 0 0)" xlink:href="#kartenplatz" stroke="white" fill="none" />
+            <use x="{$xKartenplatzDealer}" y="{$yKartenplatzDealer}" xlink:href="#kartenplatz" stroke="white" fill="none"/>
+            
             <defs>
                 <path id="insurance_text_path" d="M353,148 a90,90 0 0,0 494,0"/>
             </defs>
@@ -184,12 +198,56 @@
                 </g>
 
             </defs>
-
+            
+            <xsl:choose>
+                <xsl:when test="$player1/bet>0">
+                    <use x="{$xCoin1}" y="{$yCoin1}" xlink:href="#chip-coin" />
+                    <text x="{$xCoin1}" y="{$yCoin1}"  fill="black" text-anchor="middle" dominant-baseline="central"  >
+                        <xsl:value-of select="$player1/bet"/>
+                    </text>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$player2/bet>0">
+                    <use x="{$xCoin2}" y="{$yCoin2}" xlink:href="#chip-coin" />
+                    <text x="{$xCoin2}" y="{$yCoin2}" fill="black" text-anchor="middle" dominant-baseline="central" >
+                        <xsl:value-of select="$player2/bet"/>
+                    </text>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$player3/bet>0">
+                    <use x="{$xCoin3}" y="{$yCoin3}" xlink:href="#chip-coin" />
+                    <text x="{$xCoin3}" y="{$yCoin3}" fill="black" text-anchor="middle" dominant-baseline="central">
+                        <xsl:value-of select="$player3/bet"/>
+                    </text>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$player4/bet>0">
+                    <use x="{$xCoin4}" y="{$yCoin4}" xlink:href="#chip-coin" />
+                    <text x="{$xCoin4}" y="{$yCoin4}" fill="black" text-anchor="middle" dominant-baseline="central" >
+                        <xsl:value-of select="$player4/bet"/>
+                    </text>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$player5/bet>0">
+                    <use x="{$xCoin5}" y="{$yCoin5}" xlink:href="#chip-coin" />
+                    <text x="{$xCoin5}" y="{$yCoin5}" fill="black" text-anchor="middle" dominant-baseline="central" >
+                        <xsl:value-of select="$player5/bet"/>
+                    </text>
+                </xsl:when>
+            </xsl:choose>
+  
             <xsl:choose>
                 <xsl:when test="activePlayer/@id = players/player[3]/@id">
                     <use xlink:href="#avatar_active" x="{$xAvatar1}" y="{$yAvatar1}"></use>
                     <text x="{$xAvatar1+25}" y="{$yAvatar1+110}" fill="white" text-anchor="middle" dominant-baseline="central">
-                      <xsl:value-of select="$player3"/>
+                      <xsl:value-of select="$player3/name"/>
+                    </text>
+                    <text x="{$xAvatar1+25}" y="{$yAvatar1+135}" fill="grey" text-anchor="middle" dominant-baseline="central">
+                        <xsl:value-of select="concat('Balance: ',$player3/balance)"/>
                     </text>
                 </xsl:when>
                 <xsl:otherwise>
@@ -197,7 +255,10 @@
                         <xsl:when test="players/player[3]">
                             <use xlink:href="#avatar" x="{$xAvatar1}" y="{$yAvatar1}"></use>
                             <text x="{$xAvatar1+25}" y="{$yAvatar1+110}" fill="black" text-anchor="middle" dominant-baseline="central">
-                                <xsl:value-of select="$player3"/>
+                                <xsl:value-of select="$player3/name"/>
+                            </text>
+                            <text x="{$xAvatar1+25}" y="{$yAvatar1+135}" fill="grey" text-anchor="middle" dominant-baseline="central">
+                                <xsl:value-of select="concat('Balance: ',$player3/balance)"/>
                             </text>
                         </xsl:when>
                     </xsl:choose>
@@ -207,7 +268,10 @@
                 <xsl:when test="activePlayer/@id = players/player[4]/@id">
                     <use xlink:href="#avatar_active" x="{$xAvatar2}" y="{$yAvatar2}" transform="rotate(30 0 0)"></use>
                     <text x="{$xAvatar2+25}" y="{$yAvatar2+110}" transform="rotate(30 0 0)" fill="white" text-anchor="middle" dominant-baseline="central">
-                      <xsl:value-of select="$player4"/>
+                      <xsl:value-of select="$player4/name"/>
+                    </text>
+                    <text x="{$xAvatar2+25}" y="{$yAvatar2+135}" transform="rotate(30 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                        <xsl:value-of select="concat('Balance: ',$player4/balance)"/>
                     </text>
                 </xsl:when>
                 <xsl:otherwise>
@@ -215,7 +279,10 @@
                         <xsl:when test="players/player[4]">
                             <use xlink:href="#avatar" x="{$xAvatar2}" y="{$yAvatar2}" transform="rotate(30 0 0)"></use>
                             <text x="{$xAvatar2+25}" y="{$yAvatar2+110}" transform="rotate(30 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
-                                <xsl:value-of select="$player4"/>
+                                <xsl:value-of select="$player4/name"/>
+                            </text>
+                            <text x="{$xAvatar2+25}" y="{$yAvatar2+135}" transform="rotate(30 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                                <xsl:value-of select="concat('Balance: ',$player4/balance)"/>
                             </text>
                         </xsl:when>
                     </xsl:choose>
@@ -225,7 +292,10 @@
                 <xsl:when test="activePlayer/@id = players/player[5]/@id">
                     <use xlink:href="#avatar_active" x="{$xAvatar3}" y="{$yAvatar3}" transform="rotate(60 0 0)"></use>
                     <text x="{$xAvatar3+25}" y="{$yAvatar3+110}" transform="rotate(60 0 0)" fill="white" text-anchor="middle" dominant-baseline="central">
-                      <xsl:value-of select="$player5"/>
+                      <xsl:value-of select="$player5/name"/>
+                    </text>
+                    <text x="{$xAvatar3+25}" y="{$yAvatar3+135}" transform="rotate(60 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                        <xsl:value-of select="concat('Balance: ',$player5/balance)"/>
                     </text>
                 </xsl:when>
                 <xsl:otherwise>
@@ -233,7 +303,10 @@
                         <xsl:when test="players/player[5]">
                             <use xlink:href="#avatar" x="{$xAvatar3}" y="{$yAvatar3}" transform="rotate(60 0 0)"></use>
                             <text x="{$xAvatar3+25}" y="{$yAvatar3+110}" transform="rotate(60 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
-                                <xsl:value-of select="$player5"/>
+                                <xsl:value-of select="$player5/name"/>
+                            </text>
+                            <text x="{$xAvatar3+25}" y="{$yAvatar3+135}" transform="rotate(60 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                                <xsl:value-of select="concat('Balance: ',$player5/balance)"/>
                             </text>
                         </xsl:when>
                     </xsl:choose>
@@ -243,7 +316,10 @@
                 <xsl:when test="activePlayer/@id = players/player[2]/@id">
                     <use xlink:href="#avatar_active" x="{$xAvatar4}" y="{$yAvatar4}" transform="rotate(-30 0 0)"></use>
                     <text x="{$xAvatar4+25}" y="{$yAvatar4+110}" transform="rotate(-30 0 0)" fill="white" text-anchor="middle" dominant-baseline="central">
-                      <xsl:value-of select="$player2"/>
+                      <xsl:value-of select="$player2/name"/>
+                    </text>
+                    <text x="{$xAvatar4+25}" y="{$yAvatar4+135}" transform="rotate(-30 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                        <xsl:value-of select="concat('Balance: ',$player2/balance)"/>
                     </text>
                 </xsl:when>
                 <xsl:otherwise>
@@ -251,7 +327,10 @@
                         <xsl:when test="players/player[2]">
                             <use xlink:href="#avatar" x="{$xAvatar4}" y="{$yAvatar4}" transform="rotate(-30 0 0)"></use>
                             <text x="{$xAvatar4+25}" y="{$yAvatar4+110}" transform="rotate(-30 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
-                                <xsl:value-of select="$player2"/>
+                                <xsl:value-of select="$player2/name"/>
+                            </text>
+                            <text x="{$xAvatar4+25}" y="{$yAvatar4+135}" transform="rotate(-30 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                                <xsl:value-of select="concat('Balance: ',$player2/balance)"/>
                             </text>
                         </xsl:when>
                     </xsl:choose>
@@ -261,15 +340,22 @@
                 <xsl:when test="activePlayer/@id = players/player[1]/@id">
                     <use xlink:href="#avatar_active" x="{$xAvatar5}" y="{$yAvatar5}" transform="rotate(-60 0 0)"></use>
                     <text x="{$xAvatar5+25}" y="{$yAvatar5+110}" transform="rotate(-60 0 0)" fill="white" text-anchor="middle" dominant-baseline="central">
-                      <xsl:value-of select="$player1"/>
+                      <xsl:value-of select="$player1/name"/>
                     </text>
+                    <text x="{$xAvatar5+25}" y="{$yAvatar5+135}" transform="rotate(-60 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                        <xsl:value-of select="concat('Balance: ',$player1/balance)"/>
+                    </text>
+                    
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:choose>
                         <xsl:when test="players/player[1]">
                             <use xlink:href="#avatar" x="{$xAvatar5}" y="{$yAvatar5}" transform="rotate(-60 0 0)"></use>
                             <text x="{$xAvatar5+25}" y="{$yAvatar5+110}" transform="rotate(-60 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
-                                <xsl:value-of select="$player1"/>
+                                <xsl:value-of select="$player1/name"/>
+                            </text>
+                            <text x="{$xAvatar5+25}" y="{$yAvatar5+135}" transform="rotate(-60 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                                <xsl:value-of select="concat('Balance: ',$player1/balance)"/>
                             </text>
                         </xsl:when>
                     </xsl:choose>
@@ -841,6 +927,7 @@
                 }
             </style>
             
+            
             <xsl:variable name="minBet" select="./minBet"/>
             <xsl:if test="step = 'bet'">
                 <switch>
@@ -895,7 +982,7 @@
                        <text x="{$xButtonCenter}" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Go on...</text>
                    </a>
                </g>
-            </xsl:if>
+            </xsl:if>            
         </svg>
     </xsl:template>
 
