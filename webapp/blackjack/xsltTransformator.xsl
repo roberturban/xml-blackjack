@@ -196,47 +196,68 @@
                     <use xlink:href="#chip-coin" />
                     <use xlink:href="#chip-value-20" x="-2" y="5" />
                 </g>
-
+                <g id="chipP1">
+                  <use xlink:href="#chip-coin" x="{$xCoin1}" y="{$yCoin1}" />
+                  <text x="{$xCoin1}" y="{$yCoin1}"  fill="black" text-anchor="middle" dominant-baseline="central"  >
+                        <xsl:value-of select="$player1/bet"/>
+                  </text>
+                </g>
+                <g id="chipP2">
+                    <use xlink:href="#chip-coin" x="{$xCoin2}" y="{$yCoin2}" />
+                    <text x="{$xCoin2}" y="{$yCoin2}" fill="black" text-anchor="middle" dominant-baseline="central" >
+                        <xsl:value-of select="$player2/bet"/>
+                    </text>
+                </g>
+                <g id="chipP3">
+                    <use xlink:href="#chip-coin" x="{$xCoin3}" y="{$yCoin3}" />
+                    <text x="{$xCoin3}" y="{$yCoin3}" fill="black" text-anchor="middle" dominant-baseline="central">
+                        <xsl:value-of select="$player3/bet"/>
+                    </text>
+                </g>
+                <g id="chipP4">
+                    <use xlink:href="#chip-coin" x="{$xCoin4}" y="{$yCoin4}" />
+                    <text x="{$xCoin4}" y="{$yCoin4}" fill="black" text-anchor="middle" dominant-baseline="central" >
+                        <xsl:value-of select="$player4/bet"/>
+                    </text>
+                </g>
+                <g id="chipP5">
+                    <use xlink:href="#chip-coin" x="{$xCoin5}" y="{$yCoin5}" />
+                    <text x="{$xCoin5}" y="{$yCoin5}" fill="black" text-anchor="middle" dominant-baseline="central" >
+                        <xsl:value-of select="$player5/bet"/>
+                    </text>
+                </g>
             </defs>
+            
+         
             
             <xsl:choose>
                 <xsl:when test="$player1/bet>0">
-                    <use x="{$xCoin1}" y="{$yCoin1}" xlink:href="#chip-coin" />
-                    <text x="{$xCoin1}" y="{$yCoin1}"  fill="black" text-anchor="middle" dominant-baseline="central"  >
-                        <xsl:value-of select="$player1/bet"/>
-                    </text>
+                    <use  xlink:href="#chipP1" />
+                     
                 </xsl:when>
             </xsl:choose>
             <xsl:choose>
                 <xsl:when test="$player2/bet>0">
-                    <use x="{$xCoin2}" y="{$yCoin2}" xlink:href="#chip-coin" />
-                    <text x="{$xCoin2}" y="{$yCoin2}" fill="black" text-anchor="middle" dominant-baseline="central" >
-                        <xsl:value-of select="$player2/bet"/>
-                    </text>
+                    <use  xlink:href="#chipP2" />
+                    
                 </xsl:when>
             </xsl:choose>
             <xsl:choose>
                 <xsl:when test="$player3/bet>0">
-                    <use x="{$xCoin3}" y="{$yCoin3}" xlink:href="#chip-coin" />
-                    <text x="{$xCoin3}" y="{$yCoin3}" fill="black" text-anchor="middle" dominant-baseline="central">
-                        <xsl:value-of select="$player3/bet"/>
-                    </text>
+                    <use  xlink:href="#chipP3" />
+                    
                 </xsl:when>
             </xsl:choose>
             <xsl:choose>
                 <xsl:when test="$player4/bet>0">
-                    <use x="{$xCoin4}" y="{$yCoin4}" xlink:href="#chip-coin" />
-                    <text x="{$xCoin4}" y="{$yCoin4}" fill="black" text-anchor="middle" dominant-baseline="central" >
-                        <xsl:value-of select="$player4/bet"/>
-                    </text>
+                    <use  xlink:href="#chipP4" />
+                    
                 </xsl:when>
             </xsl:choose>
             <xsl:choose>
                 <xsl:when test="$player5/bet>0">
-                    <use x="{$xCoin5}" y="{$yCoin5}" xlink:href="#chip-coin" />
-                    <text x="{$xCoin5}" y="{$yCoin5}" fill="black" text-anchor="middle" dominant-baseline="central" >
-                        <xsl:value-of select="$player5/bet"/>
-                    </text>
+                    <use  xlink:href="#chipP5" />
+                    
                 </xsl:when>
             </xsl:choose>
   
@@ -937,7 +958,7 @@
                     </xsl:when>
                     <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
                         <use x="{($xKartenplatzDealer*5 -44+ (80*$counter))}" y="{$yKartenplatzDealer*5-8}" xlink:href="#{$color}" transform="scale(0.2)" />
-                        <use x="{($xKartenplatz5*5 -44 + (80*$counter))}" y="{$yKartenplatzDealer*5-8}" xlink:href="#red-{$value}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatzDealer*5 -44 + (80*$counter))}" y="{$yKartenplatzDealer*5-8}" xlink:href="#red-{$value}" transform="scale(0.2)" />
                     </xsl:when>
                     <xsl:otherwise>
                         <use x="{($xKartenplatzDealer*5 -44  + (80*$counter))}" y="{$yKartenplatzDealer*5-8}" xlink:href="#{$color}" transform="scale(0.2) " />
@@ -945,6 +966,17 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
+            
+            <!--Animationen-->
+            <defs>
+                <animateMotion xlink:href="#Coin1" dur="3s" path="M0 0 l+200 +200" fill="freeze" calcMode="discrete"/>
+                <animateMotion xlink:href="#Coin2" dur="6s" path="M0 0 l+200 +200" rotate="45"/>
+                <animateMotion xlink:href="#Coin3" dur="3s" path="M0 0 l+200 +200" />
+            </defs>
+            
+            
+                
+           
             
             <defs>
                 <rect id="button" width="{$widthButton}" height="{$heightButton}"></rect>
