@@ -386,7 +386,7 @@
             <defs>
                 <g id="black-2">
                     <!-- top left number -->
-                    <text id="black-card-number-2" x="57" y="50" font-size="35"
+                    <text id="black-card-number-2" x="57" y="70" font-size="70"
                         fill="black">2
                     </text>
                     <!-- bottom right number -->
@@ -398,7 +398,7 @@
             <defs>
                 <g id="black-3">
                     <!-- top left number -->
-                    <text id="black-card-number-3" x="57" y="50" font-size="35"
+                    <text id="black-card-number-3" x="57" y="70" font-size="70"
                         fill="black">3
                     </text>
                     <!-- bottom right number -->
@@ -410,7 +410,7 @@
             <defs>
                 <g id="black-4">
                     <!-- top left number -->
-                    <text id="black-card-number-4" x="57" y="50" font-size="35"
+                    <text id="black-card-number-4" x="57" y="70" font-size="70"
                         fill="black">4
                     </text>
                     <!-- bottom right number -->
@@ -422,7 +422,7 @@
             <defs>
                 <g id="black-5">
                     <!-- top left number -->
-                    <text id="black-card-number-5" x="57" y="50" font-size="35"
+                    <text id="black-card-number-5" x="57" y="70" font-size="70"
                         fill="black">5
                     </text>
                     <!-- bottom right number -->
@@ -434,7 +434,7 @@
             <defs>
                 <g id="black-6">
                     <!-- top left number -->
-                    <text id="black-card-number-6" x="57" y="50" font-size="35"
+                    <text id="black-card-number-6" x="57" y="70" font-size="70"
                         fill="black">6
                     </text>
                     <!-- bottom right number -->
@@ -446,7 +446,7 @@
             <defs>
                 <g id="black-7">
                     <!-- top left number -->
-                    <text id="black-card-number-7" x="57" y="50" font-size="35"
+                    <text id="black-card-number-7" x="57" y="70" font-size="70"
                         fill="black">7
                     </text>
                     <!-- bottom right number -->
@@ -458,7 +458,7 @@
             <defs>
                 <g id="black-8">
                     <!-- top left number -->
-                    <text id="black-card-number-8" x="57" y="50" font-size="35"
+                    <text id="black-card-number-8" x="57" y="70" font-size="70"
                         fill="black">8
                     </text>
                     <!-- bottom right number -->
@@ -470,7 +470,7 @@
             <defs>
                 <g id="black-9">
                     <!-- top left number -->
-                    <text id="black-card-number-9" x="57" y="50" font-size="35"
+                    <text id="black-card-number-9" x="57" y="70" font-size="70"
                         fill="black">9
                     </text>
                     <!-- bottom right number -->
@@ -482,7 +482,7 @@
             <defs>
                 <g id="black-10">
                     <!-- top left number -->
-                    <text id="black-card-number-10" x="57" y="50" font-size="35"
+                    <text id="black-card-number-10" x="57" y="70" font-size="60"
                         fill="black">10
                     </text>
                     <!-- bottom right number -->
@@ -494,7 +494,7 @@
             <defs>
                 <g id="black-A">
                     <!-- top left number -->
-                    <text id="black-card-number-A" x="57" y="50" font-size="35"
+                    <text id="black-card-number-A" x="57" y="70" font-size="70"
                         fill="black">A
                     </text>
                     <!-- bottom right number -->
@@ -508,7 +508,7 @@
             <defs>
                 <g id="red-2">
                     <!-- top left number -->
-                    <text id="red-card-number-2" x="57" y="50" font-size="35"
+                    <text id="red-card-number-2" x="57" y="70" font-size="70"
                         fill="red">2
                     </text>
                     <!-- bottom right number -->
@@ -520,7 +520,7 @@
             <defs>
                 <g id="red-3">
                     <!-- top left number -->
-                    <text id="red-card-number-3" x="57" y="50" font-size="35"
+                    <text id="red-card-number-3" x="57" y="70" font-size="70"
                         fill="red">3
                     </text>
                     <!-- bottom right number -->
@@ -532,7 +532,7 @@
             <defs>
                 <g id="red-4">
                     <!-- top left number -->
-                    <text id="red-card-number-4" x="57" y="50" font-size="35"
+                    <text id="red-card-number-4" x="57" y="70" font-size="70"
                         fill="red">4
                     </text>
                     <!-- bottom right number -->
@@ -544,7 +544,7 @@
             <defs>
                 <g id="red-5">
                     <!-- top left number -->
-                    <text id="red-card-number-5" x="57" y="50" font-size="35"
+                    <text id="red-card-number-5" x="57" y="70" font-size="70"
                         fill="red">5
                     </text>
                     <!-- bottom right number -->
@@ -556,7 +556,7 @@
             <defs>
                 <g id="red-6">
                     <!-- top left number -->
-                    <text id="red-card-number-6" x="57" y="50" font-size="35"
+                    <text id="red-card-number-6" x="57" y="70" font-size="70"
                         fill="red">6
                     </text>
                     <!-- bottom right number -->
@@ -568,7 +568,7 @@
             <defs>
                 <g id="red-7">
                     <!-- top left number -->
-                    <text id="red-card-number-7" x="57" y="50" font-size="35"
+                    <text id="red-card-number-7" x="57" y="70" font-size="70"
                         fill="red">7
                     </text>
                     <!-- bottom right number -->
@@ -580,7 +580,7 @@
             <defs>
                 <g id="red-8">
                     <!-- top left number -->
-                    <text id="red-card-number-8" x="57" y="50" font-size="35"
+                    <text id="red-card-number-8" x="57" y="70" font-size="70"
                         fill="red">8
                     </text>
                     <!-- bottom right number -->
@@ -592,7 +592,7 @@
             <defs>
                 <g id="red-9">
                     <!-- top left number -->
-                    <text id="red-card-number-9" x="57" y="50" font-size="35"
+                    <text id="red-card-number-9" x="57" y="70" font-size="70"
                         fill="red">9
                     </text>
                     <!-- bottom right number -->
@@ -604,8 +604,8 @@
             <defs>
                 <g id="red-10">
                     <!-- top left number -->
-                    <text id="red-card-number-10" x="57" y="50" font-size="35"
-                        fill="red">10
+                    <text id="red-card-number-10" x="57" y="70" font-size="60"
+                        fill="red" >10
                     </text>
                     <!-- bottom right number -->
                     <use xlink:href="#red-card-number-10" x="200" y="290"
@@ -616,8 +616,8 @@
             <defs>
                 <g id="red-A">
                     <!-- top left number -->
-                    <text id="red-card-number-A" x="57" y="50" font-size="35"
-                        fill="red">A
+                    <text id="red-card-number-A" x="57" y="70" font-size="70"
+                        fill="red" >A
                     </text>
                     <!-- bottom right number -->
                     <use xlink:href="#red-card-number-A" x="200" y="290"
@@ -638,16 +638,35 @@
                     <polygon points="170,210 130,255 210,255" style="stroke:red;fill:red;stroke-width:1" />
                     <circle cx="150" cy="261" r="20" style="stroke:red;fill:red" />
                     <circle cx="190" cy="261" r="20" style="stroke:red;fill:red" />
+                    
+                    <!--small top heart-->
+                    <polygon points="80,120 59,90 101,90" style="stroke:red;fill:red;stroke-width:1"/>
+                    <circle cx="70" cy="90" r="10" style="stroke:red;fill:red"/>
+                    <circle cx="90" cy="90" r="10" style="stroke:red;fill:red"/>
+                    
+                    <!--small bottom heart-->
+                    <polygon points="260,250 237,280 282,280" style="stroke:red;fill:red;stroke-width:1"/>
+                    <circle cx="250" cy="280" r="10" style="stroke:red;fill:red"/>
+                    <circle cx="270" cy="280" r="10" style="stroke:red;fill:red"/>
+                    
                 </g>
             </defs>
             
             <defs>
                 <g id="diamonds">
                     <!-- top middle diamond -->
-                    <polygon points="170,30 140,80 170,130 200,80" style="fill:red;stroke:red;stroke-width:1" />
+                    <polygon points="170,50 140,100 170,150 200,100" style="fill:red;stroke:red;stroke-width:1" />
                     
                     <!-- bottom middle diamond -->
-                    <polygon points="170,230 140,280 170,330 200,280" style="fill:red;stroke:red;stroke-width:1" />
+                    <polygon points="170,210 140,260 170,310 200,260" style="fill:red;stroke:red;stroke-width:1" />
+                    
+                    <!-- small top diamond-->
+                    <polygon points="90,80 75,105 90,130 105,105" style="fill:red;stroke:red;stroke-width:1" />
+                    
+                    <!--small bottom diamond -->
+                    <polygon points="250,235 235,260 250,285 265,260" style="fill:red;stroke:red;stroke-width:1" />
+           
+                  
                 </g>
             </defs>
             
@@ -661,25 +680,44 @@
                     <image x="135" y="220" width="80" height="80"
                         xlink:href="http://www.bikerstammtisch.com/Poker/Kreuz1.png"
                         transform="rotate(180, 175, 265)" />
+                    <!-- small top suit-->
+                    <image x="57" y="80" width="50" height="50"
+                        xlink:href="http://www.bikerstammtisch.com/Poker/Kreuz1.png" />
+                    <!-- small bottom suit-->
+                    <image x="65" y="240" width="50" height="50"
+                        xlink:href="http://www.bikerstammtisch.com/Poker/Kreuz1.png"
+                        transform="rotate(180, 175, 265)" />
+                    
                 </g>
             </defs>
             
             <defs>
                 <g id="spades">
                     
-                    <!-- top middle peak -->
+                    <!-- top middle spade -->
                     <polygon points="170,80 130,125 210,125" style="stroke-width:1" />
                     <circle cx="150" cy="131" r="20" />
                     <circle cx="190" cy="131" r="20" />
-                    <line x1="170" y1="120" x2="170" y2="175"
-                        style="stroke:black;fill:black;stroke-width:10" />
+                    <line x1="170" y1="120" x2="170" y2="175" style="stroke:black;fill:black;stroke-width:10" />
                     
-                    <!-- bottom middle peak -->
+                    <!-- bottom middle spade -->
                     <polygon points="170,300 130,255 210,255" style="fill:black;stroke:black;stroke-width:1" />
                     <circle cx="150" cy="249" r="20" style="stroke:black;fill:black" />
                     <circle cx="190" cy="249" r="20" style="stroke:black;fill:black" />
-                    <line x1="170" y1="205" x2="170" y2="260"
-                        style="stroke:black;fill:black;stroke-width:10" />
+                    <line x1="170" y1="205" x2="170" y2="260" style="stroke:black;fill:black;stroke-width:10" />
+                    
+                    <!--small top spade-->
+                    <polygon points="80,80 59,110 101,110" style="stroke:black;fill:black;stroke-width:1"/>
+                    <circle cx="70" cy="110" r="10" style="stroke:black;fill:black"/>
+                    <circle cx="90" cy="110" r="10" style="stroke:black;fill:black"/>
+                    <line x1="80" y1="110" x2="80" y2="130" style="stroke:black;fill:black;stroke-width:5" />
+                    
+                    <!--small bottom spade-->
+                    <polygon points="260,280 237,250 282,250" style="stroke:black;fill:black;stroke-width:1"/>
+                    <circle cx="250" cy="250" r="10" style="stroke:black;fill:black"/>
+                    <circle cx="270" cy="250" r="10" style="stroke:red;fill:black"/>
+                    <line x1="260" y1="250" x2="260" y2="230" style="stroke:black;fill:black;stroke-width:5" />
+                    
                 </g>
             </defs>
             
@@ -769,21 +807,21 @@
                 <xsl:variable name="counter" select="position()-1"/>
                 <xsl:variable name="color" select="color"/>
                 <xsl:variable name="value" select="value"/>
-                <use x="{($xKartenplatz3 - 25 + (50*$counter))*5}" y="{$yKartenplatz3*5 -100}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(-60 0 0)" />
+                <use x="{($xKartenplatz1*5-44 + (80*$counter))}" y="{$yKartenplatz1*5-8}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(-60 0 0)" />
                 <xsl:choose>
                     <xsl:when test="hidden = 'true'">
                         <!-- TODO: Kartenrückseite -->
                     </xsl:when>
                     <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
-                        <use x="{($xKartenplatz3 - 25 + (50*$counter))*5}" y="{$yKartenplatz3*5 -100}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                        <use x="{($xKartenplatz1*5-44 + (80*$counter))}" y="{$yKartenplatz1*5-8}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
                     </xsl:when>
                     <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
-                        <use x="{($xKartenplatz3 - 25 + (50*$counter))*5}" y="{$yKartenplatz3*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(-60 0 0)" />
-                        <use x="{($xKartenplatz3 - 25 + (50*$counter))*5}" y="{$yKartenplatz3*5 -100}" xlink:href="#red-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                        <use x="{($xKartenplatz1*5 -44+ (80*$counter))}" y="{$yKartenplatz1*5-8}" xlink:href="#{$color}" transform="scale(0.2)rotate(-60 0 0)" />
+                        <use x="{($xKartenplatz1*5 -44 + (80*$counter))}" y="{$yKartenplatz1*5-8}" xlink:href="#red-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
                     </xsl:when>
                     <xsl:otherwise>
-                        <use x="{($xKartenplatz3 - 25 + (50*$counter))*5}" y="{$yKartenplatz3*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(-60 0 0)" />
-                        <use x="{($xKartenplatz3 - 25 + (50*$counter))*5}" y="{$yKartenplatz3*5 -100}" xlink:href="#black-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                        <use x="{($xKartenplatz1*5 -44  + (80*$counter))}" y="{$yKartenplatz1*5-8}" xlink:href="#{$color}" transform="scale(0.2) rotate(-60 0 0)" />
+                        <use x="{($xKartenplatz1*5 -44  + (80*$counter))}" y="{$yKartenplatz1*5-8}" xlink:href="#black-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
@@ -793,21 +831,21 @@
                 <xsl:variable name="counter" select="position()-1"/>
                 <xsl:variable name="color" select="color"/>
                 <xsl:variable name="value" select="value"/>
-                <use x="{($xKartenplatz2 - 25 + (50*$counter))*5}" y="{$yKartenplatz2*5 -100}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(-30 0 0)" />
+                <use x="{($xKartenplatz2*5-44 + (80*$counter))}" y="{$yKartenplatz2*5-8}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(-30 0 0)" />
                 <xsl:choose>
                     <xsl:when test="hidden = 'true'">
                         <!-- TODO: Kartenrückseite -->
                     </xsl:when>
                     <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
-                        <use x="{($xKartenplatz2 - 25 + (50*$counter))*5}" y="{$yKartenplatz2*5 -100}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                        <use x="{($xKartenplatz2*5-44 + (80*$counter))}" y="{$yKartenplatz2*5-8}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-30 0 0)" />
                     </xsl:when>
                     <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
-                        <use x="{($xKartenplatz2 - 25 + (50*$counter))*5}" y="{$yKartenplatz2*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(-30 0 0)" />
-                        <use x="{($xKartenplatz2 - 25 + (50*$counter))*5}" y="{$yKartenplatz2*5 -100}" xlink:href="#red-{$value}" transform="scale(0.2) rotate(-30 0 0)" />
+                        <use x="{($xKartenplatz2*5 -44+ (80*$counter))}" y="{$yKartenplatz2*5-8}" xlink:href="#{$color}" transform="scale(0.2)rotate(-30 0 0)" />
+                        <use x="{($xKartenplatz2*5 -44 + (80*$counter))}" y="{$yKartenplatz2*5-8}" xlink:href="#red-{$value}" transform="scale(0.2) rotate(-30 0 0)" />
                     </xsl:when>
                     <xsl:otherwise>
-                        <use x="{($xKartenplatz2 - 25 + (50*$counter))*5}" y="{$yKartenplatz2*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(-30 0 0)" />
-                        <use x="{($xKartenplatz2 - 25 + (50*$counter))*5}" y="{$yKartenplatz2*5 -100}" xlink:href="#black-{$value}" transform="scale(0.2) rotate(-30 0 0)" />
+                        <use x="{($xKartenplatz2*5 -44  + (80*$counter))}" y="{$yKartenplatz2*5-8}" xlink:href="#{$color}" transform="scale(0.2) rotate(-30 0 0)" />
+                        <use x="{($xKartenplatz2*5 -44  + (80*$counter))}" y="{$yKartenplatz2*5-8}" xlink:href="#black-{$value}" transform="scale(0.2) rotate(-30 0 0)" />
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
@@ -817,21 +855,21 @@
                 <xsl:variable name="counter" select="position()-1"/>
                 <xsl:variable name="color" select="color"/>
                 <xsl:variable name="value" select="value"/>
-                <use x="{($xKartenplatz1 - 25 + (50*$counter))*5}" y="{$yKartenplatz1*5 -100}" xlink:href="#generic-card-border" transform="scale(0.2)" />
+                <use x="{($xKartenplatz3*5-44 + (80*$counter))}" y="{$yKartenplatz3*5 -8}" xlink:href="#generic-card-border" transform="scale(0.2)" />
                 <xsl:choose>
                     <xsl:when test="hidden = 'true'">
                         <!-- TODO: Kartenrückseite -->
                     </xsl:when>
                     <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
-                        <use x="{($xKartenplatz1 - 25 + (50*$counter))*5}" y="{$yKartenplatz1*5 -100}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                        <use x="{($xKartenplatz3*5-44 + (80*$counter))}" y="{$yKartenplatz3*5-8}" xlink:href="#{$color}-{$value}" transform="scale(0.2)" />
                     </xsl:when>
                     <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
-                        <use x="{($xKartenplatz1 - 25 + (50*$counter))*5}" y="{$yKartenplatz1*5 -100}" xlink:href="#{$color}" transform="scale(0.2)" />
-                        <use x="{($xKartenplatz1 - 25 + (50*$counter))*5}" y="{$yKartenplatz1*5 -100}" xlink:href="#red-{$value}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatz3*5 -44+ (80*$counter))}" y="{$yKartenplatz3*5-8}" xlink:href="#{$color}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatz3*5 -44 + (80*$counter))}" y="{$yKartenplatz3*5-8}" xlink:href="#red-{$value}" transform="scale(0.2)" />
                     </xsl:when>
                     <xsl:otherwise>
-                        <use x="{($xKartenplatz1 - 25 + (50*$counter))*5}" y="{$yKartenplatz1*5 -100}" xlink:href="#{$color}" transform="scale(0.2)" />
-                        <use x="{($xKartenplatz1 - 25 + (50*$counter))*5}" y="{$yKartenplatz1*5 -100}" xlink:href="#black-{$value}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatz3*5 -44  + (80*$counter))}" y="{$yKartenplatz3*5-8}" xlink:href="#{$color}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatz3*5 -44  + (80*$counter))}" y="{$yKartenplatz3*5-8}" xlink:href="#black-{$value}" transform="scale(0.2)" />
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
@@ -841,21 +879,21 @@
                 <xsl:variable name="counter" select="position()-1"/>
                 <xsl:variable name="color" select="color"/>
                 <xsl:variable name="value" select="value"/>
-                <use x="{($xKartenplatz4 - 25 + (50*$counter))*5}" y="{$yKartenplatz4*5 -100}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(30 0 0)" />
+                <use x="{($xKartenplatz4*5-44 + (80*$counter))}" y="{$yKartenplatz4*5 -8}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(30 0 0)" />
                 <xsl:choose>
                     <xsl:when test="hidden = 'true'">
                         <!-- TODO: Kartenrückseite -->
                     </xsl:when>
                     <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
-                        <use x="{($xKartenplatz4 - 25 + (50*$counter))*5}" y="{$yKartenplatz4*5 -100}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                        <use x="{($xKartenplatz4*5-44 + (80*$counter))}" y="{$yKartenplatz4*5-8}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(30 0 0)" />
                     </xsl:when>
                     <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
-                        <use x="{($xKartenplatz4 - 25 + (50*$counter))*5}" y="{$yKartenplatz4*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(30 0 0)" />
-                        <use x="{($xKartenplatz4 - 25 + (50*$counter))*5}" y="{$yKartenplatz4*5 -100}" xlink:href="#red-{$value}" transform="scale(0.2) rotate(30 0 0)" />
+                        <use x="{($xKartenplatz4*5 -44+ (80*$counter))}" y="{$yKartenplatz4*5-8}" xlink:href="#{$color}" transform="scale(0.2)rotate(30 0 0)" />
+                        <use x="{($xKartenplatz4*5 -44+ (80*$counter))}" y="{$yKartenplatz4*5-8}" xlink:href="#red-{$value}" transform="scale(0.2) rotate(30 0 0)" />
                     </xsl:when>
                     <xsl:otherwise>
-                        <use x="{($xKartenplatz4 - 25 + (50*$counter))*5}" y="{$yKartenplatz4*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(30 0 0)" />
-                        <use x="{($xKartenplatz4 - 25 + (50*$counter))*5}" y="{$yKartenplatz4*5 -100}" xlink:href="#black-{$value}" transform="scale(0.2) rotate(30 0 0)" />
+                        <use x="{($xKartenplatz4*5 -44  + (80*$counter))}" y="{$yKartenplatz4*5-8}" xlink:href="#{$color}" transform="scale(0.2) rotate(30 0 0)" />
+                        <use x="{($xKartenplatz4*5 -44  + (80*$counter))}" y="{$yKartenplatz4*5-8}" xlink:href="#black-{$value}" transform="scale(0.2) rotate(30 0 0)" />
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
@@ -865,21 +903,21 @@
                 <xsl:variable name="counter" select="position()-1"/>
                 <xsl:variable name="color" select="color"/>
                 <xsl:variable name="value" select="value"/>
-                <use x="{($xKartenplatz5 - 25 + (50*$counter))*5}" y="{$yKartenplatz5*5 -100}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(60 0 0)" />
+                <use x="{($xKartenplatz5*5-44 + (80*$counter))}" y="{$yKartenplatz5*5 -8}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(60 0 0)" />
                 <xsl:choose>
                     <xsl:when test="hidden = 'true'">
                         <!-- TODO: Kartenrückseite -->
                     </xsl:when>
                     <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
-                        <use x="{($xKartenplatz5 - 25 + (50*$counter))*5}" y="{$yKartenplatz5*5 -100}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
+                        <use x="{($xKartenplatz5*5-44 + (80*$counter))}" y="{$yKartenplatz5*5-8}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(60 0 0)" />
                     </xsl:when>
                     <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
-                        <use x="{($xKartenplatz5 - 25 + (50*$counter))*5}" y="{$yKartenplatz5*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(60 0 0)" />
-                        <use x="{($xKartenplatz5 - 25 + (50*$counter))*5}" y="{$yKartenplatz5*5 -100}" xlink:href="#red-{$value}" transform="scale(0.2) rotate(60 0 0)" />
+                        <use x="{($xKartenplatz5*5 -44+ (80*$counter))}" y="{$yKartenplatz5*5-8}" xlink:href="#{$color}" transform="scale(0.2)rotate(60 0 0)" />
+                        <use x="{($xKartenplatz5*5 -44 + (80*$counter))}" y="{$yKartenplatz5*5-8}" xlink:href="#red-{$value}" transform="scale(0.2) rotate(60 0 0)" />
                     </xsl:when>
                     <xsl:otherwise>
-                        <use x="{($xKartenplatz5 - 25 + (50*$counter))*5}" y="{$yKartenplatz5*5 -100}" xlink:href="#{$color}" transform="scale(0.2) rotate(60 0 0)" />
-                        <use x="{($xKartenplatz5 - 25 + (50*$counter))*5}" y="{$yKartenplatz5*5 -100}" xlink:href="#black-{$value}" transform="scale(0.2) rotate(60 0 0)" />
+                        <use x="{($xKartenplatz5*5 -44  + (80*$counter))}" y="{$yKartenplatz5*5-8}" xlink:href="#{$color}" transform="scale(0.2) rotate(60 0 0)" />
+                        <use x="{($xKartenplatz5*5 -44  + (80*$counter))}" y="{$yKartenplatz5*5-8}" xlink:href="#black-{$value}" transform="scale(0.2) rotate(60 0 0)" />
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
@@ -889,21 +927,21 @@
                 <xsl:variable name="counter" select="position()-1"/>
                 <xsl:variable name="color" select="color"/>
                 <xsl:variable name="value" select="value"/>
-                <use x="{($xKartenplatzDealer - 25 + (50*$counter))*5}" y="{$yKartenplatzDealer*5 -100}" xlink:href="#generic-card-border" transform="scale(0.2)" />
+                <use x="{($xKartenplatzDealer*5-44 + (80*$counter))}" y="{$yKartenplatzDealer*5 -8}" xlink:href="#generic-card-border" transform="scale(0.2)" />
                 <xsl:choose>
                     <xsl:when test="hidden = 'true'">
                         <!-- TODO: Kartenrückseite -->
                     </xsl:when>
                     <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
-                        <use x="{($xKartenplatzDealer - 25 + (50*$counter))*5}" y="{$yKartenplatzDealer*5 -100}" xlink:href="#{$color}-{$value}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatzDealer*5-44 + (80*$counter))}" y="{$yKartenplatzDealer*5-8}" xlink:href="#{$color}-{$value}" transform="scale(0.2) " />
                     </xsl:when>
                     <xsl:when test="$color = 'diamonds' or $color = 'hearts'">
-                        <use x="{($xKartenplatzDealer - 25 + (50*$counter))*5}" y="{$yKartenplatzDealer*5 -100}" xlink:href="#{$color}" transform="scale(0.2)" />
-                        <use x="{($xKartenplatzDealer - 25 + (50*$counter))*5}" y="{$yKartenplatzDealer*5 -100}" xlink:href="#red-{$value}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatzDealer*5 -44+ (80*$counter))}" y="{$yKartenplatzDealer*5-8}" xlink:href="#{$color}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatz5*5 -44 + (80*$counter))}" y="{$yKartenplatzDealer*5-8}" xlink:href="#red-{$value}" transform="scale(0.2)" />
                     </xsl:when>
                     <xsl:otherwise>
-                        <use x="{($xKartenplatzDealer - 25 + (50*$counter))*5}" y="{$yKartenplatzDealer*5 -100}" xlink:href="#{$color}" transform="scale(0.2)" />
-                        <use x="{($xKartenplatzDealer - 25 + (50*$counter))*5}" y="{$yKartenplatzDealer*5 -100}" xlink:href="#black-{$value}" transform="scale(0.2)" />
+                        <use x="{($xKartenplatzDealer*5 -44  + (80*$counter))}" y="{$yKartenplatzDealer*5-8}" xlink:href="#{$color}" transform="scale(0.2) " />
+                        <use x="{($xKartenplatzDealer*5 -44  + (80*$counter))}" y="{$yKartenplatzDealer*5-8}" xlink:href="#black-{$value}" transform="scale(0.2)" />
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
