@@ -41,8 +41,8 @@
     <xsl:variable name="yKartenplatz4" select="number(150)"/>
     <xsl:variable name="xKartenplatz5" select="number(325)"/>
     <xsl:variable name="yKartenplatz5" select="number(-115)"/>
-    <xsl:variable name="xKartenplatzDealer" select="number(680)"/>
-    <xsl:variable name="yKartenplatzDealer" select="number(80)"/>
+    <xsl:variable name="xKartenplatzDealer" select="number(600)"/>
+    <xsl:variable name="yKartenplatzDealer" select="number(60)"/>
 
     <!-- Ablagestapel -->
     <xsl:variable name="xAblagestapel" select="number(80)"/>
