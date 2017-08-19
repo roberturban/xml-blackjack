@@ -168,7 +168,8 @@ declare function d:turnHiddenCard($card as element(card)) as element(card) {
 (: this function deals out two intial cards for every player and the dealer in the correct sequence :)
 declare %updating function d:dealOutInitialCards($gameId as xs:string) {
     let $game := $g:casino/game[@id=$gameId]
-    let $players := $game/players/player[balance > 0]
+    let $players := $game/players/*
+                    
     for $i at $pos in $players
         return (
                 insert node d:turnHiddenCard($game/cards/card[1+($pos - 1)]) into $game/players/player[@id=$i/@id]/hand,

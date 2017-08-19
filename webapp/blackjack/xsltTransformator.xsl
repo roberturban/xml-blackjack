@@ -1022,12 +1022,14 @@
             </xsl:if>
 
             <xsl:if test="step = 'play'">
-                <g class="active_button">
-                    <a href="/blackjack/insurance/{$gameId}">
-                      <use xlink:href="#button" x="{$xButton - 225}" y="{$yButton}"></use>
-                      <text x="{$xButtonCenter - 225}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Insurance</text>
-                    </a>
-                </g>
+                <xsl:if test="dealer/hand/card[1]/value = 'A'">
+                    <g class="active_button">
+                        <a href="/blackjack/insurance/{$gameId}">
+                          <use xlink:href="#button" x="{$xButton - 225}" y="{$yButton}"></use>
+                          <text x="{$xButtonCenter - 225}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Insurance</text>
+                        </a>
+                    </g>
+                </xsl:if>
 
                 <g class="active_button">
                     <a href="/blackjack/hit/{$gameId}">
@@ -1044,15 +1046,23 @@
                 </g>
             </xsl:if>
 
-
             <xsl:if test="step = 'finishing'">
                <g class="active_button">
-                   <a xlink:href="/blackjack/finishing/{$gameId}" xlink:title="go on...">
+                   <a xlink:href="/blackjack/finishing/{$gameId}" xlink:title="payout">
                        <use xlink:href="#button" x="{$xButton}" y="250"></use>
-                       <text x="{$xButtonCenter}" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Go on...</text>
+                       <text x="{$xButtonCenter}" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Payout</text>
                    </a>
                </g>
-            </xsl:if>            
+            </xsl:if> 
+            
+            <xsl:if test="step = 'finished'">
+                <g class="active_button">
+                    <a xlink:href="/blackjack/finished/{$gameId}" xlink:title="nextRound">
+                        <use xlink:href="#button" x="{$xButton}" y="250"></use>
+                        <text x="{$xButtonCenter}" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Next Round</text>
+                    </a>
+                </g>
+            </xsl:if>
         </svg>
     </xsl:template>
 

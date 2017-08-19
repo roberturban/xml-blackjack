@@ -11,15 +11,24 @@ declare variable $g:casino := db:open("blackjack")/casino;
 (: this function creates a new game instance, with players' names and lower and upper bet limits as parameters :)
 declare function g:createNewGame($maxBet as xs:integer, $minBet as xs:integer,$playerNames as xs:string+, $balances as xs:integer+) as element(game) {
   let $id := t:generateID()
+  let $playerNamesChecked :=    for $p in $playerNames count $i
+                                return(
+                                if ($balances[$i] <= 0 or $p = "") then
+                                ()
+                                else($p))
+                                
+  let $balancesChecked :=       for $b in $balances count $i
+                                return(
+                                if ($b <= 0 or $playerNames[$i] = "") then
+                                ()
+                                else($b))                                 
+  
   let $players := <players>
-        {for $p in $playerNames count $i
-            return(
-            if ($balances[$i] <= 0 or $p = "") then
-            ()
-            else(
-            p:newPlayer($p, $balances[$i])))
+        {for $p in $playerNamesChecked count $i
+         return(p:newPlayer($p, $balancesChecked[$i],$i))
         }
         </players>
+    
   return
     <game id = "{$id}">
       <step>bet</step>
@@ -65,6 +74,10 @@ declare %updating function g:setActivePlayer($gameId as xs:string) {
                     replace value of node $game/step with 'play',
                     d:dealOutInitialCards($gameId)
                 )
+                else if ($game/step = 'finished') then
+                (
+                    replace value of node $game/activePlayer/@id with $players[*:balance>$game/minBet][1]/@id
+                )
                 else
                 (
                     replace value of node $game/activePlayer/@id with $players[@id=$playerId]/following::*[1]/@id,
@@ -83,11 +96,19 @@ declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
     return (
         for $player in $game/players/player[bet > 0]
             return g:checkWinningStatus($gameId, fn:true(), $player),
-        replace value of node $game/activePlayer/@id with $game/players/player[1]/@id,
-        replace value of node $game/step with 'bet',
+        replace value of node $game/step with 'finished',
         delete node $game/dealer/hand/*,
         g:checkDeckLength($gameId)
     )
+};
+
+declare %updating function g:checkBankruptAll($gameId as xs:string) {
+  let $game := $g:casino/game[@id=$gameId]
+  return(for $p in $game/players/player
+         where $p/balance < $game/minBet
+         return(delete node $p),
+         replace value of node $game/step with 'bet',
+         g:setActivePlayer($gameId))
 };
 
 declare %updating function g:checkDeckLength($gameId as xs:string){

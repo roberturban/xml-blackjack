@@ -9,15 +9,16 @@ import module namespace t = "blackjack/tools" at "tools.xqm";
 declare variable $p:casino := db:open("blackjack")/casino;
 
 (: this function creates a new player with a name :)
-declare function p:newPlayer($name as xs:string, $balance as xs:integer) as element(player) {
+declare function p:newPlayer($name as xs:string, $balance as xs:integer, $seat as xs:integer) as element(player) {
   let $id := t:generateID()
   return
     <player id = "{$id}">
       <bet>0</bet>
       <balance>{$balance}</balance>
-      <insurance></insurance>
+      <insurance>0</insurance>
       <hand></hand>
       <name>{$name}</name>
+      <seat>{$seat}</seat>
     </player>
 };
 

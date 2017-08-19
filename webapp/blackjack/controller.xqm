@@ -209,7 +209,7 @@ function c:insurance($gameId as xs:string) {
 };
 
 (: this funtion calls the checkWinningStatusAll function, in order to check, which players won and lost :)
-(: executed on clicking the "Go on..."-Button :)
+(: executed on clicking the "Payout"-Button :)
 declare
 %updating
 %rest:path("/blackjack/finishing/{$gameId}")
@@ -220,6 +220,17 @@ function c:finishing($gameId as xs:string) {
   ) else ( )
 };
 
+
+(: executed on clicking the "Next Round"-Button :)
+declare
+%updating
+%rest:path("/blackjack/finished/{$gameId}")
+%rest:GET
+function c:finished($gameId as xs:string) {
+  if ($c:casinoCollection/casino/game[@id = $gameId]/step = 'finished') then (
+    (db:output(c:redirectToTransformator($gameId)),g:checkBankruptAll($gameId))
+  ) else ( )
+};
 
 (: this funtion calls the dealOutInitialCards function :)
 declare
