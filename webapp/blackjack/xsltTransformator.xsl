@@ -1055,6 +1055,15 @@
                </g>
             </xsl:if> 
             
+            <xsl:if test="step = 'gameover'">
+                <g class="active_button">
+                    <a xlink:href="/blackjack/gameover/{$gameId}" xlink:title="gameover">
+                        <use xlink:href="#button" x="{$xButton}" y="250"></use>
+                        <text x="{$xButtonCenter}" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Game Over</text>
+                    </a>
+                </g>
+            </xsl:if>
+            
             <xsl:if test="step = 'finished'">
                 <g class="active_button">
                     <a xlink:href="/blackjack/finished/{$gameId}" xlink:title="nextRound">

@@ -44,6 +44,23 @@ declare function g:createNewGame($maxBet as xs:integer, $minBet as xs:integer,$p
     </game>
 };
 
+(: this function returns an empty game with step = gameover :)
+declare function g:createEmptyGame() as element(game) {
+  let $id := t:generateID()
+  return
+    <game id = "{$id}">
+      <step>gameover</step>
+      <maxBet></maxBet>
+      <minBet></minBet>
+      <activePlayer></activePlayer>
+      <players></players>
+      <dealer>
+        <id>dealer</id>
+        <hand></hand>
+      </dealer>
+    </game>
+}; 
+ 
 (: this function inserts a new game instance into the casino server :)
 declare %updating function g:insertGame($game as element(game)) {
   insert node $game as first into $g:casino
@@ -104,11 +121,22 @@ declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
 
 declare %updating function g:checkBankruptAll($gameId as xs:string) {
   let $game := $g:casino/game[@id=$gameId]
+  let $playersIn := count($game/players/player)
+  let $playersOut := count( for $p in $game/players/player
+                            where $p/balance < $game/minBet
+                            return $p)
+  
   return(for $p in $game/players/player
          where $p/balance < $game/minBet
          return(delete node $p),
-         replace value of node $game/step with 'bet',
-         g:setActivePlayer($gameId))
+         
+         if($playersIn = $playersOut) then (
+            (:g:deleteGame($gameId),:)
+            replace value of node $game/step with 'gameover'
+           )
+         else (
+            replace value of node $game/step with 'bet',
+            g:setActivePlayer($gameId)))
 };
 
 declare %updating function g:checkDeckLength($gameId as xs:string){

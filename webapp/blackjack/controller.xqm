@@ -120,8 +120,12 @@ function c:handleInit() {
         )
 
   let $game := g:createNewGame($maxBetChecked,$minBetChecked,$playerNames,$balancesChecked)
+  let $emptyGame := g:createEmptyGame()
 
-  return (db:output(c:redirectToTransformator($game/@id)), g:insertGame($game))
+  return (if(count($game/players/player) = 0) then (
+                db:output(c:redirectToTransformator($emptyGame/@id)), g:insertGame($emptyGame))
+          else (db:output(c:redirectToTransformator($game/@id)), g:insertGame($game))
+          )
 };
 
 (: this function checks whether the parameter is a number :)
@@ -230,6 +234,16 @@ function c:finished($gameId as xs:string) {
   if ($c:casinoCollection/casino/game[@id = $gameId]/step = 'finished') then (
     (db:output(c:redirectToTransformator($gameId)),g:checkBankruptAll($gameId))
   ) else ( )
+};
+
+(: this funtion deletes the game :)
+declare
+%updating
+%rest:path("/blackjack/gameover/{$gameId}")
+%rest:GET
+function c:gameover($gameId as xs:string) {
+    g:deleteGame($gameId),
+    db:output(web:redirect("/blackjack/"))
 };
 
 (: this funtion calls the dealOutInitialCards function :)
