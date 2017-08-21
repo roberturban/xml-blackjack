@@ -112,7 +112,7 @@
         
 
         <!-- Game board -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="1250" height="830">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="790">
             <clipPath id="rec">
                 <rect x="{$xTable}" y="{$yTable}" width="{$widthTable}" height="{$heightRectTable}"/>
             </clipPath>
@@ -998,12 +998,58 @@
                 stroke: grey;
                 }
             </style>
-            
+            <style>
+                .button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                display: inline-block;
+                min-width: 75px;
+                font-family: Arial, Helvetica, sans-serif;
+                }
+                .button_disabled {
+                background-color: #E6E6E6;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: default;
+                display: inline-block;
+                min-width: 75px;
+                opacity: 0.8;
+                font-family: Arial, Helvetica, sans-serif;
+                }
+                .button_center {
+                background-color: white;
+                border: solid;
+                color: black;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                display: inline-block;
+                min-width: 100px;
+                font-family: Arial, Helvetica, sans-serif;
+                }
+            </style>
             
             <xsl:variable name="minBet" select="./minBet"/>
             <xsl:if test="step = 'bet'">
-                <switch>
-                    <foreignObject x="{$xButton}" y="{$yButton}" width="500" height="100">
+                    <foreignObject x="40" y="750">
                         <form action="/blackjack/bet-form/{$gameId}" style="display:flex; flex-direction:column;" xmlns="http://www.w3.org/1999/xhmtl">
                           <table>
                               <tr>
@@ -1020,59 +1066,46 @@
                           </table>
                       </form>
                     </foreignObject>
-                </switch>
             </xsl:if>
 
             <xsl:if test="step = 'play'">
                 <xsl:if test="dealer/hand/card[1]/value = 'A'">
-                    <g class="active_button">
-                        <a href="/blackjack/insurance/{$gameId}">
-                          <use xlink:href="#button" x="{$xButton - 225}" y="{$yButton}"></use>
-                          <text x="{$xButtonCenter - 225}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Insurance</text>
-                        </a>
-                    </g>
+                    <foreignObject x="0" y="730" width="150" height="100">
+                        <a href="/blackjack/insurance/{$gameId}" class="button">Insurance</a>
+                    </foreignObject>
                 </xsl:if>
-
-                <g class="active_button">
-                    <a href="/blackjack/hit/{$gameId}">
-                     <use xlink:href="#button" x="{$xButton}" y="{$yButton}"></use>
-                     <text x="{$xButtonCenter}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Hit</text>
-                    </a>
-                </g>
-
-                <g class="active_button">
-                    <a href="/blackjack/stand/{$gameId}">
-                      <use xlink:href="#button" x="{$xButton + 225}" y="{$yButton}"></use>
-                      <text x="{$xButtonCenter + 225}" y="{$yTextButton}" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Stand</text>
-                    </a>
-                </g>
+                
+                <xsl:if test="dealer/hand/card[1]/value != 'A'">
+                    <foreignObject x="0" y="730" width="150" height="100">
+                        <a href="/blackjack/insurance/{$gameId}" class="button_disabled">Insurance</a>
+                    </foreignObject>
+                </xsl:if>
+                
+                <foreignObject x="150" y="730" width="150" height="50">
+                    <a href="/blackjack/hit/{$gameId}" class="button">Hit</a>
+                </foreignObject>
+                
+                <foreignObject x="300" y="730" width="150" height="50">
+                <a href="/blackjack/stand/{$gameId}" class="button">Stand</a>
+                </foreignObject>
             </xsl:if>
 
             <xsl:if test="step = 'finishing'">
-               <g class="active_button">
-                   <a xlink:href="/blackjack/finishing/{$gameId}" xlink:title="payout">
-                       <use xlink:href="#button" x="{$xButton}" y="250"></use>
-                       <text x="{$xButtonCenter}" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Payout</text>
-                   </a>
-               </g>
+                <foreignObject x="518" y="250">
+                    <a href="/blackjack/finishing/{$gameId}" class="button_center">Payout</a>
+                </foreignObject>
             </xsl:if> 
             
             <xsl:if test="step = 'gameover'">
-                <g class="active_button">
-                    <a xlink:href="/blackjack/gameover/{$gameId}" xlink:title="gameover">
-                        <use xlink:href="#button" x="{$xButton}" y="250"></use>
-                        <text x="{$xButtonCenter}" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Game Over</text>
-                    </a>
-                </g>
+                <foreignObject x="518" y="250">
+                    <a href="/blackjack/gameover/{$gameId}" class="button_center">Game Over</a>
+                </foreignObject>
             </xsl:if>
             
             <xsl:if test="step = 'finished'">
-                <g class="active_button">
-                    <a xlink:href="/blackjack/finished/{$gameId}" xlink:title="nextRound">
-                        <use xlink:href="#button" x="{$xButton}" y="250"></use>
-                        <text x="{$xButtonCenter}" y="280" alignment-baseline="middle" text-anchor="middle" fill="black" font-family="Verdana">Next Round</text>
-                    </a>
-                </g>
+                <foreignObject x="518" y="250">
+                    <a href="/blackjack/finished/{$gameId}" class="button_center">Next Round</a>
+                </foreignObject>
             </xsl:if>
             
             <div style="position:absolute;bottom:0;right:0;height:120px;width:400px;border:1px solid #ccc;font:16px/26px; overflow:auto;">
