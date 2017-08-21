@@ -108,7 +108,7 @@
         <xsl:variable name="player5" select="players/player[seat=5]"/>
         <xsl:variable name="player1" select="players/player[seat=1]"/>
         <xsl:variable name="player2" select="players/player[seat=2]"/>
-        
+        <xsl:variable name="playerActive" select="activePlayer/@id"/>
         
 
         <!-- Game board -->
@@ -1069,17 +1069,18 @@
             </xsl:if>
 
             <xsl:if test="step = 'play'">
-                <xsl:if test="dealer/hand/card[1]/value = 'A'">
-                    <foreignObject x="0" y="730" width="150" height="100">
-                        <a href="/blackjack/insurance/{$gameId}" class="button">Insurance</a>
-                    </foreignObject>
-                </xsl:if>
-                
-                <xsl:if test="dealer/hand/card[1]/value != 'A'">
-                    <foreignObject x="0" y="730" width="150" height="100">
-                        <a href="/blackjack/insurance/{$gameId}" class="button_disabled">Insurance</a>
-                    </foreignObject>
-                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="(dealer/hand/card[1]/value = 'A') and (players/player[@id = $playerActive]/insurance = '0')">
+                        <foreignObject x="0" y="730" width="150" height="100">
+                            <a href="/blackjack/insurance/{$gameId}" class="button">Insurance</a>
+                        </foreignObject>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <foreignObject x="0" y="730" width="150" height="100">
+                            <a href="/blackjack/insurance/{$gameId}" class="button_disabled">Insurance</a>
+                        </foreignObject>
+                    </xsl:otherwise>
+                </xsl:choose>
                 
                 <foreignObject x="150" y="730" width="150" height="50">
                     <a href="/blackjack/hit/{$gameId}" class="button">Hit</a>
