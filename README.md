@@ -24,7 +24,6 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * Review/test concatenated game logic
 * Update class diagram
 * CSS for start pages
-* map players in xslt to their seats according to seat-element
 * Dealer gets his first two cards AFTER the bet-round (at the moment, the dealer gets 2 x 2cards due to the bet-round)
 * Old ToDos
 * Kartenrückseite
