@@ -88,7 +88,7 @@
     <xsl:template match="/">
         <html>
             <head>
-                <title>Black Jack Casino</title>
+                <title>Black Jack - Casino</title>
                 <meta charset="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
             </head>
@@ -1049,7 +1049,7 @@
             
             <xsl:variable name="minBet" select="./minBet"/>
             <xsl:if test="step = 'bet'">
-                    <foreignObject x="40" y="750">
+                <foreignObject x="40" y="750" width="150" height="100">
                         <form action="/blackjack/bet-form/{$gameId}" style="display:flex; flex-direction:column;" xmlns="http://www.w3.org/1999/xhmtl">
                           <table>
                               <tr>
