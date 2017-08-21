@@ -1092,19 +1092,19 @@
             </xsl:if>
 
             <xsl:if test="step = 'finishing'">
-                <foreignObject x="518" y="250">
+                <foreignObject x="518" y="250" width="200" height="100">
                     <a href="/blackjack/finishing/{$gameId}" class="button_center">Payout</a>
                 </foreignObject>
             </xsl:if> 
             
             <xsl:if test="step = 'gameover'">
-                <foreignObject x="518" y="250">
+                <foreignObject x="518" y="250" width="200" height="100">
                     <a href="/blackjack/gameover/{$gameId}" class="button_center">Game Over</a>
                 </foreignObject>
             </xsl:if>
             
             <xsl:if test="step = 'finished'">
-                <foreignObject x="518" y="250">
+                <foreignObject x="518" y="250" width="200" height="100">
                     <a href="/blackjack/finished/{$gameId}" class="button_center">Next Round</a>
                 </foreignObject>
             </xsl:if>
