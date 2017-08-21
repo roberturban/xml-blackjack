@@ -170,37 +170,32 @@ declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame
         if ($endOfGame = fn:true()) then (
             if($valueOfCardsPlayer > 21) then (
                 (: in this case, the player lost anyways :)
-                replace value of node $player/bet with 0,
-                delete node $player/hand/*
+                replace value of node $player/balance with ($balanceValue+g:checkInsurancePayout($player,$valueOfCardsDealer))
             )
             else (
                 (: tie :)
                 if ($valueOfCardsDealer = $valueOfCardsPlayer) then (
                     (: EYERY player wins and gets back his/her bet :)
                     (: even in case dealer and player both have a BlackJack, the player only gets back his/her bet :)
-                    replace value of node $player/balance with ($balanceValue+$betValue),
-                    replace value of node $player/bet with 0,
-                    delete node $player/hand/*
+                    replace value of node $player/balance with ($balanceValue+$betValue+g:checkInsurancePayout($player,$valueOfCardsDealer))
                 )
                 (: dealer wins :)
                 else if (($valueOfCardsDealer > $valueOfCardsPlayer) and ($valueOfCardsDealer <= 21)) then (
                     (: player loses :)
-                    replace value of node $player/bet with 0,
-                    delete node $player/hand/*
+                    replace value of node $player/balance with ($balanceValue+g:checkInsurancePayout($player,$valueOfCardsDealer))
                 )
                 else if ($valueOfCardsPlayer = 21) then (
                     (: player got a BlackJack:)
-                    replace value of node $player/balance with ($balanceValue+$betValue*2.5),
-                    replace value of node $player/bet with 0,
-                    delete node $player/hand/*
+                    replace value of node $player/balance with ($balanceValue+$betValue*2.5+g:checkInsurancePayout($player,$valueOfCardsDealer))
                 )
                 (: player has more points than dealer or dealer is over 21 :)
                 else (
-                    replace value of node $player/balance with ($balanceValue+$betValue*2),
-                    replace value of node $player/bet with 0,
-                    delete node $player/hand/*
+                    replace value of node $player/balance with ($balanceValue+$betValue*2)
                 )
-             )
+             ),
+             replace value of node $player/bet with 0,
+             replace value of node $player/insurance with 0,
+             delete node $player/hand/*
          )
         else (
             if($valueOfCardsPlayer > 21) then (
@@ -208,6 +203,21 @@ declare %updating function g:checkWinningStatus($gameId as xs:string, $endOfGame
                 delete node $player/hand/*
             ) else ()
          )
+    )
+};
+
+declare function g:checkInsurancePayout($player as element(player), $valueOfCardsDealer as xs:double) as xs:double {
+   let $insurance := number($player/insurance)
+    
+   return(
+   if($insurance > 0) then (
+       if($valueOfCardsDealer = 21) then
+            ($insurance*2)
+       else
+            0
+       )
+    else
+        0
     )
 };
 

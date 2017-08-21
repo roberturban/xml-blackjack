@@ -80,16 +80,20 @@ declare %updating function p:stand($gameId as xs:string) {
 (: this action must only be possible, if the first card of the dealer is an ace :)
 declare %updating function p:insurance($gameId as xs:string) {
   let $game := $p:casino/game[@id=$gameId]
-  let $playerId := $game/activePlayer/@id
-  let $betValue := $game/players/player[@id=$playerId]/bet
+  let $player := $game/players/player[@id=$game/activePlayer/@id]
+  let $insuranceValue := number($player/bet) div 2
+  let $balance := $player/balance
   
   return (
     (: insurance is only possible, if the first open card of the dealer is an Ace :)
-    if (($game/dealer/hand/card[1]/value = 'A') and ($game/dealer/hand/card[1]/hidden = 'false')) then (
-        replace value of node $game/players/player[@id=$playerId]/insurance with ($betValue div 2)
+    if (($game/dealer/hand/card[1]/value = 'A') and ($game/dealer/hand/card[1]/hidden = 'false') and (number($player/insurance) = 0)) then (
+        if(number($balance)>=number($insuranceValue)) then (
+            replace value of node $player/insurance with $insuranceValue,
+            replace value of node $player/balance with ($balance - $insuranceValue)
+        )
+        else ()
     )
-    else (
-    )
+    else ()
   )
 };
 
