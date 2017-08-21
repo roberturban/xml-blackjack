@@ -93,7 +93,7 @@ declare %updating function g:setActivePlayer($gameId as xs:string) {
                 )
                 else if ($game/step = 'finished') then
                 (
-                    replace value of node $game/activePlayer/@id with $players[*:balance>$game/minBet][1]/@id
+                    replace value of node $game/activePlayer/@id with $players[*:balance > number($game/minBet)][1]/@id
                 )
                 else
                 (
@@ -123,15 +123,14 @@ declare %updating function g:checkBankruptAll($gameId as xs:string) {
   let $game := $g:casino/game[@id=$gameId]
   let $playersIn := count($game/players/player)
   let $playersOut := count( for $p in $game/players/player
-                            where $p/balance < $game/minBet
+                            where (number($p/balance) < number($game/minBet))
                             return $p)
   
   return(for $p in $game/players/player
-         where $p/balance < $game/minBet
+         where (number($p/balance) < number($game/minBet))
          return(delete node $p),
          
          if($playersIn = $playersOut) then (
-            (:g:deleteGame($gameId),:)
             replace value of node $game/step with 'gameover'
            )
          else (
