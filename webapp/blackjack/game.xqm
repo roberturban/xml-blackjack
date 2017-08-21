@@ -163,7 +163,16 @@ declare %updating function g:checkDeckLength($gameId as xs:string){
                 </cards>
   return(
     if(count($game/cards/*)<(312*0.6)) then (
-        replace node $game/cards with $deck,
+        let $shuffled-deck :=
+         for $i in $deck/card
+         order by t:random(count($deck/card))
+         return $i
+
+        let $shuffled-cards :=
+            <cards>
+              {$shuffled-deck}
+            </cards>
+        replace node $game/cards with $shuffled-deck,
         g:addEvent($gameId,"All cards are shuffled")
     )
     else ()
