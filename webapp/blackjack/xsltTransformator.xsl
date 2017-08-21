@@ -266,10 +266,10 @@
             <xsl:choose>
                 <xsl:when test="activePlayer/@id = $player3/@id">
                     <use xlink:href="#avatar_active" x="{$xAvatar1}" y="{$yAvatar1}"></use>
-                    <text x="{$xAvatar1+25}" y="{$yAvatar1+110}" fill="white" text-anchor="middle" dominant-baseline="central">
+                    <text x="{$xAvatar1+25}" y="{$yAvatar1+110}" fill="white" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif" >
                       <xsl:value-of select="$player3/name"/>
                     </text>
-                    <text x="{$xAvatar1+25}" y="{$yAvatar1+135}" fill="grey" text-anchor="middle" dominant-baseline="central">
+                    <text x="{$xAvatar1+25}" y="{$yAvatar1+135}" fill="grey" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                         <xsl:value-of select="concat('Balance: ',$player3/balance)"/>
                     </text>
                 </xsl:when>
@@ -277,10 +277,10 @@
                     <xsl:choose>
                         <xsl:when test="$player3">
                             <use xlink:href="#avatar" x="{$xAvatar1}" y="{$yAvatar1}"></use>
-                            <text x="{$xAvatar1+25}" y="{$yAvatar1+110}" fill="black" text-anchor="middle" dominant-baseline="central">
+                            <text x="{$xAvatar1+25}" y="{$yAvatar1+110}" fill="black" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                                 <xsl:value-of select="$player3/name"/>
                             </text>
-                            <text x="{$xAvatar1+25}" y="{$yAvatar1+135}" fill="grey" text-anchor="middle" dominant-baseline="central">
+                            <text x="{$xAvatar1+25}" y="{$yAvatar1+135}" fill="grey" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                                 <xsl:value-of select="concat('Balance: ',$player3/balance)"/>
                             </text>
                         </xsl:when>
@@ -290,10 +290,10 @@
             <xsl:choose>
                 <xsl:when test="activePlayer/@id = $player4/@id">
                     <use xlink:href="#avatar_active" x="{$xAvatar2}" y="{$yAvatar2}" transform="rotate(30 0 0)"></use>
-                    <text x="{$xAvatar2+25}" y="{$yAvatar2+110}" transform="rotate(30 0 0)" fill="white" text-anchor="middle" dominant-baseline="central">
+                    <text x="{$xAvatar2+25}" y="{$yAvatar2+110}" transform="rotate(30 0 0)" fill="white" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                       <xsl:value-of select="$player4/name"/>
                     </text>
-                    <text x="{$xAvatar2+25}" y="{$yAvatar2+135}" transform="rotate(30 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                    <text x="{$xAvatar2+25}" y="{$yAvatar2+135}" transform="rotate(30 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                         <xsl:value-of select="concat('Balance: ',$player4/balance)"/>
                     </text>
                 </xsl:when>
@@ -301,10 +301,10 @@
                     <xsl:choose>
                         <xsl:when test="$player4">
                             <use xlink:href="#avatar" x="{$xAvatar2}" y="{$yAvatar2}" transform="rotate(30 0 0)"></use>
-                            <text x="{$xAvatar2+25}" y="{$yAvatar2+110}" transform="rotate(30 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
+                            <text x="{$xAvatar2+25}" y="{$yAvatar2+110}" transform="rotate(30 0 0)" fill="black" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                                 <xsl:value-of select="$player4/name"/>
                             </text>
-                            <text x="{$xAvatar2+25}" y="{$yAvatar2+135}" transform="rotate(30 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                            <text x="{$xAvatar2+25}" y="{$yAvatar2+135}" transform="rotate(30 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                                 <xsl:value-of select="concat('Balance: ',$player4/balance)"/>
                             </text>
                         </xsl:when>
@@ -314,10 +314,10 @@
             <xsl:choose>
                 <xsl:when test="activePlayer/@id = $player5/@id">
                     <use xlink:href="#avatar_active" x="{$xAvatar3}" y="{$yAvatar3}" transform="rotate(60 0 0)"></use>
-                    <text x="{$xAvatar3+25}" y="{$yAvatar3+110}" transform="rotate(60 0 0)" fill="white" text-anchor="middle" dominant-baseline="central">
+                    <text x="{$xAvatar3+25}" y="{$yAvatar3+110}" transform="rotate(60 0 0)" fill="white" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                       <xsl:value-of select="$player5/name"/>
                     </text>
-                    <text x="{$xAvatar3+25}" y="{$yAvatar3+135}" transform="rotate(60 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                    <text x="{$xAvatar3+25}" y="{$yAvatar3+135}" transform="rotate(60 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                         <xsl:value-of select="concat('Balance: ',$player5/balance)"/>
                     </text>
                 </xsl:when>
@@ -325,10 +325,10 @@
                     <xsl:choose>
                         <xsl:when test="$player5">
                             <use xlink:href="#avatar" x="{$xAvatar3}" y="{$yAvatar3}" transform="rotate(60 0 0)"></use>
-                            <text x="{$xAvatar3+25}" y="{$yAvatar3+110}" transform="rotate(60 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
+                            <text x="{$xAvatar3+25}" y="{$yAvatar3+105}" transform="rotate(60 0 0)" fill="black" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                                 <xsl:value-of select="$player5/name"/>
                             </text>
-                            <text x="{$xAvatar3+25}" y="{$yAvatar3+135}" transform="rotate(60 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                            <text x="{$xAvatar3+27}" y="{$yAvatar3+128}" transform="rotate(60 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                                 <xsl:value-of select="concat('Balance: ',$player5/balance)"/>
                             </text>
                         </xsl:when>
@@ -338,10 +338,10 @@
             <xsl:choose>
                 <xsl:when test="activePlayer/@id = $player2/@id">
                     <use xlink:href="#avatar_active" x="{$xAvatar4}" y="{$yAvatar4}" transform="rotate(-30 0 0)"></use>
-                    <text x="{$xAvatar4+25}" y="{$yAvatar4+110}" transform="rotate(-30 0 0)" fill="white" text-anchor="middle" dominant-baseline="central">
+                    <text x="{$xAvatar4+25}" y="{$yAvatar4+110}" transform="rotate(-30 0 0)" fill="white" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                       <xsl:value-of select="$player2/name"/>
                     </text>
-                    <text x="{$xAvatar4+25}" y="{$yAvatar4+135}" transform="rotate(-30 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                    <text x="{$xAvatar4+25}" y="{$yAvatar4+135}" transform="rotate(-30 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                         <xsl:value-of select="concat('Balance: ',$player2/balance)"/>
                     </text>
                 </xsl:when>
@@ -349,10 +349,10 @@
                     <xsl:choose>
                         <xsl:when test="$player2">
                             <use xlink:href="#avatar" x="{$xAvatar4}" y="{$yAvatar4}" transform="rotate(-30 0 0)"></use>
-                            <text x="{$xAvatar4+25}" y="{$yAvatar4+110}" transform="rotate(-30 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
+                            <text x="{$xAvatar4+25}" y="{$yAvatar4+110}" transform="rotate(-30 0 0)" fill="black" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                                 <xsl:value-of select="$player2/name"/>
                             </text>
-                            <text x="{$xAvatar4+25}" y="{$yAvatar4+135}" transform="rotate(-30 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                            <text x="{$xAvatar4+25}" y="{$yAvatar4+135}" transform="rotate(-30 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                                 <xsl:value-of select="concat('Balance: ',$player2/balance)"/>
                             </text>
                         </xsl:when>
@@ -362,10 +362,10 @@
             <xsl:choose>
                 <xsl:when test="activePlayer/@id = $player1/@id">
                     <use xlink:href="#avatar_active" x="{$xAvatar5}" y="{$yAvatar5}" transform="rotate(-60 0 0)"></use>
-                    <text x="{$xAvatar5+25}" y="{$yAvatar5+110}" transform="rotate(-60 0 0)" fill="white" text-anchor="middle" dominant-baseline="central">
+                    <text x="{$xAvatar5+25}" y="{$yAvatar5+110}" transform="rotate(-60 0 0)" fill="white" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                       <xsl:value-of select="$player1/name"/>
                     </text>
-                    <text x="{$xAvatar5+25}" y="{$yAvatar5+135}" transform="rotate(-60 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                    <text x="{$xAvatar5+25}" y="{$yAvatar5+135}" transform="rotate(-60 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                         <xsl:value-of select="concat('Balance: ',$player1/balance)"/>
                     </text>
                     
@@ -374,10 +374,10 @@
                     <xsl:choose>
                         <xsl:when test="$player1">
                             <use xlink:href="#avatar" x="{$xAvatar5}" y="{$yAvatar5}" transform="rotate(-60 0 0)"></use>
-                            <text x="{$xAvatar5+25}" y="{$yAvatar5+110}" transform="rotate(-60 0 0)" fill="black" text-anchor="middle" dominant-baseline="central">
+                            <text x="{$xAvatar5+25}" y="{$yAvatar5+110}" transform="rotate(-60 0 0)" fill="black" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                                 <xsl:value-of select="$player1/name"/>
                             </text>
-                            <text x="{$xAvatar5+25}" y="{$yAvatar5+135}" transform="rotate(-60 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central">
+                            <text x="{$xAvatar5+25}" y="{$yAvatar5+135}" transform="rotate(-60 0 0)" fill="grey" text-anchor="middle" dominant-baseline="central" font-family = "Arial, Helvetica, sans-serif">
                                 <xsl:value-of select="concat('Balance: ',$player1/balance)"/>
                             </text>
                         </xsl:when>
@@ -1109,7 +1109,7 @@
                 </foreignObject>
             </xsl:if>
             
-            <div style="position:absolute;bottom:0;right:0;height:200px;width:390px;border:1px solid #ccc;font:16px/26px; overflow:auto;">
+            <div style="position:absolute;bottom:0;right:0;height:200px;width:390px;border:1px solid #ccc;font:16px/26px; overflow:auto;font-family:'Courier New',Verdana,sans-serif;">
                 <xsl:for-each select="events/event">
                     <div>[<xsl:value-of select="time"/>] <xsl:value-of select="text"/></div>
                 </xsl:for-each>
