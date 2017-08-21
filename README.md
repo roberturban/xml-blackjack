@@ -12,7 +12,7 @@ ALL DOCUMENTATION IS TO DO IN ENGLISH (except doc-book)
 
 ------------------------------------------------------------------------------------------------------------------------
 
-ToDos 08/16/2017
+ToDos 08/21/2017
 
 MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found! Do not just write them there, but MARK THEM!
 * CSS initGame
