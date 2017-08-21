@@ -243,7 +243,7 @@ declare
 %rest:GET
 function c:gameover($gameId as xs:string) {
     g:deleteGame($gameId),
-    db:output(web:redirect("/blackjack/"))
+    db:output(web:redirect("/blackjack"))
 };
 
 (: this funtion calls the dealOutInitialCards function :)
