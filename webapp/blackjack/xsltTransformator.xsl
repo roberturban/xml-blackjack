@@ -1049,7 +1049,7 @@
             
             <xsl:variable name="minBet" select="./minBet"/>
             <xsl:if test="step = 'bet'">
-                <foreignObject x="40" y="750" width="150" height="100">
+                <foreignObject x="40" y="750" width="300" height="100">
                         <form action="/blackjack/bet-form/{$gameId}" style="display:flex; flex-direction:column;" xmlns="http://www.w3.org/1999/xhmtl">
                           <table>
                               <tr>
