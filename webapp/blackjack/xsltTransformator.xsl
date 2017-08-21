@@ -1074,6 +1074,13 @@
                     </a>
                 </g>
             </xsl:if>
+            
+            <div style="position:absolute;bottom:0;right:0;height:120px;width:400px;border:1px solid #ccc;font:16px/26px; overflow:auto;">
+                <xsl:for-each select="events/event">
+                    <div>[<xsl:value-of select="time"/>] <xsl:value-of select="text"/></div>
+                </xsl:for-each>
+            </div>
+            
         </svg>
     </xsl:template>
 

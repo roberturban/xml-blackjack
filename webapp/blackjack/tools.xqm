@@ -23,3 +23,8 @@ declare function t:generateID() as xs:string {
     let $id := xs:string(uuid:randomUUID())
     return $id
 };
+
+declare function t:getTime() {
+    let $time := substring-before(string(current-time()),'.')
+    return $time
+};

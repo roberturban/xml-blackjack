@@ -41,14 +41,17 @@ declare %updating function p:bet($gameId as xs:string, $betValue as xs:integer) 
   let $player := $game/players/player[@id=$playerId]
   let $newBalance := $player/balance - $betValue
   
-  return 
-    if (($betValue > $game/maxBet) or ($betValue < $game/minBet) or ($betValue > $player/balance)) then (
-        (: ToDo: ERROR :)
-    )
+  return (
+    if ($betValue > $game/maxBet) then (
+        g:addEvent($gameId,"ERROR: Bet is greater than the maximum bet"))
+    else if ($betValue < $game/minBet) then (
+        g:addEvent($gameId,"ERROR: Bet is less than the minimum bet"))
+    else if ($betValue > $player/balance) then (
+        g:addEvent($gameId,"ERROR: Not enough balance"))
     else (
         replace value of node $player/balance with $newBalance,
         replace value of node $player/bet with $betValue,
-        g:setActivePlayer($gameId)
+        g:setActivePlayer($gameId))
     )
 };
 

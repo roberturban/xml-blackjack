@@ -40,6 +40,9 @@ declare function g:createNewGame($maxBet as xs:integer, $minBet as xs:integer,$p
         <id>dealer</id>
         <hand></hand>
       </dealer>
+      <events>
+        <event><time>{t:getTime()}</time><text> New game created, have fun!</text></event>
+      </events>
       {g:shuffleCards()}
     </game>
 };
@@ -58,6 +61,10 @@ declare function g:createEmptyGame() as element(game) {
         <id>dealer</id>
         <hand></hand>
       </dealer>
+      <events>
+        <event><time>{t:getTime()}</time><text> ERROR: For each player a name is mandatory and balance needs to be greater than 0</text></event>
+        <event><time>{t:getTime()}</time><text> ERROR: New game with no players created</text></event>
+      </events>
     </game>
 }; 
  
@@ -128,14 +135,18 @@ declare %updating function g:checkBankruptAll($gameId as xs:string) {
   
   return(for $p in $game/players/player
          where (number($p/balance) < number($game/minBet))
-         return(delete node $p),
-         
-         if($playersIn = $playersOut) then (
-            replace value of node $game/step with 'gameover'
-           )
-         else (
-            replace value of node $game/step with 'bet',
-            g:setActivePlayer($gameId)))
+         return(
+            delete node $p,
+            g:addEvent($gameId,concat($p/name," is bankrupt"))),
+            
+        if($playersIn = $playersOut) then (
+           replace value of node $game/step with 'gameover',
+           g:addEvent($gameId,"GAME OVER: All players are bankrupt")
+          )
+        else (
+           replace value of node $game/step with 'bet',
+           g:setActivePlayer($gameId))
+         )
 };
 
 declare %updating function g:checkDeckLength($gameId as xs:string){
@@ -182,7 +193,8 @@ declare %updating function g:checkWinningStatus($gameId as xs:string, $player as
                         replace value of node $player/balance with ($balanceValue+g:checkInsurancePayout($player,$valueOfCardsDealer,$numberOfCardsDealer)))
                     else if (($numberOfCardsDealer > 2) and ($valueOfCardsDealer = 21) and ($numberOfCardsPlayer = 2)) then (
                         (: player blackjack, dealer just 21 => player wins 3:2 :)
-                        replace value of node $player/balance with ($balanceValue+$betValue*2.5+g:checkInsurancePayout($player,$valueOfCardsDealer,$numberOfCardsDealer)))
+                        replace value of node $player/balance with ($balanceValue+$betValue*2.5+g:checkInsurancePayout($player,$valueOfCardsDealer,$numberOfCardsDealer)),
+                        g:addEvent($gameId,concat($player/name,' got a blackjack!')))
                     else (
                         (: tie :)
                         replace value of node $player/balance with ($balanceValue+$betValue+g:checkInsurancePayout($player,$valueOfCardsDealer,$numberOfCardsDealer)))
@@ -195,7 +207,8 @@ declare %updating function g:checkWinningStatus($gameId as xs:string, $player as
                 else if ($valueOfCardsPlayer = 21) then (
                     if ($numberOfCardsPlayer = 2) then (
                         (: player wins with a blackJack :)
-                        replace value of node $player/balance with ($balanceValue+$betValue*2.5+g:checkInsurancePayout($player,$valueOfCardsDealer,$numberOfCardsDealer)))
+                        replace value of node $player/balance with ($balanceValue+$betValue*2.5+g:checkInsurancePayout($player,$valueOfCardsDealer,$numberOfCardsDealer)),
+                        g:addEvent($gameId,concat($player/name,' got a blackjack!')))
                     else (
                         (: player wins but no blackjack :)
                         replace value of node $player/balance with ($balanceValue+$betValue*2+g:checkInsurancePayout($player,$valueOfCardsDealer,$numberOfCardsDealer)))
@@ -224,6 +237,18 @@ declare function g:checkInsurancePayout($player as element(player), $valueOfCard
     else
         0
     )
+};
+
+(: adds a new event element in events :)
+declare %updating function g:addEvent($gameId as xs:string, $text as xs:string) {
+    let $game := $g:casino/game[@id=$gameId]
+    let $insert :=  <event>
+                        <time>{t:getTime()}</time>
+                        <text> {$text}</text>
+                    </event>
+    return (
+        insert node $insert as first into $game/events
+        )
 };
 
 declare function g:getDeck() as element(cards) {
