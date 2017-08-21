@@ -20,7 +20,6 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * DocBook
 * Presentation slides (inclusive class and sequence diagram, architecture/technology overview, ...)
 * GUI (e.g.: Hit, stand, insurance buttons need to be clickable only when possible)
-* Error pages displaying to user (--> see ToDos in code)
 * Review/test concatenated game logic
 * Update class diagram
 * CSS for start pages
@@ -44,8 +43,6 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * ToDos in code (e.g. answer questions in comments, implement/discuss need of constructors, correct the logic, ...)
 * Testing
 * Presentation
-* Bet vor Ausgabe der Karten
-* Error pages displaying to user
 * Update class diagram
 * Old ToDos
 
