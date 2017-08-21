@@ -19,15 +19,12 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * Testing
 * DocBook
 * Presentation slides (inclusive class and sequence diagram, architecture/technology overview, ...)
-* Bet text field before displaying the cards
 * GUI (e.g.: Hit, stand, insurance buttons need to be clickable only when possible)
 * Error pages displaying to user (--> see ToDos in code)
 * Review/test concatenated game logic
 * Update class diagram
 * CSS for start pages
-* At least 1 player has to be playing when starting a new game (currently it is possible to start a new game without anyone playing)
-* Check for players actually playing on the table (name != "" and balance >= 1 and bet > 0 and bet <= balance) in all relevant functions (e.g. setActivePlayer, checkWinningStatusA, after bet round when activePlayer is 1 again, ...)
-* After deleting a player, the other players should remain on their seats at the table (--> no right shifting in GUI)
+* map players in xslt to their seats according to seat-element
 * Dealer gets his first two cards AFTER the bet-round (at the moment, the dealer gets 2 x 2cards due to the bet-round)
 * Old ToDos
 * Kartenrückseite
@@ -47,12 +44,9 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * Insurance function implementation to review/finish
 * ToDos in code (e.g. answer questions in comments, implement/discuss need of constructors, correct the logic, ...)
 * Testing
-* DocBook (no compile errors and no typos)
 * Presentation
 * Bet vor Ausgabe der Karten
-* GUI auf Spiel anpassen (e.g.: hit, stand, bet, insurance buttons need to be integrated in GUI, ...)
 * Error pages displaying to user
-* concat all the game logic (--> function calls sequence)
 * Update class diagram
 * Old ToDos
 
@@ -65,10 +59,6 @@ Lower prio:
 
 ToDos 07/21/2017
 
-* Transform dummy functions into fully-developed ones (hit, stand, ...) ---> in player.xqm
-* Implement missing functions (insurance, ...) ---> in player.xqm
-* Get XSLT for GUI working (1st step is without responses, 2nd is with responses)
-* (eventually start testing)
 * casino.dtd has to be finished
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -77,8 +67,6 @@ ToDos 07/14/2017
 
 * Take on open ToDos and Notes
 * Keep class diagram updated
-* Implement missing functions (hit, stand, insurance, ...)
-* Get protoype for GUI working (1st step is without responses, 2nd is with responses)
 
 ------------------------------------------------------------------------------------------------------------------------
 
