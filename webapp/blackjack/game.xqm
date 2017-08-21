@@ -133,19 +133,21 @@ declare %updating function g:checkBankruptAll($gameId as xs:string) {
                             where (number($p/balance) < number($game/minBet))
                             return $p)
   
-  return(for $p in $game/players/player
-         where (number($p/balance) < number($game/minBet))
-         return(
-            delete node $p,
-            g:addEvent($gameId,concat($p/name," is bankrupt"))),
-            
+  return(
         if($playersIn = $playersOut) then (
            replace value of node $game/step with 'gameover',
            g:addEvent($gameId,"GAME OVER: All players are bankrupt")
           )
         else (
            replace value of node $game/step with 'bet',
-           g:setActivePlayer($gameId))
+           g:addEvent($gameId,"New round started"),
+           g:setActivePlayer($gameId)),
+  
+        for $p in $game/players/player
+        where (number($p/balance) < number($game/minBet))
+        return(
+            delete node $p,
+            g:addEvent($gameId,concat($p/name," is bankrupt")))
          )
 };
 
@@ -161,7 +163,8 @@ declare %updating function g:checkDeckLength($gameId as xs:string){
                 </cards>
   return(
     if(count($game/cards/*)<(312*0.6)) then (
-        replace node $game/cards with $deck
+        replace node $game/cards with $deck,
+        g:addEvent($gameId,"All cards are shuffled")
     )
     else ()
   )
@@ -244,7 +247,7 @@ declare %updating function g:addEvent($gameId as xs:string, $text as xs:string) 
     let $game := $g:casino/game[@id=$gameId]
     let $insert :=  <event>
                         <time>{t:getTime()}</time>
-                        <text> {$text}</text>
+                        <text>{concat(" ",$text)}</text>
                     </event>
     return (
         insert node $insert as first into $game/events

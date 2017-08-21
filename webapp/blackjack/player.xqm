@@ -47,7 +47,7 @@ declare %updating function p:bet($gameId as xs:string, $betValue as xs:integer) 
     else if ($betValue < $game/minBet) then (
         g:addEvent($gameId,"ERROR: Bet is less than the minimum bet"))
     else if ($betValue > $player/balance) then (
-        g:addEvent($gameId,"ERROR: Not enough balance"))
+        g:addEvent($gameId,"ERROR: Not sufficient balance"))
     else (
         replace value of node $player/balance with $newBalance,
         replace value of node $player/bet with $betValue,
@@ -69,7 +69,8 @@ declare %updating function p:hit($gameId as xs:string) {
     else (
         (: ToDo: Error :)
         (p:drawCardPlayer($gameId,fn:false(), $player),
-        g:setActivePlayer($gameId))
+        g:setActivePlayer($gameId),
+        g:addEvent($gameId,concat($player/name," drew too high")))
     )
 };
 
@@ -94,9 +95,13 @@ declare %updating function p:insurance($gameId as xs:string) {
             replace value of node $player/insurance with $insuranceValue,
             replace value of node $player/balance with ($balance - $insuranceValue)
         )
-        else ()
+        else (
+            g:addEvent($gameId,"ERROR: Not sufficient balance"))
     )
-    else ()
+    else if ($game/dealer/hand/card[1]/value != 'A') then (
+            g:addEvent($gameId,"ERROR: You can only use insurance if the first card of the dealer is an ace"))
+    else (
+            g:addEvent($gameId, "ERROR: You already used insurance this round"))
   )
 };
 
