@@ -21,6 +21,8 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * finalize docbook
 * Old ToDos
 * prensentation slides
+* card back
+* display insurance
 
 * (animationen)
 
@@ -34,11 +36,9 @@ MARK TODOS or QUESTIONS as "ToDo: ......" in the code, so that they can be found
 * Testing
 * DocBook
 * Presentation slides (inclusive class and sequence diagram, architecture/technology overview, ...)
-* GUI (e.g.: Hit, stand, insurance buttons need to be clickable only when possible)
 * Review/test concatenated game logic
 * Update class diagram
 * CSS for start pages
-* Dealer gets his first two cards AFTER the bet-round (at the moment, the dealer gets 2 x 2cards due to the bet-round)
 * Old ToDos
 * Kartenrückseite
 
