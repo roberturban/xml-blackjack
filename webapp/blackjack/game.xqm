@@ -172,8 +172,8 @@ declare %updating function g:checkDeckLength($gameId as xs:string){
             <cards>
               {$shuffled-deck}
             </cards>
-        replace node $game/cards with $shuffled-deck,
-        g:addEvent($gameId,"All cards are shuffled")
+        return (replace node $game/cards with $shuffled-deck,
+        g:addEvent($gameId,"All cards are shuffled"))
     )
     else ()
   )
