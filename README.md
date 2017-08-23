@@ -15,12 +15,8 @@ ALL DOCUMENTATION IS TO DO IN ENGLISH (except doc-book)
 ToDos 08/21/2017
 
 * CSS initGame
-* let the GUI shine
 * finalize docbook (asap)
-* Old ToDos
 * prensentation slides
-* card back
-* display insurance
 
 * (animationen)
 
