@@ -1,5 +1,5 @@
 xquery version "3.0"  encoding "UTF-8"; 
- 
+
 module namespace d = "blackjack/dealer"; 
 import module namespace g = "blackjack/game" at "game.xqm";
 import module namespace p = "blackjack/player" at "player.xqm";
@@ -8,6 +8,7 @@ import module namespace t = "blackjack/tools" at "tools.xqm";
 (: open database blackjack, locate resource within database and navigate to its top element :)
 declare variable $d:casino := db:open("blackjack")/casino;
 
+(: this function makes the dealer active :)
 declare %updating function d:dealerTurn($gameId as xs:string){
     let $game := $d:casino/game[@id=$gameId]
     
@@ -182,5 +183,5 @@ declare %updating function d:dealOutInitialCards($gameId as xs:string) {
                     insert node $game/cards/card[1+(count($players)*2)] into $game/dealer/hand,
                     delete node $game/cards/card[1+(count($players)*2)] )
                 else()
-                )                 
+                )
 };

@@ -67,7 +67,6 @@ declare %updating function p:hit($gameId as xs:string) {
         p:drawCardPlayer($gameId,fn:false(), $player)
     )
     else (
-        (: ToDo: Error :)
         (p:drawCardPlayer($gameId,fn:false(), $player),
         g:setActivePlayer($gameId),
         g:addEvent($gameId,concat($player/name," drew too high")))

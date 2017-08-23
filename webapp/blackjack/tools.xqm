@@ -24,7 +24,8 @@ declare function t:generateID() as xs:string {
     return $id
 };
 
-declare function t:getTime() {
+(: this function returns the time as a substring :)
+declare function t:getTime() as xs:string {
     let $time := substring-before(string(current-time()),'.')
     return $time
 };

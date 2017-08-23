@@ -75,7 +75,7 @@ declare %updating function g:insertGame($game as element(game)) {
 
 (: this function deletes a game instance from the casino server :)
 (: the game instance to be deleted is referenced by its gameId :)
-(:due to efficiency, iterate only over matching games, which usually should be a single game :)
+(: due to efficiency, iterate only over matching games, which usually should be a single game :)
 declare %updating function g:deleteGame($gameId as xs:string) {
   for $game in $g:casino/game[@id=$gameId]
     return delete node $game
@@ -126,6 +126,7 @@ declare %updating function g:checkWinningStatusAll($gameId as xs:string) {
     )
 };
 
+(: this funtion checks who ran out of money :)
 declare %updating function g:checkBankruptAll($gameId as xs:string) {
   let $game := $g:casino/game[@id=$gameId]
   let $playersIn := count($game/players/player)
@@ -151,6 +152,7 @@ declare %updating function g:checkBankruptAll($gameId as xs:string) {
          )
 };
 
+(: this function checks the length of the deck :)
 declare %updating function g:checkDeckLength($gameId as xs:string){
   let $game := $g:casino/game[@id=$gameId]
   let $deck := <cards>
@@ -236,6 +238,7 @@ declare %updating function g:checkWinningStatus($gameId as xs:string, $player as
          )
 };
 
+(: checks the insurance payout for a player :)
 declare function g:checkInsurancePayout($player as element(player), $valueOfCardsDealer as xs:double, $numberOfCardsDealer as xs:integer) as xs:double {
    let $insurance := number($player/insurance)
     
@@ -263,6 +266,7 @@ declare %updating function g:addEvent($gameId as xs:string, $text as xs:string) 
         )
 };
 
+(: this function returns the deck of cards :)
 declare function g:getDeck() as element(cards) {
     let $deck :=
             <cards>
