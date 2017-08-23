@@ -228,6 +228,37 @@
                         <xsl:value-of select="$player5/bet"/>
                     </text>
                 </g>
+                
+                <g id="chipInsuranceP1">
+                    <use xlink:href="#chip-coin" x="710" y="366" />
+                    <text x="710" y="366"  fill="black" text-anchor="middle" dominant-baseline="central"  >
+                        <xsl:value-of select="$player1/insurance"/>
+                    </text>
+                </g>
+                <g id="chipInsuranceP2">
+                    <use xlink:href="#chip-coin" x="668" y="379" />
+                    <text x="668" y="379" fill="black" text-anchor="middle" dominant-baseline="central" >
+                        <xsl:value-of select="$player2/insurance"/>
+                    </text>
+                </g>
+                <g id="chipInsuranceP3">
+                    <use xlink:href="#chip-coin" x="612" y="388" />
+                    <text x="612" y="388" fill="black" text-anchor="middle" dominant-baseline="central">
+                        <xsl:value-of select="$player3/insurance"/>
+                    </text>
+                </g>
+                <g id="chipInsuranceP4">
+                    <use xlink:href="#chip-coin" x="554" y="383" />
+                    <text x="554" y="383" fill="black" text-anchor="middle" dominant-baseline="central" >
+                        <xsl:value-of select="$player4/insurance"/>
+                    </text>
+                </g>
+                <g id="chipInsuranceP5">
+                    <use xlink:href="#chip-coin" x="500" y="366" />
+                    <text x="500" y="366" fill="black" text-anchor="middle" dominant-baseline="central" >
+                        <xsl:value-of select="$player5/insurance"/>
+                    </text>
+                </g>
             </defs>
             
          
@@ -259,6 +290,37 @@
             <xsl:choose>
                 <xsl:when test="$player5/bet>0">
                     <use  xlink:href="#chipP5" />
+                    
+                </xsl:when>
+            </xsl:choose>
+            
+            <xsl:choose>
+                <xsl:when test="$player1/insurance>0">
+                    <use  xlink:href="#chipInsuranceP1" />
+                    
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$player2/insurance>0">
+                    <use  xlink:href="#chipInsuranceP2" />
+                    
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$player3/insurance>0">
+                    <use  xlink:href="#chipInsuranceP3" />
+                    
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$player4/insurance>0">
+                    <use  xlink:href="#chipInsuranceP4" />
+                    
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$player5/insurance>0">
+                    <use  xlink:href="#chipInsuranceP5" />
                     
                 </xsl:when>
             </xsl:choose>
@@ -970,12 +1032,13 @@
             </xsl:for-each>
             
             <!--Animationen-->
-            <defs>
+        <!--     <defs>
                 <animateMotion xlink:href="#Coin1" dur="3s" path="M0 0 l+200 +200" fill="freeze" calcMode="discrete"/>
                 <animateMotion xlink:href="#Coin2" dur="6s" path="M0 0 l+200 +200" rotate="45"/>
                 <animateMotion xlink:href="#Coin3" dur="3s" path="M0 0 l+200 +200" />
             </defs>
             
+             -->
             
                 
            
