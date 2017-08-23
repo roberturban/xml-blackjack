@@ -130,7 +130,13 @@
             </image>-->
 
             <defs>
-                <rect id="kartenplatz" height="70" width="50" rx="6"/>
+                <rect id="kartenplatz" height="70" width="50" rx="10"/>
+            </defs>
+            <defs>
+                <g id="cardStack">
+                    <rect height="70" width="50" rx="10" fill="white"/>
+                    <image xlink:href="https://previews.123rf.com/images/bobyramone/bobyramone1401/bobyramone140100001/24827364-Spielkarte-R-ckseite-Lizenzfreie-Bilder.jpg" height="70" width="50" x="3" y="3" transform="scale(0.9)"/>
+                </g>
             </defs>
 
             <use x="{$xKartenplatz3}" y="{$yKartenplatz3}" xlink:href="#kartenplatz" stroke="white" fill="none" />
@@ -156,12 +162,12 @@
             <text x="{$xText}" y="{$yText}" font-family="Verdana" font-size="50" fill="white" text-anchor="middle" font-weight="bold">
                 BLACK JACK
             </text>
-
-            <use x="{$xAblagestapel}" y="{$yAblagestapel}" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
-            <use x="{$xAblagestapel + 3}" y="{$yAblagestapel - 3}" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
-            <use x="{$xAblagestapel + 6}" y="{$yAblagestapel - 6}" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
-            <use x="{$xAblagestapel + 9}" y="{$yAblagestapel - 9}" transform="rotate(90 0 0)" xlink:href="#kartenplatz" fill="white" stroke="grey" stroke-width="2"/>
-
+            
+            <use x="{$xAblagestapel}" y="{$yAblagestapel}" transform="rotate(90 0 0)" xlink:href="#cardStack" stroke="grey" stroke-width="2"/>
+            <use x="{$xAblagestapel + 3}" y="{$yAblagestapel - 3}" transform="rotate(90 0 0)" xlink:href="#cardStack" stroke="grey" stroke-width="2"/>
+            <use x="{$xAblagestapel + 6}" y="{$yAblagestapel - 6}" transform="rotate(90 0 0)" xlink:href="#cardStack" stroke="grey" stroke-width="2"/>
+            <use x="{$xAblagestapel + 9}" y="{$yAblagestapel - 9}" transform="rotate(90 0 0)" xlink:href="#cardStack" stroke="grey" stroke-width="2" rx="5"/>
+             -->
             <defs>
                 <g id="avatar">
                     <ellipse cx="25" cy="30" rx="25" ry="30" fill="none" stroke="black" stroke-width="6"></ellipse>
@@ -808,6 +814,13 @@
             
             
             <!-- all special cards (with pics) -->
+            <!-- hidden card -->
+            <defs>
+                <g id="hiddenCard">
+                    <image xlink:href="https://previews.123rf.com/images/bobyramone/bobyramone1401/bobyramone140100001/24827364-Spielkarte-R-ckseite-Lizenzfreie-Bilder.jpg" width="250" height="330" x="45" y="20" />
+                </g>
+            </defs>
+            
             <!-- diamonds -->
             <defs>
                 <g id="diamonds-K">
@@ -894,9 +907,6 @@
                 <xsl:variable name="value" select="value"/>
                 <use x="{($xKartenplatz1*5-44 + (80*$counter))}" y="{$yKartenplatz1*5-8}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(-60 0 0)" />
                 <xsl:choose>
-                    <xsl:when test="hidden = 'true'">
-                        <!-- TODO: Kartenrückseite -->
-                    </xsl:when>
                     <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
                         <use x="{($xKartenplatz1*5-44 + (80*$counter))}" y="{$yKartenplatz1*5-8}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-60 0 0)" />
                     </xsl:when>
@@ -918,9 +928,6 @@
                 <xsl:variable name="value" select="value"/>
                 <use x="{($xKartenplatz2*5-44 + (80*$counter))}" y="{$yKartenplatz2*5-8}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(-30 0 0)" />
                 <xsl:choose>
-                    <xsl:when test="hidden = 'true'">
-                        <!-- TODO: Kartenrückseite -->
-                    </xsl:when>
                     <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
                         <use x="{($xKartenplatz2*5-44 + (80*$counter))}" y="{$yKartenplatz2*5-8}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(-30 0 0)" />
                     </xsl:when>
@@ -942,9 +949,6 @@
                 <xsl:variable name="value" select="value"/>
                 <use x="{($xKartenplatz3*5-44 + (80*$counter))}" y="{$yKartenplatz3*5 -8}" xlink:href="#generic-card-border" transform="scale(0.2)" />
                 <xsl:choose>
-                    <xsl:when test="hidden = 'true'">
-                        <!-- TODO: Kartenrückseite -->
-                    </xsl:when>
                     <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
                         <use x="{($xKartenplatz3*5-44 + (80*$counter))}" y="{$yKartenplatz3*5-8}" xlink:href="#{$color}-{$value}" transform="scale(0.2)" />
                     </xsl:when>
@@ -966,9 +970,6 @@
                 <xsl:variable name="value" select="value"/>
                 <use x="{($xKartenplatz4*5-44 + (80*$counter))}" y="{$yKartenplatz4*5 -8}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(30 0 0)" />
                 <xsl:choose>
-                    <xsl:when test="hidden = 'true'">
-                        <!-- TODO: Kartenrückseite -->
-                    </xsl:when>
                     <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
                         <use x="{($xKartenplatz4*5-44 + (80*$counter))}" y="{$yKartenplatz4*5-8}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(30 0 0)" />
                     </xsl:when>
@@ -990,9 +991,6 @@
                 <xsl:variable name="value" select="value"/>
                 <use x="{($xKartenplatz5*5-44 + (80*$counter))}" y="{$yKartenplatz5*5 -8}" xlink:href="#generic-card-border" transform="scale(0.2) rotate(60 0 0)" />
                 <xsl:choose>
-                    <xsl:when test="hidden = 'true'">
-                        <!-- TODO: Kartenrückseite -->
-                    </xsl:when>
                     <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
                         <use x="{($xKartenplatz5*5-44 + (80*$counter))}" y="{$yKartenplatz5*5-8}" xlink:href="#{$color}-{$value}" transform="scale(0.2) rotate(60 0 0)" />
                     </xsl:when>
@@ -1015,7 +1013,7 @@
                 <use x="{($xKartenplatzDealer*5-44 + (80*$counter))}" y="{$yKartenplatzDealer*5 -8}" xlink:href="#generic-card-border" transform="scale(0.2)" />
                 <xsl:choose>
                     <xsl:when test="hidden = 'true'">
-                        <!-- TODO: Kartenrückseite -->
+                        <use x="{($xKartenplatzDealer*5-44 + (80*$counter))}" y="{$yKartenplatzDealer*5-8}" xlink:href="#hiddenCard" transform="scale(0.2) " />
                     </xsl:when>
                     <xsl:when test="$value = 'K' or $value = 'Q' or $value = 'J'">
                         <use x="{($xKartenplatzDealer*5-44 + (80*$counter))}" y="{$yKartenplatzDealer*5-8}" xlink:href="#{$color}-{$value}" transform="scale(0.2) " />
