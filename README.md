@@ -16,4 +16,5 @@ ToDos 08/21/2017
 
 * CSS initGame
 * finalize docbook (only part from line 813 - 836 missing --> game initialization GUI with screenshots)
+* transform final docBook to pdf
 * send out final project due to MONDAY, 08/28/17 11:00 AM
