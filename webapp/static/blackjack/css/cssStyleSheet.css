@@ -21,10 +21,10 @@ a.team:link {
     position: absolute;
     font-size: 16pt;
 }
-a:hover { 
+a:hover {
     color: #E6C25A;
 }
-a.team:hover { 
+a.team:hover {
     color: #E6C25A;
 }
 a:visited {
@@ -36,24 +36,25 @@ a.team:visited {
 
 body.second {
     background-color : #1A2D1B;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top: 50px;
 }
-div {
-    column-count: 2;
-    margin: auto;
-    height: 100%;
-    width: 50%;
+.line{
+  margin: 15px 0px;
+  display: flex;
 }
+
 label {
     font-size: 17pt;
     text-align: center;
     color: #E6C25A;
-    
+
 }
 input {
-    
     font-size: 17pt;
     text-align: center;
-    
 }
 
 h1 {
@@ -61,11 +62,11 @@ h1 {
     font-weight: bold;
     text-align: center;
     color: #E6C25A;
-    
+
 }
 
 input.submit {
     background-color: #E6C25A;
-    
-    
+    align-self: center;
+    margin-top: 20px;
 }

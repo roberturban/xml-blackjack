@@ -9,7 +9,7 @@ import module namespace d = "blackjack/dealer" at "dealer.xqm";
 import module namespace request = "http://exquery.org/ns/request";
 
 declare variable $c:index := doc("../static/blackjack/index.html");
-declare variable $c:initGame := doc("initGame.html");
+declare variable $c:initGame := doc("../static/blackjack/initGame.html");
 declare variable $c:casinoCollection := db:open("blackjack");
 declare variable $c:blackjackIMG := doc("/static/blackjack/img/blackjack.png");
 declare variable $c:xsltTransformator := doc("xsltTransformator.xsl");
@@ -173,7 +173,7 @@ declare
 function c:bet-form($gameId as xs:string) {
   let $bet := (request:parameter("bet"))
   (: Bet is checked in player :)
-  
+
   return if ($c:casinoCollection/casino/game[@id = $gameId]/step = 'bet') then (
     (db:output(c:redirectToTransformator($gameId)),p:bet($gameId,$bet))
   ) else ( )

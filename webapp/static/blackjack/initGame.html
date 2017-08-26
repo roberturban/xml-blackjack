@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+    <head>
+        <link rel="stylesheet" href="../static/blackjack/css/cssStyleSheet.css"/>
+        <!-- custom style -->
+        <link rel="stylesheet" href="../static/blackjack/css/custom.css"/>
+        <link rel="stylesheet" href="../static/blackjack/css/style.css"/>
+
+        <!-- Animate.css -->
+        <link rel="stylesheet" href="../static/blackjack/css/animate.css"/>
+        <!-- Icomoon Icon Fonts-->
+        <link rel="stylesheet" href="../static/blackjack/css/icomoon.css"/>
+        <!-- Simple Line Icons -->
+        <link rel="stylesheet" href="../static/blackjack/css/simple-line-icons.css"/>
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="../static/blackjack/css/owl.carousel.min.css"/>
+        <link rel="stylesheet" href="../static/blackjack/css/owl.theme.default.min.css"/>
+        <!-- Bootstrap  -->
+        <link rel="stylesheet" href="../static/blackjack/css/bootstrap.css"/>
+
+    </head>
+    <body class= "container second">
+      <h1 style="color:#fff !important">
+        Please Insert Name and Balance of the Players<br/><br/>
+      </h1>
+        <form class="form-group" action="/blackjack/form" style="display:flex; flex-direction:column;">
+          <div class="line">
+            <label style="margin-right:10px" for="playername1">Name of Player 1</label>
+            <input style="margin-right:15px; border-radius: 6px;" type="text" name="playername1" id="playername1" value="Player 1"/>
+            <label style="margin-right:10px" for="balance1">Balance</label>
+            <input style="border-radius: 6px;" type="number" name="balance1" id="balance1" value="100"/><br></br>
+          </div>
+          <div class="line">
+            <label style="margin-right:10px" for="playername2">Name of Player 2</label>
+            <input style="margin-right:15px; border-radius: 6px;" type="text" name="playername2" id="playername2" value="Player 2"/>
+            <label style="margin-right:10px" for="balance2">Balance</label>
+            <input style="border-radius: 6px;" type="number" name="balance2" id="balance2" value="100"/><br></br>
+          </div>
+          <div class="line">
+            <label style="margin-right:10px" for="playername3">Name of Player 3</label>
+            <input style="margin-right:15px; border-radius: 6px;" type="text" name="playername3" id="playername3" value="Player 3"/>
+            <label style="margin-right:10px" for="balance3">Balance</label>
+            <input style="border-radius: 6px;" type="number" name="balance3" id="balance3" value="100"/><br></br>
+          </div>
+          <div class="line">
+            <label style="margin-right:10px" for="playername4">Name of Player 4</label>
+            <input style="margin-right:15px; border-radius: 6px;" type="text" name="playername4" id="playername4" value="Player 4"/>
+            <label style="margin-right:10px" for="balance4">Balance</label>
+            <input style="border-radius: 6px;" type="number" name="balance4" id="balance4" value="100"/><br></br>
+          </div>
+          <div class="line">
+            <label style="margin-right:10px" for="playername5">Name of Player 5</label>
+            <input style="margin-right:15px; border-radius: 6px;" type="text" name="playername5" id="playername5" value="Player 5"/>
+            <label style="margin-right:10px" for="balance5">Balance</label>
+            <input style="border-radius: 6px;" type="number" name="balance4" id="balance5" value="100"/><br></br>
+          </div>
+          <div class="line" style="flex-flow: column; align-items: flex-end;">
+            <div>
+              <label style="margin-right:10px" for="maxBet">Maximum Bet</label>
+              <input style="border-radius: 6px;" type="number" name="maxBet" id="maxBet" value="100"/><br></br>
+            </div>
+            <div>
+              <label style="margin-right:10px" for="minBet">Minimum Bet</label>
+              <input style="border-radius: 6px;" type="number" name="minBet" id="minBet" value="10"/><br></br>
+            </div>
+          </div>
+
+
+            <input class = "submit twoButtons leftFloat btn btn-primary btn-lg" type="submit" value="Start playing"/>
+
+        </form>
+
+    </body>
+
+</html>
