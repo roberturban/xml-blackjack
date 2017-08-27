@@ -693,8 +693,8 @@
                     The common development environment of all team members was the Oxygen XML Editor as proposed by Prof. 
                 Brüggemann-Klein. This IDE supports many different formats of files and programming and processing languages 
                 like XQuery, XHTML, XSLT and many others. As all team members participated in all stages in the development, 
-                it was very helpful, that all team members made use of the same IDE. That way, easy and qucik information exchange 
-                was possible. Furthermore, we were familar with the environement, which made implementation and testing even 
+                it was very helpful, that all team members made use of the same IDE. That way, easy and quick information exchange 
+                was possible. Furthermore, we were familar with the environment, which made implementation and testing even 
                 faster.
                 </para>
                 <para>
@@ -726,9 +726,9 @@
                 <para>
                     For the overall structure of the course, I already described the general workflow at the very beginning 
                 of this document. For the first part of this practical course, some introductory lessons were held by Prof. 
-                Brüggemann-Klein. These introduced the students into the different twchnologies and made them aware of where to 
+                Brüggemann-Klein. These introduced the students into the different technologies and made them aware of where to 
                 go and what the requirements are. The second part of the course was then under control of the individual teams. 
-                This was the development lifetime of the application. Last but not least, the third part was to docuement and 
+                This was the development lifetime of the application. Last but not least, the third part was to document and 
                 present the application.
                 </para>
                 <para>
@@ -743,10 +743,10 @@
                 </para>
                 <para>
                     The application development was done in a test-driven development style and within cycles. At the very beginning 
-                of each cylce, we weekly met up as a group and discussed our status quo, some questions and issues, 
-                discussed our reviews done last. Furhter, next todos, requirements change request and actual requirements (changes) 
+                of each cycle, we weekly met up as a group and discussed our status quo, some questions and issues, 
+                discussed our reviews done last. Further, next issues, requirements, change request and actual requirements (changes) 
                 were discussed in a very professional manner, so that each team member always had to contribute to the discussions.
-                After that, results of our weekly team meetings were published in the git, as well as current questions and answers. 
+                After that, results of our weekly team meetings were published in the git as well as current questions and answers. 
                 During the individual or also sometimes synchronized team work during the next week, sometimes single team members 
                 met again and worked out on their tasks. Commits to the git were always made shortly before the next team meeting 
                 latest, but could also be done anytime in between.
@@ -759,7 +759,7 @@
                 for themselves. Furthermore, that way we were able to follow a central theme throughout the project by always 
                 having an eye on our requirements, the overall goal, the timeline and the team organization. In addition, due to the 
                 inner agil development cycles, we were able to discuss individual ideas and react quickly to any issues which arised 
-                in the mean team.
+                in the team.
                 </para>
                 <para>
                     Thus, we as a team had a clear and very suitable development lifetime.
