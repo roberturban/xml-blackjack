@@ -812,27 +812,33 @@
             <sect1>
                 <title>Starting Pages and Initialization</title>
                 <para>
-                    
+                    Calling the game page the guests are wellcomed by our startpage. This page introduces into our game, 
+                the used technologies and the members of our team.
                 </para>
                 <mediaobject>
                     <imageobject>
-                        <imagedata fileref="screenshots-starting-pages/*****.png" format="PNG"
+                        <imagedata fileref="screenshots-starting-pages/startpage.png" format="PNG"
                             align="center" scalefit="1" width="100%"/>
                     </imageobject>
-                    <caption></caption>
+                    <caption>Startpage of the Black Jack game with our teampage</caption>
                 </mediaobject>
                 <para>
-                    
+                    There are links to this documentation and to the GitHub account of each team member. Also, a contact e-mail 
+                address is given to get in touch with the developers. To start playing a Black Jack match, the button "Start Game"
+                must be clicked. Now, a form appears where the initial parameters of the game can be entered.
                 </para>
                 <mediaobject>
                     <imageobject>
-                        <imagedata fileref="screenshots-starting-pages/*****.png" format="PNG"
+                        <imagedata fileref="screenshots-starting-pages/init_page.png" format="PNG"
                             align="center" scalefit="1" width="100%"/>
                     </imageobject>
-                    <caption></caption>
+                    <caption>Form for setting the initial game parameters</caption>
                 </mediaobject>
                 <para>
-                    
+                    Here, the game parameter and the players can be specified. There are some example values filled in, but 
+                they can be changed free to your wishes. On this page, the minimum and maximum bet can be chosen. Also, the
+                playernames can be entered. If a empty playername is chosen or the balance is set to 0, this player will not 
+                be in the game. After inserting all data these can be submitted with the button "Start playing".
                 </para>
             </sect1>
             <sect1>
