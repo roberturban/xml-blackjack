@@ -1,25 +1,23 @@
-#######################################
-######## Spiel "installieren" #########
-#######################################
+# XML Blackjack WebApp Game
 
-Ordner "webapp" in das BaseX-Installationsverzeichnis kopieren
+## Requirements
+- Running instance of BaseX database, and basexhttpserver
 
-In der BaseX-GUI:
+## Install Game
+
+Copy the "webapp" folder into the BaseX base folder
+
+Open the BaseX GUI and create a new database by following the steps
 	1. Database
 	2. New...
-	3. Input file or directory: [BaseX Installationsverzeichnis]/webapp/blackjack/db_init/casino.xml
+	3. Input file or directory: [BaseX folder]/webapp/blackjack/db_init/casino.xml
 	4. Name of database: blackjack
 	5. "Ok"
-	
 
-#######################################
-############## Spielen ################
-#######################################
+## Playing the Game
 
-Im Browser folgende URL aufrufen:
+Open the following URL in your Browser
 
 http://127.0.0.1:8984/blackjack
 
-(WICHTIG: Ohne abschließendes "/", sonst wird Formatierung nicht richtig dargestellt!)
-
-Spiel beginnen mit "Start Game"
+IMPORTANT: No backslash '/' at the end of the URL
